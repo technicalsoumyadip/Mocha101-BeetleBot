@@ -1,37 +1,65 @@
 <img width="2048" height="2048" alt="Icon" src="https://github.com/user-attachments/assets/ba428934-8c72-4dd8-946e-2c1abbfff1e1" />
 
-## Known issues
-- The screen goes to lock randomly. Even though I have set the hypridle timeour to 300secs.
-# Config packages
-- Catppuccin Mocha Themed
-    - Palette (Check Mocha) - https://catppuccin.com/palette/
+# Mocha 101
 
-### Main dependencies
-0. KDE Plasma
-1. Hyprland
-2. Waybar
-3. Hyprpaper
-4. Swaync
-5. Kitty
-6. Hyprshot
-7. Rofi
-8. Dolphin*
-9. Zen Browser*
-10. Hyprlock
-11. Hypridle
-12. Fastfetch
-13. OhMyZSH
-14. sddm (if u r using gdm)
+A sharp-edged Hyprland dotfiles configuration featuring the Catppuccin Mocha color palette. Clean, minimal, and performance-focused.
 
-### Customs
-1. Wallpaper - Hyprpaper with custom .sh script to load random wallpapers from a specific folder.
-2. Rofi's theme (https://github.com/adi1090x/rofi) - Type 1 / Style 3. Color scheme is Catppuccin (slightly modified).
-3. Zen browser catppuccin theme - https://github.com/catppuccin/zen-browser
-4. Code VSS catppuccin theme - https://github.com/catppuccin/vscode
-5. Swaync - Custom CSS.
-6. Kitty catppuccin theme - https://github.com/catppuccin/kitty/tree/main/themes (modified slightly for my liking)
-    - ZSH theme - powerlevel101k
-7. SDDM catppuccin theme - https://github.com/catppuccin/sddm
-8. KDE Global theme - Scratchy theme.
-    - use "dolphin --platformtheme kde" in keybindings for dolphin to follow the KDE global theme into Hyprland.
+![Catppuccin Mocha](https://img.shields.io/badge/theme-Catppuccin%20Mocha-cba6f7?style=for-the-badge)
+![Hyprland](https://img.shields.io/badge/WM-Hyprland-5865f2?style=for-the-badge)
 
+## 🎨 Theme
+
+Built on the beautiful [Catppuccin Mocha](https://catppuccin.com/palette/) color palette with zero border-radius design philosophy for crisp, angular aesthetics.
+
+**Primary Colors:**
+- Base: `#1e1e2e`
+- Lavender: `#b4befe`
+- Mauve: `#cba6f7`
+
+## ✨ Features
+
+- **Dynamic Wallpapers**: Custom script loads random wallpapers from designated folder
+- **Custom Rofi Theme**: Based on adi1090x's Type 1 / Style 3 with modified Catppuccin colors
+- **Unified Theme**: Consistent Catppuccin Mocha across all applications
+- **Notification Center**: Swaync with custom CSS styling
+- **Lock Screen**: Hyprlock with Hypridle integration
+
+## 📦 Dependencies
+
+### Core Components
+- **Window Manager**: Hyprland
+- **Status Bar**: Waybar
+- **Wallpaper Manager**: Hyprpaper
+- **Notifications**: Swaync
+- **Terminal**: Kitty
+- **Screenshots**: Hyprshot
+- **Launcher**: Rofi
+- **Lock Screen**: Hyprlock + Hypridle
+- **System Info**: Fastfetch
+- **Shell**: ZSH with Oh My Zsh
+- **Display Manager**: SDDM (recommended if switching from GDM)
+
+### Optional
+- **File Manager**: Dolphin (KDE integration)
+- **Browser**: Zen Browser
+- **DE Fallback**: KDE Plasma for global theming
+
+## 🎨 Customizations
+
+### Applications
+
+| Application | Theme Source | Notes |
+|-------------|--------------|-------|
+| Zen Browser | [catppuccin/zen-browser](https://github.com/catppuccin/zen-browser) | - |
+| VS Code | [catppuccin/vscode](https://github.com/catppuccin/vscode) | - |
+| Kitty | [catppuccin/kitty](https://github.com/catppuccin/kitty/tree/main/themes) | Slightly modified |
+| Rofi | [adi1090x/rofi](https://github.com/adi1090x/rofi) | Type 1, Style 3 (modified colors) |
+| SDDM | [catppuccin/sddm](https://github.com/catppuccin/sddm) | - |
+| Swaync | Custom CSS | Included in repo |
+
+### Terminal Setup
+- **ZSH Theme**: Powerlevel10k
+- **Prompt**: Customized for Mocha palette
+
+### KDE Integration
+For Dolphin file manager integration with KDE themes in Hyprland:
