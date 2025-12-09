@@ -1,4 +1,7 @@
-## This is for my own understanding.
+<img width="2048" height="2048" alt="Icon" src="https://github.com/user-attachments/assets/ba428934-8c72-4dd8-946e-2c1abbfff1e1" />
+
+## Known issues
+- The screen goes to lock randomly. Even though I have set the hypridle timeour to 300secs.
 # Config packages
 - Catppuccin Mocha Themed
     - Palette (Check Mocha) - https://catppuccin.com/palette/
