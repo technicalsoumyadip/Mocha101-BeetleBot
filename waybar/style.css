@@ -46,6 +46,7 @@ button:hover {
 }
 #workspaces button {
     background: #1E1E2E;
+	min-width: 30px;
     color: #b4befe;
     transition: all 0.1s ease-in-out;
 }
