@@ -72,6 +72,7 @@ PACKAGES=(
     hyprshot
     ttf-jetbrains-mono-nerd
     bluetuith-bin
+    rofi-emoji-git 
 )
 
 # Loop through each package to announce and force reinstall
