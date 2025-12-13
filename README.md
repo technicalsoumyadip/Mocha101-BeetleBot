@@ -23,7 +23,6 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 **Catppuccin Mocha core:**
 - **Base** `#1e1e2e` — Deep, velvety background
 - **Lavender** `#b4befe` — Soft highlight tone
-- **Mauve** `#cba6f7` — Elegant secondary accent
 
 ### ✨ Feature Highlights
 
@@ -67,7 +66,9 @@ The **Super** key (Windows key) is your main modifier.
 | `Super + Return` | Open Terminal (Kitty) |
 | `Super + Q` | Kill Active Window |
 | `Super + Space` | Open App Launcher (Rofi) |
-| `Super + X` | Rofi's Powermenu |
+| `Super + X` | Logout |
+| `Super + Shift + X` | Poweroff |
+| `Super + Shift + R` | Reboot |
 | `Super + Period` | Emoji picker |
 | `Super + /` | Clipboard |
 | `Super + Alt + Space` | File browser |
