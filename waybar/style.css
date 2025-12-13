@@ -99,6 +99,7 @@ button:hover {
 #tray {
     border-radius: 0px;
     border: 2px #b4befe solid;
+    background-color: #1E1E2E;
 /*    background-color: #1E1E2E;
    color:#b4befe;  */
 }
