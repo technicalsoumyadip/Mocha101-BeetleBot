@@ -39,6 +39,8 @@ button:hover {
 }
 
 #workspaces {
+    border-radius: 0px;
+    border: 2px #b4befe solid;
     background: #1E1E2E;
     color: #b4befe;
     font-weight: normal;
@@ -95,11 +97,31 @@ button:hover {
 }
 
 #tray {
-    background-color: #1E1E2E;
-    color:#b4befe;  
+    border-radius: 0px;
+    border: 2px #b4befe solid;
+/*    background-color: #1E1E2E;
+   color:#b4befe;  */
 }
 
+/* #tray > .active {
+    background-color: #b4befe;
+    color:#b4befe;
+}
+
+#tray > .passive {
+    background-color: #1E1E2E;
+    color: #b4befe;
+}
+
+#tray > .needs-attention {
+    background-color: #eba0ac;
+    color: #11111b; 
+}
+*/
+
 #custom-logo {
+    border-radius: 0px;
+    border: 2px #b4befe solid;
     margin-left: 10px;
     background-color: #1E1E2E;
     color:#b4befe;  
@@ -126,6 +148,8 @@ button:hover {
 }
 
 #bluetooth{
+    border-radius: 0px;
+    border: 2px #b4befe solid;
     background-color: #1E1E2E;
     color:#b4befe;
 }
@@ -136,6 +160,8 @@ button:hover {
 }
 
 #clock {
+    border-radius: 0px;
+    border: 2px #b4befe solid;
     background-color: #1E1E2E;
     color: #b4befe;
 }
@@ -146,9 +172,11 @@ button:hover {
 }
 
 #custom-notification {
-  background-color: #1E1E2E;   
-  color:#b4befe;
-  margin-right: 10px;
+    border-radius: 0px;
+    border: 2px #b4befe solid;
+    background-color: #1E1E2E;   
+    color:#b4befe;
+    margin-right: 10px;
 }
 
 #custom-notification:hover {
@@ -157,6 +185,8 @@ button:hover {
 }
 
 #network {
+    border-radius: 0px;
+    border: 2px #b4befe solid;
     background-color: #1E1E2E;
     color:#b4befe;
 }
@@ -167,16 +197,22 @@ button:hover {
 }
 
 #network.disconnected {
+    border-radius: 0px;
+    border: 2px #b4befe solid;
     background-color: #eba0ac;
     color: #11111b;
 }
 
 #pulseaudio {
+    border-radius: 0px;
+    border: 2px #b4befe solid;
     background-color: #1E1E2E;
     color: #b4befe;
 }
 
 #pulseaudio.muted {
+    border-radius: 0px;
+    border: 2px #b4befe solid;
     background-color: #eba0ac;
     color: #11111b;
 }
@@ -279,19 +315,6 @@ button:hover {
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
-}
-
-#tray {
-    background-color: #2980b9;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
     background-color: #eb4d4b;
 }
 
