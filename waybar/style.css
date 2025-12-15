@@ -5,9 +5,10 @@
     font-weight: bold;
 }
 
+@import "../waybar/colors/mocha.css";
+
 window#waybar {
     background-color: transparent;
-    color: #f5e0dc;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -26,8 +27,8 @@ button {
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-    background-color: #b4befe;
-    color: #1E1E2E;
+    background-color: @light;
+    color: @bgdark;
 }
 
 /* WORKSPACES*/
@@ -35,38 +36,33 @@ button {
 
 #workspaces {
     border-radius: 0px;
-    border: 2px #b4befe solid;
-    background: #1E1E2E;
-    color: #b4befe;
+    border: 2px @light solid;
+    background: @bgdark;
+    color: @light;
     font-weight: normal;
     font-style: normal;
 }
 #workspaces button {
-    background: #1E1E2E;
-    color: #b4befe;
+    background: @bgdark;
+    color: @light;
     transition: all 0.1s ease-in-out;
 }
 #workspaces button.active {
-    background: #b4befe;
-    color: #1E1E2E;
+    background: @light;
+    color: @bgdark;
     border-radius: 0px;
     min-width: 30px;
     background-size: 400% 400%;
     transition: all 0.1s ease-in-out;
 }
 #workspaces button:hover {
-    background: #b4befe;
-    color: #1E1E2E;
+    background: @light;
+    color: @bgdark;
     border-radius: 0px;
     min-width: 30px;
 }
 
 /* WORKSPACES END*/
-
-#mode {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
 
 #clock,
 #bluetooth,
@@ -93,20 +89,21 @@ button {
 
 #tray {
     border-radius: 0px;
-    border: 2px #b4befe solid;
-    background-color: #1E1E2E;
-/*    background-color: #1E1E2E;
-   color:#b4befe;  */
+    border: 2px @light solid;
+    background-color: @bgdark;
+    color: @light;
+/*    background-color: @bgdark;
+   color:@light;  */
 }
 
 /* #tray > .active {
-    background-color: #b4befe;
-    color:#b4befe;
+    background-color: @light;
+    color:@light;
 }
 
 #tray > .passive {
-    background-color: #1E1E2E;
-    color: #b4befe;
+    background-color: @bgdark;
+    color: @light;
 }
 
 #tray > .needs-attention {
@@ -117,15 +114,15 @@ button {
 
 #custom-logo {
     border-radius: 0px;
-    border: 2px #b4befe solid;
+    border: 2px @light solid;
     margin-left: 3px;
-    background-color: #1E1E2E;
-    color:#b4befe;  
+    background-color: @bgdark;
+    color:@light;  
 }
 
 #custom-logo:hover {
-    background-color: #b4befe;
-    color: #1E1E2E;
+    background-color: @light;
+    color: @bgdark;
 }
 
 #window,
@@ -145,73 +142,74 @@ button {
 
 #bluetooth{
     border-radius: 0px;
-    border: 2px #b4befe solid;
-    background-color: #1E1E2E;
-    color:#b4befe;
+    border: 2px @light solid;
+    background-color: @bgdark;
+    color:@light;
 }
 
 #bluetooth:hover {
-    background-color: #b4befe;
-    color: #1E1E2E;
+    background-color: @light;
+    color: @bgdark;
 }
 
 #clock {
     border-radius: 0px;
-    border: 2px #b4befe solid;
-    background-color: #1E1E2E;
-    color: #b4befe;
+    border: 2px @light solid;
+    background-color: @bgdark;
+    color: @light;
 }
 
 #clock:hover {
-    background-color: #b4befe;
-    color: #1E1E2E;
+    background-color: @light;
+    color: @bgdark;
 }
 
 #custom-notification {
     border-radius: 0px;
-    border: 2px #b4befe solid;
-    background-color: #1E1E2E;   
-    color:#b4befe;
+    border: 2px @light solid;
+    background-color: @bgdark;   
+    color:@light;
     margin-right: 3px;
 }
 
 #custom-notification:hover {
-    background-color: #b4befe;
-    color: #1E1E2E;
+    background-color: @light;
+    color: @bgdark;
 }
 
 #network {
     border-radius: 0px;
-    border: 2px #b4befe solid;
-    background-color: #1E1E2E;
-    color:#b4befe;
+    border: 2px @light solid;
+    background-color: @bgdark;
+    color:@light;
 }
 
 #network:hover {
-    background-color: #b4befe;
-    color: #1E1E2E;
+    background-color: @light;
+    color: @bgdark;
 }
 
 #network.disconnected {
     border-radius: 0px;
-    border: 2px #b4befe solid;
-    background-color: #eba0ac;
+    border: 2px @light solid;
+    background-color: @alert;
     color: #11111b;
 }
 
 #pulseaudio {
     border-radius: 0px;
-    border: 2px #b4befe solid;
-    background-color: #1E1E2E;
-    color: #b4befe;
+    border: 2px @light solid;
+    background-color: @bgdark;
+    color: @light;
 }
 
 #pulseaudio.muted {
     border-radius: 0px;
-    border: 2px #b4befe solid;
-    background-color: #eba0ac;
-    color: #11111b;
+    border: 2px @light solid;
+    background-color: @alert;
+    color: @alerttxt;
 }
+
 
 #mpd {
     background-color: #66cc99;

@@ -1,0 +1,9 @@
+/* Used Colors */
+/* base */
+@define-color bgdark   #1e1e2e;
+/* lavender */
+@define-color light  #b4befe;
+/* maroon */
+@define-color alert    #eba0ac;
+/* crust */
+@define-color alerttxt  #11111b;
