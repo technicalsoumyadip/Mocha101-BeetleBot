@@ -81,6 +81,7 @@ button {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
+#mpris,
 #mpd {
     padding: 0 10px;
     color: #ffffff;
@@ -111,6 +112,14 @@ button {
     color: #11111b; 
 }
 */
+
+#mpris {
+    border-radius: 0px;
+    border: 2px @light solid;
+    margin-left: 3px;
+    background-color: @bgdark;
+    color:@light;  
+}
 
 #custom-logo {
     border-radius: 0px;
