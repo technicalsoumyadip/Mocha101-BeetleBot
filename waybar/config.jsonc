@@ -9,7 +9,8 @@
     // Choose the order of the modules
     "modules-left": [
         "custom/logo",
-        "clock"
+        "clock",
+        "mpris"
     ],
     "modules-center": [
         "hyprland/workspaces"
@@ -184,16 +185,16 @@
         "format-icons": ["", "", "", "", ""]
     },
 
-
-        "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-    }
+    "mpris": {
+        "max-length": 50,
+	    "format": "{player_icon} {dynamic}",
+	    "format-paused": "{status_icon} <i>{dynamic}</i>",
+	    "player-icons": {
+		    "default": "▶"
+	    },
+	"status-icons": {
+		"paused": "⏸"
+	}
+	// "ignored-players": ["firefox"]
+}
 }
