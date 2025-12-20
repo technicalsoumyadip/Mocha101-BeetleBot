@@ -35,14 +35,15 @@ button {
 
 
 #workspaces {
-    border-radius: 0px;
-    border: 2px @light solid;
+    border-radius: 6px;
+    /*border: 2px @light solid;*/
     background: @bgdark;
     color: @light;
     font-weight: normal;
     font-style: normal;
 }
 #workspaces button {
+    border-radius: 5px;
     background: @bgdark;
     color: @light;
     transition: all 0.1s ease-in-out;
@@ -50,7 +51,7 @@ button {
 #workspaces button.active {
     background: @light;
     color: @bgdark;
-    border-radius: 0px;
+    border-radius: 5px;
     min-width: 30px;
     background-size: 400% 400%;
     transition: all 0.1s ease-in-out;
@@ -58,7 +59,7 @@ button {
 #workspaces button:hover {
     background: @light;
     color: @bgdark;
-    border-radius: 0px;
+    border-radius: 5px;
     min-width: 30px;
 }
 
@@ -89,12 +90,12 @@ button {
 }
 
 #tray {
-    border-radius: 0px;
-    border: 2px @light solid;
+    border-radius: 5px;
+    /*border: 2px @light solid;*/
     background-color: @bgdark;
     color: @light;
-/*    background-color: @bgdark;
-   color:@light;  */
+/*  background-color: @bgdark;
+    color:@light;  */
 }
 
 /* #tray > .active {
@@ -114,15 +115,15 @@ button {
 */
 
 #mpris {
-    border-radius: 0px;
-    border: 2px @light solid;
+    border-radius: 5px;
+    /*border: 2px @light solid;*/
     background-color: @bgdark;
     color:@light;  
 }
 
 #custom-logo {
-    border-radius: 0px;
-    border: 2px @light solid;
+    border-radius: 5px;
+    /*border: 2px @light solid;*/
     margin-left: 3px;
     background-color: @bgdark;
     color:@light;  
@@ -149,8 +150,8 @@ button {
 }
 
 #bluetooth{
-    border-radius: 0px;
-    border: 2px @light solid;
+    border-radius: 5px;
+    /*border: 2px @light solid;*/
     background-color: @bgdark;
     color:@light;
 }
@@ -161,8 +162,8 @@ button {
 }
 
 #clock {
-    border-radius: 0px;
-    border: 2px @light solid;
+    border-radius: 5px;
+    /*border: 2px @light solid;*/
     background-color: @bgdark;
     color: @light;
 }
@@ -173,8 +174,8 @@ button {
 }
 
 #custom-notification {
-    border-radius: 0px;
-    border: 2px @light solid;
+    border-radius: 5px;
+    /*border: 2px @light solid;*/
     background-color: @bgdark;   
     color:@light;
     margin-right: 3px;
@@ -186,8 +187,8 @@ button {
 }
 
 #network {
-    border-radius: 0px;
-    border: 2px @light solid;
+    border-radius: 5px;
+    /*border: 2px @light solid;*/
     background-color: @bgdark;
     color:@light;
 }
@@ -198,21 +199,21 @@ button {
 }
 
 #network.disconnected {
-    border-radius: 0px;
+    border-radius: 5px;
     border: 2px @light solid;
     background-color: @alert;
     color: #11111b;
 }
 
 #pulseaudio {
-    border-radius: 0px;
-    border: 2px @light solid;
+    border-radius: 5px;
+    /*border: 2px @light solid;*/
     background-color: @bgdark;
     color: @light;
 }
 
 #pulseaudio.muted {
-    border-radius: 0px;
+    border-radius: 5px;
     border: 2px @light solid;
     background-color: @alert;
     color: @alerttxt;

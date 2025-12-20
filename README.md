@@ -4,7 +4,7 @@
 
 # ☕ Mocha 101
 
-**A sharp, elegant Hyprland setup brewed with Catppuccin Mocha.**
+**A sharp(rounded, if you prefer), elegant Hyprland setup brewed with Catppuccin Mocha.**
 
 </div>
 
@@ -12,13 +12,13 @@
 
 ### About This Setup
 
-Mocha 101 is a dotfiles configuration that blends **style, performance, and minimalism** into one cohesive Hyprland experience. Built around the **Catppuccin Mocha** palette, it delivers rich colors, crisp edges, and zero fluff.
+Mocha 101 is a dotfiles configuration that blends **style, performance, and minimalism** into one cohesive Hyprland experience. Built around the **Catppuccin Mocha** palette, it delivers rich colors, crisp edges(only if you need)😁, and zero fluff.
 
 Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, and just the right amount of aesthetic kick.
 
 ### 🎨 Design Highlights
 
-**Zero-radius philosophy:** Sharp angles and clean lines define every element. No rounded corners — just pure, modern geometry.
+**Zero-nonsense philosophy:** Perfect blur for my taste and in my opinion. Clean. Minimal. Fast. No-Bloat, whatsoever.
 
 **Catppuccin Mocha core:**
 - **Base** `#1e1e2e` — Deep, velvety background
