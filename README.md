@@ -1,7 +1,5 @@
 <div align="center">
 
-<img width="256" height="256" alt="Mocha 101 Icon" src="https://github.com/user-attachments/assets/ba428934-8c72-4dd8-946e-2c1abbfff1e1" />
-
 # ☕ Mocha 101
 
 **A sharp(rounded, if you prefer), elegant Hyprland setup brewed with Catppuccin Mocha.**
