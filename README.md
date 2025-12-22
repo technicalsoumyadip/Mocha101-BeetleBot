@@ -72,13 +72,15 @@ The **Super** key (Windows key) is your main modifier.
 |---------|--------|
 | `Super + Return` | Open Terminal (Kitty) |
 | `Super + Q` | Kill Active Window |
-| `Super + Space` | Open App Launcher (Rofi) |
+| `Super + Space` | Open App Launcher (Vicinae) |
 | `Super + X` | Logout |
 | `Super + Shift + X` | Poweroff |
 | `Super + Shift + R` | Reboot |
-| `Super + Period` | Emoji picker |
-| `Super + /` | Clipboard |
-| `Super + Alt + Space` | File browser |
+| `Super + Alt + Space` | Search Files (Vicinae) |
+| `Super + .` | Emoji (Vicinae) |
+| `Super + /` | Clipboard (Vicinae) |
+| `Super + Alt + N` | Wifi - Scan, Connect and Disconnect. (Vicinae) |
+| `Super + Alt + B` | Bluetooth - Scan, Pair, Connect and Disconnet (Vicinae) |
 | `Super + Shift + L` | Lock Screen |
 | `Super + V` | Toggle Floating Window |
 | `Super + P` | Pseudo Tiling (Dwindle) |
@@ -128,13 +130,14 @@ The **Super** key (Windows key) is your main modifier.
 | Wallpapers | Hyprpaper | Handles background rotations |
 | Notifications | Swaync | Notification center with CSS styling |
 | Terminal | Kitty | GPU-accelerated terminal |
-| Launcher | Rofi-wayland | Quick app launcher |
-| Bluetooth | Bluetuith | For the Waybar module |
+| Launcher | Vicinae | Quick app launcher |
+| Bluetooth | Vicinae Extension for Bluetooth | For the Waybar module (Middle Click) |
+| Network | Vicinae Extension for Wifi | For the Waybar module (Middle Click) |
 | Screenshots | Hyprshot | Fast and minimal |
 | Lock Screen | Hyprlock + Hypridle | Screen lock and idle control |
-| System Info | Fastfetch | System info in Mocha colors |
-| Shell | ZSH + Oh My Zsh | Command-line, styled beautifully |
-| Display Manager | SDDM | Recommended login manager |
+| System Info | Fastfetch | System info in Mocha colors (Manual configuration needed) |
+| Shell | ZSH + Oh My Zsh | Command-line, styled beautifully (Manual configuration needed) |
+| Display Manager | SDDM | Recommended login manager (Manual configuration needed) |
 | Font | JetBrains Mono Nerd | Clean, developer-friendly font |
 
 **Optional tools:**
@@ -152,10 +155,6 @@ The **Super** key (Windows key) is your main modifier.
 | Rofi | adi1090x (Type 1/Style 3) | Mocha-tuned colors |
 | SDDM | [catppuccin/sddm](https://github.com/catppuccin/sddm) | Manual configuration |
 | Swaync | Custom CSS | Included in repo |
-
-### 💻 Terminal Vibes
-
-ZSH runs with a **custom Powerlevel10k** prompt, colored to match Catppuccin Mocha. Dark backgrounds, glowing accents, and a smooth typing rhythm make every line of code satisfying.
 
 ### 🌌 KDE Integration
 
