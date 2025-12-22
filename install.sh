@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # --- Colors (Catppuccin Mocha) ---
-# ANSI TrueColor (24-bit) escape codes
 MAUVE="\033[38;2;203;166;247m"
 LAVENDER="\033[38;2;180;190;254m"
 GREEN="\033[38;2;166;227;161m"
 PEACH="\033[38;2;250;179;135m"
 RED="\033[38;2;243;139;168m"
 BLUE="\033[38;2;137;180;250m"
+FLAMINGO="\033[38;2;242;205;205m"
+SUBTEXT="\033[38;2;166;173;200m"
 RESET="\033[0m"
 
 # Define directories
@@ -20,18 +21,25 @@ WALLPAPER_DEST="$HOME/Pictures/Catppuccin-Wallpapers"
 clear
 echo -e "${MAUVE}"
 cat << "EOF"
-░███     ░███                       ░██                      ░██      ░████     ░██    
-░████    ░███                       ░██                      ░██    ░██   ░██   ░██    
-░██░██   ░███   ████████   ░███████  ████████   ░██████      ░██    ░██ ░████   ░██    
-░██ ░████ ░██ ░██    ░██ ░██    ░██ ░██    ░██       ░██     ░██    ░██░██░██   ░██    
-░██  ░██  ░██ ░██    ░██ ░██        ░██    ░██  ░███████     ░██    ░████ ░██   ░██    
-░██       ░██ ░██    ░██ ░██    ░██ ░██    ░██  ░██   ██     ░██    ░██  ░██    ░██    
-░██       ░██  ░███████   ░███████  ░██    ░██  ░███████     ░██     ░█████     ░██ 
+
+
+
+
+{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
+{}███╗   ███╗ ██████╗  ██████╗██╗  ██╗ █████╗      ██╗ ██████╗  ██╗ {}
+{}████╗ ████║██╔═══██╗██╔════╝██║  ██║██╔══██╗    ███║██╔═████╗███║ {}
+{}██╔████╔██║██║   ██║██║     ███████║███████║    ╚██║██║██╔██║╚██║ {}
+{}██║╚██╔╝██║██║   ██║██║     ██╔══██║██╔══██║     ██║████╔╝██║ ██║ {}
+{}██║ ╚═╝ ██║╚██████╔╝╚██████╗██║  ██║██║  ██║     ██║╚██████╔╝ ██║ {}
+{}╚═╝     ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝     ╚═╝ ╚═════╝  ╚═╝ {}
+{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
+
+
+
 EOF
 echo -e "${RESET}"
 echo -e "${MAUVE}::: Mocha101 Installation Script :::${RESET}"
 echo -e "${LAVENDER}This script is designed specifically for Arch Linux.${RESET}"
-echo -e "${LAVENDER}It will FORCE install dependencies, backup existing configs, and set up the Mocha101 dotfiles.${RESET}"
 echo ""
 read -p "$(echo -e ${PEACH}"Are you running this on Arch Linux? (y/n): "${RESET})" confirm
 if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
@@ -39,142 +47,94 @@ if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
     exit 1
 fi
 
-# --- Step 2: Install Yay (AUR Helper) ---
-echo -e "${BLUE}==> Checking for AUR helper (yay)...${RESET}"
+# --- Step 2: Install Yay ---
 if ! command -v yay &> /dev/null; then
-    echo -e "${PEACH}yay not found. Installing yay...${RESET}"
+    echo -e "${BLUE}==> Installing yay...${RESET}"
     sudo pacman -S --needed git base-devel -y
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si --noconfirm
-    cd ..
-    rm -rf yay
-    echo -e "${GREEN}yay installed successfully.${RESET}"
-else
-    echo -e "${GREEN}yay is already installed.${RESET}"
+    git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm && cd .. && rm -rf yay
 fi
 
-# --- Step 3: Install Dependencies (Force Reinstall) ---
-echo -e "${BLUE}==> Installing required packages...${RESET}"
-
-# List of packages based on your README + Font
+# --- Step 3: Selective Dependency Installation ---
+echo -e "${BLUE}==> Dependency Selection${RESET}"
 PACKAGES=(
-    hyprland
-    waybar
-    hyprpaper
-    swaync
-    kitty
-    rofi-wayland
-    hyprlock
-    hypridle
-    fastfetch
-    zsh
-    hyprshot
-    ttf-jetbrains-mono-nerd
-    bluetuith-bin
-    rofi-emoji-git 
+    "hyprland" "waybar" "hyprpaper" "swaync" "kitty" "hyprlock"
+    "hypridle" "fastfetch" "zsh" "hyprshot" "ttf-jetbrains-mono-nerd"
+    "bluetuith-bin" "vicinae-bin"
 )
 
-# Loop through each package to announce and force reinstall
-for pkg in "${PACKAGES[@]}"; do
-    echo -e "${MAUVE}==> Installing/Reinstalling: ${pkg}...${RESET}"
-    # Removed --needed to force reinstall
-    yay -S --noconfirm "$pkg"
+for i in "${!PACKAGES[@]}"; do
+    printf "${MAUVE}%2d)${RESET} %-25s" "$((i+1))" "${PACKAGES[$i]}"
+    [[ $(( (i+1) % 2 )) -eq 0 ]] && echo ""
+done
+echo -e "\n${MAUVE}$(( ${#PACKAGES[@]} + 1 )))${RESET} ${GREEN}Force install all packages (Recommended)${RESET}"
+
+echo ""
+read -p "Enter your choices (separated by space): " user_choices
+
+TO_INSTALL=()
+FORCE_ALL=false
+for choice in $user_choices; do
+    if [[ "$choice" -eq "$(( ${#PACKAGES[@]} + 1 ))" ]]; then FORCE_ALL=true; break; fi
+    [[ "$choice" -gt 0 && "$choice" -le "${#PACKAGES[@]}" ]] && TO_INSTALL+=("${PACKAGES[$((choice-1))]}")
 done
 
-if [ $? -ne 0 ]; then
-    echo -e "${RED}There might have been an error installing some packages. Please check the logs.${RESET}"
-    # We continue anyway as some might have succeeded
+if [ "$FORCE_ALL" = true ]; then
+    yay -S --noconfirm "${PACKAGES[@]}"
+    INSTALL_SUMMARY="All dependencies force installed."
+elif [ ${#TO_INSTALL[@]} -gt 0 ]; then
+    yay -S --needed --noconfirm "${TO_INSTALL[@]}"
+    INSTALL_SUMMARY="${#TO_INSTALL[@]} specific packages installed."
+else
+    INSTALL_SUMMARY="No packages were selected for installation."
 fi
-echo -e "${GREEN}All packages processed.${RESET}"
 
 # --- Step 4: Setup Wallpapers ---
-echo -e "${BLUE}==> Setting up Wallpapers...${RESET}"
-if [ ! -d "$WALLPAPER_DEST" ]; then
-    echo -e "${LAVENDER}Creating directory: $WALLPAPER_DEST${RESET}"
-    mkdir -p "$WALLPAPER_DEST"
-fi
-
-# Copy contents of Wallpapers folder (not the folder itself)
+mkdir -p "$WALLPAPER_DEST"
 if [ -d "$REPO_DIR/Wallpapers" ]; then
     cp -r "$REPO_DIR/Wallpapers/"* "$WALLPAPER_DEST/"
-    echo -e "${GREEN}Wallpapers copied to $WALLPAPER_DEST${RESET}"
-else
-    echo -e "${RED}Warning: Wallpapers folder not found in current directory.${RESET}"
 fi
 
 # --- Step 5: Backup & Install Configs ---
-echo -e "${BLUE}==> Setting up Configuration files...${RESET}"
-
-# List of config folders to move
 CONFIGS=("hypr" "waybar" "kitty" "rofi" "swaync" "customshscripts")
-
-# Create Backup Directory if it doesn't exist
-if [ ! -d "$BACKUP_DIR" ]; then
-    mkdir -p "$BACKUP_DIR"
-    echo -e "${LAVENDER}Created backup directory: $BACKUP_DIR${RESET}"
-fi
-
+mkdir -p "$BACKUP_DIR"
 for folder in "${CONFIGS[@]}"; do
     TARGET="$CONFIG_DIR/$folder"
     SOURCE="$REPO_DIR/$folder"
-
-    # Check if the folder exists in the repo
     if [ -d "$SOURCE" ]; then
-        # Check if the config already exists in ~/.config
-        if [ -d "$TARGET" ]; then
-            echo -e "${PEACH}Existing configuration found for $folder. Backing up...${RESET}"
-            mv "$TARGET" "$BACKUP_DIR/${folder}_$(date +%Y%m%d_%H%M%S)"
-        fi
-        
-        # Copy the new config
-        echo -e "${GREEN}Installing $folder config...${RESET}"
+        [ -d "$TARGET" ] && mv "$TARGET" "$BACKUP_DIR/${folder}_$(date +%Y%m%d_%H%M%S)"
         cp -r "$SOURCE" "$CONFIG_DIR/"
-    else
-        echo -e "${RED}Warning: Source folder $folder not found in repo.${RESET}"
     fi
 done
 
-# --- Step 6: Setup walls.sh in Home ---
-# This looks for walls.sh inside customshscripts (based on your repo structure)
-# and places a copy in the Home directory.
-echo -e "${BLUE}==> Setting up walls.sh...${RESET}"
+# --- Step 6: Setup walls.sh ---
 if [ -f "$REPO_DIR/customshscripts/walls.sh" ]; then
-    cp "$REPO_DIR/customshscripts/walls.sh" "$HOME/walls.sh"
-    chmod +x "$HOME/walls.sh"
-    echo -e "${GREEN}walls.sh copied to $HOME and made executable.${RESET}"
+    cp "$REPO_DIR/customshscripts/walls.sh" "$HOME/walls.sh" && chmod +x "$HOME/walls.sh"
 elif [ -f "$REPO_DIR/walls.sh" ]; then
-    # Fallback if it was in the root
-    cp "$REPO_DIR/walls.sh" "$HOME/walls.sh"
-    chmod +x "$HOME/walls.sh"
-    echo -e "${GREEN}walls.sh copied to $HOME and made executable.${RESET}"
-else
-    echo -e "${RED}Warning: walls.sh not found. Skipping.${RESET}"
+    cp "$REPO_DIR/walls.sh" "$HOME/walls.sh" && chmod +x "$HOME/walls.sh"
 fi
 
-# --- Step 7: Oh My Zsh (Optional) ---
-echo -e "${BLUE}==> Shell Setup${RESET}"
-read -p "$(echo -e ${PEACH}"Do you want to install Oh My Zsh now? (y/n): "${RESET})" zsh_confirm
-if [[ "$zsh_confirm" == "y" || "$zsh_confirm" == "Y" ]]; then
-    echo -e "${LAVENDER}Installing Oh My Zsh...${RESET}"
-    # Using the unattended install
+# --- Step 7: Oh My Zsh ---
+ZSH_STATUS="Skipped"
+read -p "$(echo -e ${PEACH}"Install Oh My Zsh? (y/n): "${RESET})" zsh_confirm
+if [[ "$zsh_confirm" =~ ^[Yy]$ ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    
-    echo ""
-    echo -e "${LAVENDER}IMPORTANT: Oh My Zsh installed.${RESET}"
-    echo -e "${LAVENDER}You may need to manually change your shell to zsh by running: chsh -s \$(which zsh)${RESET}"
-    echo ""
-    read -p "Press [Enter] to acknowledge this step..." dummy_input
-else
-    echo -e "${LAVENDER}Skipping Oh My Zsh installation.${RESET}"
+    ZSH_STATUS="Installed Successfully"
 fi
 
-# --- Step 8: Final Messages ---
+# --- Final Beautiful Summary ---
+clear
+echo -e "${MAUVE}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${RESET}"
+echo -e "${MAUVE}┃${RESET}  ${FLAMINGO}✨ MOCHA101 INSTALLATION COMPLETE ✨${RESET}                      ${MAUVE}┃${RESET}"
+echo -e "${MAUVE}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${RESET}"
+echo -e "  ${SUBTEXT}The following tasks were completed successfully:${RESET}"
 echo ""
-echo -e "${MAUVE}::: Installation Complete! :::${RESET}"
+echo -e "  ${BLUE}  Packages:${RESET}     ${LAVENDER}$INSTALL_SUMMARY${RESET}"
+echo -e "  ${BLUE}  Wallpapers:${RESET}   ${LAVENDER}Deployed to ~/Pictures/Catppuccin-Wallpapers${RESET}"
+echo -e "  ${BLUE}󰒓  Configs:${RESET}      ${LAVENDER}Installed to ~/.config/ (Backups in ~/ConfigBackup)${RESET}"
+echo -e "  ${BLUE}📜 Scripts:${RESET}      ${LAVENDER}walls.sh is now ready in your Home directory${RESET}"
+echo -e "  ${BLUE}󰚚  Shell:${RESET}        ${LAVENDER}Oh My Zsh: $ZSH_STATUS${RESET}"
 echo ""
-echo -e "${LAVENDER}For the best experience, please reboot your system manually now.${RESET}"
-echo ""
-echo -e "${BLUE}NOTE: You can find all keybindings and usage instructions in the README file:${RESET}"
-echo -e "${GREEN}https://github.com/BeetleBot/Mocha101${RESET}"
+echo -e "  ${GREEN}Check the README for keybindings: https://github.com/BeetleBot/Mocha101${RESET}"
+echo -e "${MAUVE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "             ${PEACH}Please reboot your system to apply all changes!${RESET}"
 echo ""
