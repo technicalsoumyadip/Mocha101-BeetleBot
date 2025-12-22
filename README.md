@@ -1,5 +1,9 @@
 <div align="center">
 
+#### Note:
+
+These configs are primarily created for myself. And this is the last update that I doing to this in stable branch. I might or might not merge my further configs in some other branch, but that is not my concern now. I am stopping my commits to this branch now because, I want this config to be a jumping ship for others to create something of their own. This is just a very minimal hyprland/waybar config. No extra bloat or anything. I had to do this, as I wanted everyone to make this their own.
+
 # ☕ Mocha 101
 
 **A sharp(rounded, if you prefer), elegant Hyprland setup brewed with Catppuccin Mocha.**
@@ -166,10 +170,6 @@ Want Dolphin and Qt apps to blend perfectly with Hyprland? Set KDE Plasma as a f
 <div align="center">
 
 **Mocha 101 — because a good desktop setup should feel as smooth as your first sip of coffee.**
-
-#### Note:
-
-These configs are primarily created for myself. And this is the last update that I doing to this in stable branch. I might or might not merge my further configs in some other branch, but that is not my concern now. I am stopping my commits to this branch now because, I want this config to be a jumping ship for others to create something of their own. This is just a very minimal hyprland/waybar config. No extra bloat or anything. I had to do this, as I wanted everyone to make this their own.
 
 </div>
 
