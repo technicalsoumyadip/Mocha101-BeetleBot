@@ -31,6 +31,15 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 - **Integrated lock screen** — Cohesive Hyprlock + Hypridle setup
 - **Lean and snappy** — Built for performance and low resource overhead
 
+### Screenshots
+
+Note: I am such a lazy guy. I did not take that many screenshot. These screenshots are just here, for you guys to get the actual feel of the configuration. Thanks.
+
+<img width="1920" height="1080" alt="2025-12-22-122925_hyprshot" src="https://github.com/user-attachments/assets/48e63585-2609-4f2a-b81c-83d103cc0350" />
+
+<img width="495" height="416" alt="2025-12-22-122948_hyprshot" src="https://github.com/user-attachments/assets/8671045f-0166-4402-8ad1-a42ba9c2babe" />
+
+
 ### ⚙️ Installation
 
 Fire it up in just a few steps:
