@@ -36,6 +36,11 @@
             "network-cli-tool": "nmcli"
          }
       },
+      "@sovereign/store.vicinae.awww-switcher": {
+         "preferences": {
+            "wallpaperPath": "/home/nkr/Pictures/Wallpapers/"
+         }
+      },
       "clipboard": {
          "preferences": {
             "eraseOnStartup": true

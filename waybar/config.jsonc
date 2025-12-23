@@ -21,11 +21,6 @@
         "custom/logo"
     ],
 
-    "tray": {
-        "spacing": 10,
-        "show-passive-items": true
-    },
-
     "custom/logo": {
         "format": "  ",
         "tooltip": false,
@@ -145,28 +140,7 @@
         "on-click-middle": "pavucontrol"
     },
 
-    /*
-    "custom/notification": {
-    "tooltip": true,
-    "format": "<span size='11pt'> {0} </span>",
-    //"format-icons": {
-    //"notification": ""
-    //  "none": "",
-    //  "dnd-notification": "",
-    //  "dnd-none": "",
-    //  "inhibited-notification": "",
-    //  "inhibited-none": "",
-    // "dnd-inhibited-notification": "",
-    //  "dnd-inhibited-none": ""
-    //},
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
-    },
-    */
+
 
     "backlight": {
         // "device": "acpi_video1",
@@ -202,4 +176,33 @@
 	}
 	// "ignored-players": ["firefox"]
 }
+    /*
+    "tray": {
+        "spacing": 10,
+        "show-passive-items": true
+    }
+
+        
+    "custom/notification": {
+    "tooltip": true,
+    "format": "<span size='11pt'> {0} </span>",
+    "format-icons": {
+        "notification": ""
+        "none": "",
+        "dnd-notification": "",
+        "dnd-none": "",
+        "inhibited-notification": "",
+        "inhibited-none": "",
+        "dnd-inhibited-notification": "",
+        "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+    },
+    */
+
 }

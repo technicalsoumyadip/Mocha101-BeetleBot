@@ -59,7 +59,7 @@ echo -e "${BLUE}==> Dependency Selection${RESET}"
 PACKAGES=(
     "hyprland" "waybar" "hyprpaper" "swaync" "kitty" "hyprlock"
     "hypridle" "fastfetch" "zsh" "hyprshot" "ttf-jetbrains-mono-nerd"
-    "bluetuith-bin" "vicinae-bin"
+    "awww-git" "vicinae-bin"
 )
 
 for i in "${!PACKAGES[@]}"; do
@@ -106,14 +106,7 @@ for folder in "${CONFIGS[@]}"; do
     fi
 done
 
-# --- Step 6: Setup walls.sh ---
-if [ -f "$REPO_DIR/customshscripts/walls.sh" ]; then
-    cp "$REPO_DIR/customshscripts/walls.sh" "$HOME/walls.sh" && chmod +x "$HOME/walls.sh"
-elif [ -f "$REPO_DIR/walls.sh" ]; then
-    cp "$REPO_DIR/walls.sh" "$HOME/walls.sh" && chmod +x "$HOME/walls.sh"
-fi
-
-# --- Step 7: Oh My Zsh ---
+# --- Step 6: Oh My Zsh ---
 ZSH_STATUS="Skipped"
 read -p "$(echo -e ${PEACH}"Install Oh My Zsh? (y/n): "${RESET})" zsh_confirm
 if [[ "$zsh_confirm" =~ ^[Yy]$ ]]; then
@@ -134,7 +127,14 @@ echo -e "  ${BLUE}󰒓  Configs:${RESET}      ${LAVENDER}Installed to ~/.config/
 echo -e "  ${BLUE}📜 Scripts:${RESET}      ${LAVENDER}walls.sh is now ready in your Home directory${RESET}"
 echo -e "  ${BLUE}󰚚  Shell:${RESET}        ${LAVENDER}Oh My Zsh: $ZSH_STATUS${RESET}"
 echo ""
+echo -e "  ${SUBTEXT}Please make sure to install these extensions from Vicinae${RESET}"
+echo ""
+echo -e "  ${BLUE}: Wifi Commander ${RESET}     ${LAVENDER}$ For Wifi keybindings and waybar ${RESET}"
+echo -e "  ${BLUE}: Bluetooth ${RESET}     ${LAVENDER}$ For Bluetooth keybindings and waybar ${RESET}"
+echo -e "  ${BLUE}: AWWW SWITCHER ${RESET}     ${LAVENDER}$ For wallpaper picker via keybinding ${RESET}"
+echo ""
 echo -e "  ${GREEN}Check the README for keybindings: https://github.com/BeetleBot/Mocha101${RESET}"
 echo -e "${MAUVE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+
 echo -e "             ${PEACH}Please reboot your system to apply all changes!${RESET}"
 echo ""

@@ -24,7 +24,7 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 ### ✨ Feature Highlights
 
-- **Dynamic wallpapers** — Custom `walls.sh` script cycles wallpapers seamlessly
+- **Wallpapers** — Uses awww for dynamic wallpaper switching using awww wallpaper switcher in vicinae.
 - **Unified theme** — Catppuccin Mocha everywhere, from terminal to notifications
 - **Custom Rofi** — Tweaked adi1090x Type 1/Style 3 theme for perfect color harmony
 - **Notification center** — Beautifully styled Swaync with custom CSS
@@ -34,6 +34,8 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 ### ☕ Screenshots
 
 Note: I am such a lazy guy. I did not take that many screenshot. These screenshots are just here, for you guys to get the actual feel of the configuration. Thanks.
+
+Note : These are old screenshots. I will update the new one soon.
 
 <img width="1920" height="1080" alt="2025-12-22-122925_hyprshot" src="https://github.com/user-attachments/assets/48e63585-2609-4f2a-b81c-83d103cc0350" />
 
@@ -46,8 +48,14 @@ Fire it up in just a few steps:
 
 ```bash
 git clone https://github.com/BeetleBot/Mocha101.git
+```
+```bash
 cd Mocha101
+```
+```bash
 chmod +x install.sh
+```
+```bash
 ./install.sh
 ```
 
@@ -81,6 +89,7 @@ The **Super** key (Windows key) is your main modifier.
 | `Super + /` | Clipboard (Vicinae) |
 | `Super + Alt + N` | Wifi - Scan, Connect and Disconnect. (Vicinae) |
 | `Super + Alt + B` | Bluetooth - Scan, Pair, Connect and Disconnet (Vicinae) |
+| `Super + Shift + W` | Wallpaper Picker (vicinae) |
 | `Super + Shift + L` | Lock Screen |
 | `Super + V` | Toggle Floating Window |
 | `Super + P` | Pseudo Tiling (Dwindle) |
@@ -100,7 +109,6 @@ The **Super** key (Windows key) is your main modifier.
 
 | Keybind | Action |
 |---------|--------|
-| `Super + Shift + W` | Set Random Wallpaper |
 | `Super + R` | Reload Waybar |
 
 ### Screenshots
