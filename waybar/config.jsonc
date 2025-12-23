@@ -3,12 +3,10 @@
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 20, // Waybar height (to be removed for auto height)
-    "width": 1906, // Waybar width
-    "margin-top": 11,
+    "margin-top": 5,
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "custom/logo",
         "clock",
         "mpris"
     ],
@@ -16,11 +14,11 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
-        "tray",
         "pulseaudio",
         "bluetooth",
         "network",
-        "custom/notification"
+        "battery",
+        "custom/logo"
     ],
 
     "tray": {
@@ -31,7 +29,13 @@
     "custom/logo": {
         "format": "  ",
         "tooltip": false,
-        "on-click": "$HOME/walls.sh"
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "on-click-middle": "$HOME/walls.sh",
+        "escape": true
     },
 
     "hyprland/workspaces": {
@@ -90,7 +94,7 @@
         // "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
         "tooltip-format-connected": "{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click-middle": "vicinae vicinae://extensions/Gelei/bluetooth/scan"
+        "on-click": "vicinae vicinae://extensions/Gelei/bluetooth/scan"
     },
 
     "clock": {
@@ -112,14 +116,13 @@
 
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "",
-        "format-alt": "{essid}",
+        "format-wifi": " {essid}",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         // "format-alt": "{ifnae}: {ipaddr}/{cidr}",
-        "on-click-middle": "vicinae vicinae://extensions/dagimg-dot/wifi-commander/scan-wifi"
+        "on-click": "vicinae vicinae://extensions/dagimg-dot/wifi-commander/scan-wifi"
     },
 
     "pulseaudio": {
@@ -142,6 +145,7 @@
         "on-click-middle": "pavucontrol"
     },
 
+    /*
     "custom/notification": {
     "tooltip": true,
     "format": "<span size='11pt'> {0} </span>",
@@ -162,6 +166,7 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
     },
+    */
 
     "backlight": {
         // "device": "acpi_video1",

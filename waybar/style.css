@@ -8,7 +8,7 @@
 @import "../waybar/colors/mocha.css";
 
 window#waybar {
-    background-color: transparent;
+    background-color: #1e1e2e;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -25,40 +25,37 @@ button {
     border-radius: 0;
 }
 
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: @light;
-    color: @bgdark;
-}
-
 /* WORKSPACES*/
 
 
 #workspaces {
     border-radius: 6px;
-    /*border: 2px @light solid;*/
-    background: @bgdark;
-    color: @light;
+    /*border: 2px @lavender solid;*/
+    /*background: @base;*/
+    color: @maroon;
     font-weight: normal;
     font-style: normal;
 }
 #workspaces button {
     border-radius: 5px;
-    background: @bgdark;
-    color: @light;
+    /*background: @base;*/
+    color: @maroon;
     transition: all 0.1s ease-in-out;
 }
 #workspaces button.active {
-    background: @light;
-    color: @bgdark;
+    background: @maroon;
+    color: @base;
     border-radius: 5px;
     min-width: 30px;
     background-size: 400% 400%;
     transition: all 0.1s ease-in-out;
 }
+
+/* you can set a style on hover for any module like this */
+
 #workspaces button:hover {
-    background: @light;
-    color: @bgdark;
+    background: @maroon;
+    color: @base;
     border-radius: 5px;
     min-width: 30px;
 }
@@ -91,21 +88,21 @@ button {
 
 #tray {
     border-radius: 5px;
-    /*border: 2px @light solid;*/
-    background-color: @bgdark;
-    color: @light;
-/*  background-color: @bgdark;
-    color:@light;  */
+    /*border: 2px @lavender solid;*/
+    background-color: @base;
+    color: @lavender;
+/*  background-color: @base;
+    color:@lavender;  */
 }
 
 /* #tray > .active {
-    background-color: @light;
-    color:@light;
+    background-color: @lavender;
+    color:@lavender;
 }
 
 #tray > .passive {
-    background-color: @bgdark;
-    color: @light;
+    background-color: @base;
+    color: @lavender;
 }
 
 #tray > .needs-attention {
@@ -116,22 +113,22 @@ button {
 
 #mpris {
     border-radius: 5px;
-    /*border: 2px @light solid;*/
-    background-color: @bgdark;
-    color:@light;  
+    /*border: 2px @lavender solid;*/
+    /*background-color: @base;*/
+    color:@lavender;  
 }
 
 #custom-logo {
     border-radius: 5px;
-    /*border: 2px @light solid;*/
-    margin-left: 3px;
-    background-color: @bgdark;
-    color:@light;  
+    /*border: 2px @lavender solid;*/
+    margin-right: 3px;
+    /*background-color: @base;*/
+    color:@yellow;  
 }
 
 #custom-logo:hover {
-    background-color: @light;
-    color: @bgdark;
+    background-color: @yellow;
+    color: @base;
 }
 
 #window,
@@ -151,74 +148,121 @@ button {
 
 #bluetooth{
     border-radius: 5px;
-    /*border: 2px @light solid;*/
-    background-color: @bgdark;
-    color:@light;
+    /*border: 2px @lavender solid;*/
+    /*background-color: @base;*/
+    color:@flamingo;
 }
 
 #bluetooth:hover {
-    background-color: @light;
-    color: @bgdark;
+    background-color: @flamingo;
+    color: @base;
 }
 
 #clock {
     border-radius: 5px;
-    /*border: 2px @light solid;*/
-    background-color: @bgdark;
-    color: @light;
+    margin-left: 3px;
+    /*border: 2px @lavender solid;*/
+    /*background-color: @base;*/
+    color: @sapphire;
 }
 
 #clock:hover {
-    background-color: @light;
-    color: @bgdark;
+    background-color: @sapphire;
+    color: @base;
 }
 
+/*
 #custom-notification {
     border-radius: 5px;
-    /*border: 2px @light solid;*/
-    background-color: @bgdark;   
-    color:@light;
-    margin-right: 3px;
+    border: 2px @lavender solid;
+    background-color: @base;   
+    color:@teal;
 }
 
+
 #custom-notification:hover {
-    background-color: @light;
-    color: @bgdark;
+    background-color: @teal;
+    color: @base;
 }
+
+*/
 
 #network {
     border-radius: 5px;
-    /*border: 2px @light solid;*/
-    background-color: @bgdark;
-    color:@light;
+    /*border: 2px @lavender solid;
+    background-color: @base;*/
+    color:@sky;
 }
 
 #network:hover {
-    background-color: @light;
-    color: @bgdark;
+    background-color: @sky;
+    color: @base;
 }
 
 #network.disconnected {
     border-radius: 5px;
-    border: 2px @light solid;
-    background-color: @alert;
-    color: #11111b;
+    background-color: @red;
+    color: @crust;
 }
 
 #pulseaudio {
     border-radius: 5px;
-    /*border: 2px @light solid;*/
-    background-color: @bgdark;
-    color: @light;
+    /*border: 2px @lavender solid;*/
+    /*background-color: @base;*/
+    color: @rosewater;
 }
 
 #pulseaudio.muted {
     border-radius: 5px;
-    border: 2px @light solid;
-    background-color: @alert;
-    color: @alerttxt;
+    background-color: @red;
+    color: @crust;
 }
 
+#pulseaudio:hover {
+    background-color: @rosewater;
+    color: @base;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*MODULES THAT ARE NOT IN USE*/
+
+#battery {
+    /*background-color: @base;*/
+    color: @rosewater;
+}
+
+#battery.charging, #battery.plugged {
+    color: @green;
+    /*background-color: @rosewater;*/
+}
+
+@keyframes blink {
+    to {
+        background-color: @crust;
+        color: @text;
+    }
+}
+
+    /*Using steps() instead of linear as a timing function to limit cpu usage*/
+
+#battery.critical:not(.charging) {
+    /*background-color: @red;*/
+    color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
 
 #mpd {
     background-color: #66cc99;
@@ -328,35 +372,6 @@ button {
 #idle_inhibitor.activated {
     background-color: #ecf0f1;
     color: #2d3436;
-}
-
-#battery {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-    /*Using steps() instead of linear as a timing function to limit cpu usage*/
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
 
 #power-profiles-daemon {
