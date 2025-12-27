@@ -1,8 +1,10 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;
+    /*font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;*/
+    font-family: 'iMWritingMono Nerd Font Propo';
     font-size: 13px;
     font-weight: bold;
+    border-radius: 10 10 10 10px;
 }
 
 @import "../waybar/colors/mocha.css";
@@ -29,23 +31,23 @@ button {
 
 
 #workspaces {
-    border-radius: 6px;
     /*border: 2px @lavender solid;*/
     /*background: @base;*/
-    color: @maroon;
+    color: @yellow;
     font-weight: normal;
     font-style: normal;
 }
 #workspaces button {
-    border-radius: 5px;
+    border-radius: 10px;
     /*background: @base;*/
-    color: @maroon;
+    min-width: 20px;
+    color: @yellow;
     transition: all 0.1s ease-in-out;
 }
 #workspaces button.active {
-    background: @maroon;
+    background: @yellow;
     color: @base;
-    border-radius: 5px;
+    border-radius: 10px;
     min-width: 30px;
     background-size: 400% 400%;
     transition: all 0.1s ease-in-out;
@@ -54,9 +56,9 @@ button {
 /* you can set a style on hover for any module like this */
 
 #workspaces button:hover {
-    background: @maroon;
+    background: @yellow;
     color: @base;
-    border-radius: 5px;
+    border-radius: 10px;
     min-width: 30px;
 }
 
@@ -87,7 +89,7 @@ button {
 }
 
 #tray {
-    border-radius: 5px;
+    border-radius: 10px;
     /*border: 2px @lavender solid;*/
     background-color: @base;
     color: @lavender;
@@ -112,22 +114,27 @@ button {
 */
 
 #mpris {
-    border-radius: 5px;
+    border-radius: 10px;
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
     color:@lavender;  
 }
 
+#mpris:hover {
+    background-color: @lavender;
+    color: @base;
+}
+
 #custom-logo {
-    border-radius: 5px;
+    border-radius: 10px;
     /*border: 2px @lavender solid;*/
-    margin-right: 3px;
+    /*margin-right: 3px;*/
     /*background-color: @base;*/
-    color:@yellow;  
+    color:@maroon;  
 }
 
 #custom-logo:hover {
-    background-color: @yellow;
+    background-color: @maroon;
     color: @base;
 }
 
@@ -147,7 +154,8 @@ button {
 }
 
 #bluetooth{
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 14;
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
     color:@flamingo;
@@ -155,25 +163,26 @@ button {
 
 #bluetooth:hover {
     background-color: @flamingo;
+    font-size: 14;
     color: @base;
 }
 
 #clock {
-    border-radius: 5px;
-    margin-left: 3px;
+    border-radius: 10px;
+    /*margin-left: 3px;*/
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
-    color: @sapphire;
+    color: @rosewater;
 }
 
 #clock:hover {
-    background-color: @sapphire;
+    background-color: @rosewater;
     color: @base;
 }
 
 /*
 #custom-notification {
-    border-radius: 5px;
+    border-radius: 10px;
     border: 2px @lavender solid;
     background-color: @base;   
     color:@teal;
@@ -188,7 +197,7 @@ button {
 */
 
 #network {
-    border-radius: 5px;
+    border-radius: 10px;
     /*border: 2px @lavender solid;
     background-color: @base;*/
     color:@sky;
@@ -200,26 +209,26 @@ button {
 }
 
 #network.disconnected {
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: @red;
     color: @crust;
 }
 
 #pulseaudio {
-    border-radius: 5px;
+    border-radius: 10px;
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
-    color: @rosewater;
+    color: @sapphire;
 }
 
 #pulseaudio.muted {
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: @red;
     color: @crust;
 }
 
 #pulseaudio:hover {
-    background-color: @rosewater;
+    background-color: @sapphire;
     color: @base;
 }
 

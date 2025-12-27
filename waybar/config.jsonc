@@ -1,9 +1,10 @@
 // -*- mode: jsonc -*-
 {
     "layer": "top", // Waybar at top layer
-    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "position": "top", // Waybar position (top|bottom|left|right)
     "height": 20, // Waybar height (to be removed for auto height)
-    "margin-top": 0,
+    "margin-top": 10,
+    "width": 1899,
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
@@ -45,7 +46,8 @@
             "6": "6",
             "7": "7",
             "8": "8",
-            "9": "9"
+            "9": "9",
+            "10": "10"
             /*
             "active": "󱓻",
             "urgent": "󱓻"
@@ -137,7 +139,8 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click-middle": "pavucontrol"
+        "on-click-middle": "pavucontrol",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
 
 
@@ -165,7 +168,7 @@
     },
 
     "mpris": {
-        "max-length": 50,
+        "max-length": 25,
 	    "format": "{player_icon} {dynamic}",
 	    "format-paused": "{status_icon} <i>{dynamic}</i>",
 	    "player-icons": {
