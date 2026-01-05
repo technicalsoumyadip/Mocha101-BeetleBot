@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     /*font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;*/
-    font-family: 'iMWritingMono Nerd Font Propo';
+    font-family: 'iMWritingMono Nerd Font Propo', sans-serif;
     font-size: 13px;
     font-weight: bold;
     border-radius: 10 10 10 10px;
