@@ -35,12 +35,26 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 Note: I am such a lazy guy. I did not take that many screenshot. These screenshots are just here, for you guys to get the actual feel of the configuration. Thanks.
 
-Note : These are old screenshots. I will update the new one soon.
+#### Desktop with waybar
+<img width="1920" height="1080" alt="2026-01-05-185740_hyprshot" src="https://github.com/user-attachments/assets/a2c85b17-50a8-408d-8976-b71a37c9444d" />
 
-<img width="1920" height="1080" alt="2025-12-22-122925_hyprshot" src="https://github.com/user-attachments/assets/48e63585-2609-4f2a-b81c-83d103cc0350" />
+#### App launcher (vicinae)
+<img width="881" height="576" alt="2026-01-05-185753_hyprshot" src="https://github.com/user-attachments/assets/1a21ebdc-62c2-4ee5-9256-0394268e60ab" />
 
-<img width="495" height="416" alt="2025-12-22-122948_hyprshot" src="https://github.com/user-attachments/assets/8671045f-0166-4402-8ad1-a42ba9c2babe" />
+#### Wallpaper Picker (vicinae)
+<img width="821" height="539" alt="2026-01-05-185816_hyprshot" src="https://github.com/user-attachments/assets/61e54b5a-5d1f-4931-a5fd-c9918bc0d428" />
 
+#### Wifi menu (vicinae)
+<img width="824" height="528" alt="2026-01-05-185833_hyprshot" src="https://github.com/user-attachments/assets/9be32d83-ea71-4224-82ed-5cf8005d728d" />
+
+#### Bluetooth menu (vicinae)
+<img width="841" height="528" alt="2026-01-05-185850_hyprshot" src="https://github.com/user-attachments/assets/260d2989-ac6c-4ad7-86a5-d5b00300cda2" />
+
+#### Just... idk... A typical screenshot of a hyprland user. Maybe?
+<img width="1920" height="1080" alt="2026-01-05-192812_hyprshot" src="https://github.com/user-attachments/assets/9d76934a-817e-4a98-ad76-5ce8ca3d2800" />
+
+#### Notification
+<img width="575" height="275" alt="2026-01-05-192838_hyprshot" src="https://github.com/user-attachments/assets/f42b5c49-798a-4d0b-a983-28fa418bafc2" />
 
 ### ⚙️ Installation
 
