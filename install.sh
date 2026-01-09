@@ -11,20 +11,37 @@ FLAMINGO="\033[38;2;242;205;205m"
 SUBTEXT="\033[38;2;166;173;200m"
 RESET="\033[0m"
 
-# Define directories
+# --- Variables ---
 REPO_DIR="$(pwd)"
 CONFIG_DIR="$HOME/.config"
-BACKUP_DIR="$HOME/ConfigBackup"
+BACKUP_DIR="$HOME/ConfigBackup/backup_$(date +%Y%m%d_%H%M%S)"
 WALLPAPER_DEST="$HOME/Pictures/Catppuccin-Wallpapers"
+
+# --- Package List (Force Reinstall Items) ---
+PACKAGES=(
+    "hyprland" "waybar" "swaync" "kitty" "hyprlock"
+    "hypridle" "fastfetch" "zsh" "hyprshot" "ttf-jetbrains-mono-nerd"
+    "awww-git" "vicinae-bin"
+)
+
+# --- Banner Function ---
+show_banner() {
+    clear
+    echo -e "${MAUVE}"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "  INSTALLING: $(echo $1 | tr '[:lower:]' '[:upper:]')"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo -e "${RESET}"
+}
+
+msg() {
+    echo -e "${BLUE}==>${RESET} ${LAVENDER}$1${RESET}"
+}
 
 # --- Step 1: Verification ---
 clear
 echo -e "${MAUVE}"
 cat << "EOF"
-
-
-
-
 {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
 {}███╗   ███╗ ██████╗  ██████╗██╗  ██╗ █████╗      ██╗ ██████╗  ██╗ {}
 {}████╗ ████║██╔═══██╗██╔════╝██║  ██║██╔══██╗    ███║██╔═████╗███║ {}
@@ -33,108 +50,79 @@ cat << "EOF"
 {}██║ ╚═╝ ██║╚██████╔╝╚██████╗██║  ██║██║  ██║     ██║╚██████╔╝ ██║ {}
 {}╚═╝     ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝     ╚═╝ ╚═════╝  ╚═╝ {}
 {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
-
-
-
 EOF
 echo -e "${RESET}"
-echo -e "${MAUVE}::: Mocha101 Installation Script :::${RESET}"
-echo -e "${LAVENDER}This script is designed specifically for Arch Linux.${RESET}"
-echo ""
-read -p "$(echo -e ${PEACH}"Are you running this on Arch Linux? (y/n): "${RESET})" confirm
-if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-    echo -e "${RED}Installation aborted. This script is intended for Arch Linux only.${RESET}"
-    exit 1
-fi
+echo -e "${MAUVE}::: Mocha101 - High Impact Force Install :::${RESET}\n"
 
-# --- Step 2: Install Yay ---
+read -p "$(echo -e ${PEACH}"Confirm Arch Linux System? (y/n): "${RESET})" confirm
+[[ "$confirm" != [yY] ]] && exit 1
+
+# --- Step 2: Yay Check ---
 if ! command -v yay &> /dev/null; then
-    echo -e "${BLUE}==> Installing yay...${RESET}"
-    sudo pacman -S --needed git base-devel -y
-    git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm && cd .. && rm -rf yay
+    show_banner "YAY HELPER"
+    sudo pacman -S --needed git base-devel --noconfirm
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay && makepkg -si --noconfirm && cd "$REPO_DIR"
 fi
 
-# --- Step 3: Selective Dependency Installation ---
-echo -e "${BLUE}==> Dependency Selection${RESET}"
-PACKAGES=(
-    "hyprland" "waybar" "hyprpaper" "swaync" "kitty" "hyprlock"
-    "hypridle" "fastfetch" "zsh" "hyprshot" "ttf-jetbrains-mono-nerd"
-    "awww-git" "vicinae-bin"
-)
+# --- Step 3: Force Installation Loop ---
+echo -e "${LAVENDER}Preparing to force install components...${RESET}"
+read -p "$(echo -e ${PEACH}"Begin Force Installation? (y/n): "${RESET})" proceed
+[[ "$proceed" != [yY] ]] && exit 1
 
-for i in "${!PACKAGES[@]}"; do
-    printf "${MAUVE}%2d)${RESET} %-25s" "$((i+1))" "${PACKAGES[$i]}"
-    [[ $(( (i+1) % 2 )) -eq 0 ]] && echo ""
-done
-echo -e "\n${MAUVE}$(( ${#PACKAGES[@]} + 1 )))${RESET} ${GREEN}Force install all packages (Recommended)${RESET}"
-
-echo ""
-read -p "Enter your choices (separated by space): " user_choices
-
-TO_INSTALL=()
-FORCE_ALL=false
-for choice in $user_choices; do
-    if [[ "$choice" -eq "$(( ${#PACKAGES[@]} + 1 ))" ]]; then FORCE_ALL=true; break; fi
-    [[ "$choice" -gt 0 && "$choice" -le "${#PACKAGES[@]}" ]] && TO_INSTALL+=("${PACKAGES[$((choice-1))]}")
+for pkg in "${PACKAGES[@]}"; do
+    show_banner "$pkg"
+    # Reinstalls even if already present
+    yay -S --noconfirm "$pkg"
 done
 
-if [ "$FORCE_ALL" = true ]; then
-    yay -S --noconfirm "${PACKAGES[@]}"
-    INSTALL_SUMMARY="All dependencies force installed."
-elif [ ${#TO_INSTALL[@]} -gt 0 ]; then
-    yay -S --needed --noconfirm "${TO_INSTALL[@]}"
-    INSTALL_SUMMARY="${#TO_INSTALL[@]} specific packages installed."
-else
-    INSTALL_SUMMARY="No packages were selected for installation."
-fi
-
-# --- Step 4: Setup Wallpapers ---
+# --- Step 4: Configs & Wallpapers ---
+show_banner "Wallpapers & Configs"
 mkdir -p "$WALLPAPER_DEST"
-if [ -d "$REPO_DIR/Wallpapers" ]; then
-    cp -r "$REPO_DIR/Wallpapers/"* "$WALLPAPER_DEST/"
-fi
+[ -d "$REPO_DIR/Wallpapers" ] && cp -r "$REPO_DIR/Wallpapers/"* "$WALLPAPER_DEST/"
 
-# --- Step 5: Backup & Install Configs ---
-CONFIGS=("hypr" "waybar" "kitty" "rofi" "swaync" "customshscripts")
 mkdir -p "$BACKUP_DIR"
+CONFIGS=("hypr" "waybar" "kitty" "swaync" "customshscripts")
+
 for folder in "${CONFIGS[@]}"; do
-    TARGET="$CONFIG_DIR/$folder"
-    SOURCE="$REPO_DIR/$folder"
-    if [ -d "$SOURCE" ]; then
-        [ -d "$TARGET" ] && mv "$TARGET" "$BACKUP_DIR/${folder}_$(date +%Y%m%d_%H%M%S)"
-        cp -r "$SOURCE" "$CONFIG_DIR/"
+    if [ -d "$REPO_DIR/$folder" ]; then
+        [ -d "$CONFIG_DIR/$folder" ] && mv "$CONFIG_DIR/$folder" "$BACKUP_DIR/"
+        cp -r "$REPO_DIR/$folder" "$CONFIG_DIR/"
     fi
 done
 
-# --- Step 6: Oh My Zsh ---
-ZSH_STATUS="Skipped"
-read -p "$(echo -e ${PEACH}"Install Oh My Zsh? (y/n): "${RESET})" zsh_confirm
+# --- Step 5: Shell Setup ---
+show_banner "ZSH Setup"
+read -p "$(echo -e ${PEACH}"Force Reinstall Oh My Zsh? (y/n): "${RESET})" zsh_confirm
 if [[ "$zsh_confirm" =~ ^[Yy]$ ]]; then
+    rm -rf "$HOME/.oh-my-zsh"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    ZSH_STATUS="Installed Successfully"
 fi
 
-# --- Final Beautiful Summary ---
+# --- Step 6: Final Instructions Banner ---
 clear
-echo -e "${MAUVE}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${RESET}"
-echo -e "${MAUVE}┃${RESET}  ${FLAMINGO}✨ MOCHA101 INSTALLATION COMPLETE ✨${RESET}                      ${MAUVE}┃${RESET}"
-echo -e "${MAUVE}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${RESET}"
-echo -e "  ${SUBTEXT}The following tasks were completed successfully:${RESET}"
+echo -e "${MAUVE}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${RESET}"
+echo -e "${MAUVE}┃${RESET}   ${FLAMINGO}✨ MOCHA101 INSTALLED SUCCESSFULLY! ✨${RESET}                           ${MAUVE}┃${RESET}"
+echo -e "${MAUVE}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${RESET}"
+echo -e "  ${SUBTEXT}To complete your setup and have the best experience, follow these steps:${RESET}"
 echo ""
-echo -e "  ${BLUE}  Packages:${RESET}     ${LAVENDER}$INSTALL_SUMMARY${RESET}"
-echo -e "  ${BLUE}  Wallpapers:${RESET}   ${LAVENDER}Deployed to ~/Pictures/Catppuccin-Wallpapers${RESET}"
-echo -e "  ${BLUE}󰒓  Configs:${RESET}      ${LAVENDER}Installed to ~/.config/ (Backups in ~/ConfigBackup)${RESET}"
-echo -e "  ${BLUE}📜 Scripts:${RESET}      ${LAVENDER}walls.sh is now ready in your Home directory${RESET}"
-echo -e "  ${BLUE}󰚚  Shell:${RESET}        ${LAVENDER}Oh My Zsh: $ZSH_STATUS${RESET}"
+echo -e "  ${PEACH}1. ACTIVATE VICINAE EXTENSIONS${RESET}"
+echo -e "     ${LAVENDER}Open your Vicinae Settings and enable the following:${RESET}"
+echo -e "     ${GREEN}󰖩  Wifi Commander${RESET}  ${SUBTEXT}(For network management via Waybar)${RESET}"
+echo -e "     ${GREEN}󰂯  Bluetooth${RESET}       ${SUBTEXT}(For device management via Waybar)${RESET}"
+echo -e "     ${GREEN}  AWWW Switcher${RESET}    ${SUBTEXT}(For the wallpaper picker interface)${RESET}"
 echo ""
-echo -e "  ${SUBTEXT}Please make sure to install these extensions from Vicinae${RESET}"
+echo -e "  ${PEACH}2. REWIRE YOUR KEYBINDS${RESET}"
+echo -e "     ${LAVENDER}Open ${BLUE}~/.config/hypr/HLconfigs/keybindings.conf${LAVENDER} to customize binds.${RESET}"
 echo ""
-echo -e "  ${BLUE}: Wifi Commander ${RESET}     ${LAVENDER}$ For Wifi keybindings and waybar ${RESET}"
-echo -e "  ${BLUE}: Bluetooth ${RESET}     ${LAVENDER}$ For Bluetooth keybindings and waybar ${RESET}"
-echo -e "  ${BLUE}: AWWW SWITCHER ${RESET}     ${LAVENDER}$ For wallpaper picker via keybinding ${RESET}"
+echo -e "  ${PEACH}3. REBOOT SYSTEM${RESET}"
+echo -e "     ${LAVENDER}A reboot is required to initialize the environment properly.${RESET}"
 echo ""
-echo -e "  ${GREEN}Check the README for keybindings: https://github.com/BeetleBot/Mocha101${RESET}"
-echo -e "${MAUVE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-
-echo -e "             ${PEACH}Please reboot your system to apply all changes!${RESET}"
+echo -e "${MAUVE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "  ${SUBTEXT}For a full keybind list, visit the repository:${RESET}"
+echo -e "  ${GREEN}GitHub: https://github.com/BeetleBot/Mocha101${RESET}"
+echo -e "${MAUVE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo ""
+echo -e "  ${PEACH}Press any key to finish and exit...${RESET}"
+read -n 1 -s
+clear
