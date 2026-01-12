@@ -1,0 +1,17 @@
+sw_volume: 100
+audio_device_state:1:Pulse/Pipewire Audio
+audio_device_state:1:Visualizer feed
+state: pause
+current: 0
+time: 26.803
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0
+mixrampdelay: -1
+lastloadedplaylist: 
+playlist_begin
+0:Minnale/7.Maddy Maddy.flac
+playlist_end

@@ -1,0 +1,11 @@
+address = "127.0.0.1:6600"
+music_dir = "$HOME/Music"
+
+[ui]
+pane_border_style = "blue"
+focused_pane_border_style = "magenta"
+
+[album_art]
+enabled = true
+method = "auto"
+max_size_px = 300
