@@ -5,6 +5,9 @@
 #  A professional, aesthetic installation script for the Mocha101 Dotfiles.
 # ==============================================================================
 
+# Get the directory where the script is located
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 # --- COLORS & STYLING ---
 # Using distinct Catppuccin-inspired colors for a cohesive UI
 MAUVE='\033[38;5;183m'
@@ -177,13 +180,18 @@ for pkg in $PACKAGES_AUR; do
 done
 
 # 3. Fonts
-echo -e "\n   ${BOLD}${BLUE}TYPOGRAPHY${RESET} ${GRAY}(Nerd Fonts)${RESET}"
+echo -e "\n   ${BOLD}${BLUE}TYPOGRAPHY${RESET} ${GRAY}(Local Fonts)${RESET}"
 FONT_DIR="$HOME/.local/share/fonts"
+REPO_FONT_DIR="$SCRIPT_DIR/Fonts"
+
 run_cmd "Creating font directory" "mkdir -p $FONT_DIR"
-run_cmd "Downloading iMWriting Nerd Font" "curl -fLo $FONT_DIR/iMWriting.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/iMWriting.zip"
-run_cmd "Unzipping fonts" "unzip -o $FONT_DIR/iMWriting.zip -d $FONT_DIR/"
-run_cmd "Cleaning up zip" "rm $FONT_DIR/iMWriting.zip"
-run_cmd "Refreshing font cache" "fc-cache -fv"
+
+if [ -d "$REPO_FONT_DIR" ]; then
+    run_cmd "Copying fonts from repo" "cp -r $REPO_FONT_DIR/* $FONT_DIR/"
+    run_cmd "Refreshing font cache" "fc-cache -fv"
+else
+    log_error "Fonts folder '$REPO_FONT_DIR' not found."
+fi
 
 # Cleanup
 echo -e "\n   ${BOLD}${GRAY}CLEANUP${RESET}"
@@ -210,22 +218,23 @@ done
 print_step "Deploying Mocha101 Dotfiles"
 
 for folder in "${TARGET_FOLDERS[@]}"; do
-    if [ -d "./$folder" ]; then
+    if [ -d "$SCRIPT_DIR/$folder" ]; then
         # Remove existing folder to ensure clean link/copy
         rm -rf "$HOME/.config/$folder"
-        run_cmd "Installing $folder" "cp -r ./$folder $HOME/.config/"
+        run_cmd "Installing $folder" "cp -r $SCRIPT_DIR/$folder $HOME/.config/"
     else
-        log_error "Source folder ./$folder not found in repo"
+        log_error "Source folder $SCRIPT_DIR/$folder not found in repo"
     fi
 done
 
 # Copy walls.sh
-if [ -f "./walls.sh" ]; then
-    run_cmd "Installing walls.sh script" "cp ./walls.sh $HOME/ && chmod +x $HOME/walls.sh"
+if [ -f "$SCRIPT_DIR/walls.sh" ]; then
+    run_cmd "Installing walls.sh script" "cp $SCRIPT_DIR/walls.sh $HOME/ && chmod +x $HOME/walls.sh"
 fi
 
 # --- STEP 7: FINISH ---
-clear
+# clear command removed to preserve terminal scrollback/history
+echo -e "\n"
 echo -e "${MAUVE}"
 echo "  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
 echo "  ┃                                                                       ┃"
