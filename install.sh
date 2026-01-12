@@ -233,7 +233,6 @@ if [ -f "$SCRIPT_DIR/walls.sh" ]; then
 fi
 
 # --- STEP 7: FINISH ---
-# clear command removed to preserve terminal scrollback/history
 echo -e "\n"
 echo -e "${MAUVE}"
 echo "  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
@@ -242,24 +241,23 @@ echo -e "  ┃                ${FLAMINGO}✨ MOCHA 101 INSTALLED SUCCESSFULLY! �
 echo "  ┃                                                                       ┃"
 echo "  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo -e "${RESET}"
-echo -e "   ${BOLD}Next Steps for the intended experience:${RESET}"
+
+echo -e "   ${BOLD}Installation complete!${RESET}"
+echo -e "   ${GRAY}Your configuration has been deployed and backed up.${RESET}"
 echo ""
-echo -e "   ${PEACH}1. ACTIVATE VICINAE EXTENSIONS${RESET}"
-echo -e "      ${GRAY}Open Vicinae Settings and enable:${RESET}"
-echo -e "      ${BLUE}•${RESET} Wifi Commander ${GRAY}(SUPER + ALT + N)${RESET}"
-echo -e "      ${BLUE}•${RESET} Bluetooth      ${GRAY}(SUPER + ALT + B)${RESET}"
-echo -e "      ${BLUE}•${RESET} AWWW Switcher  ${GRAY}(SUPER + SHIFT + W)${RESET}"
-echo ""
-echo -e "   ${PEACH}2. EXPLORE KEYBINDINGS${RESET}"
-echo -e "      ${GRAY}Full documentation at:${RESET} ${BLUE}github.com/BeetleBot/Mocha101${RESET}"
-echo ""
-echo -e "   ${PEACH}3. SYSTEM REBOOT${RESET}"
-echo -e "      ${GRAY}A restart is recommended to apply all Wayland environments.${RESET}"
+echo -e "   ${PEACH}⚠ CAUTION:${RESET} Pressing a key will log you out of Hyprland immediately."
+echo -e "              Please save any open work before proceeding."
 echo ""
 echo -e "${GRAY}───────────────────────────────────────────────────────────────────────${RESET}"
-echo -e "${FLAMINGO}   HAPPY RICING!${RESET}"
 echo ""
-echo -ne "   ${BOLD}Press any key to exit...${RESET}"
+
+# Prompt for logout
+echo -ne "   ${BOLD}${LAVENDER}➜ Press any key to logout...${RESET}"
 read -n 1 -s
-echo ""
+echo -e "\n"
+
+# Clean up terminal state
 restore_cursor
+
+# Force logout: Try Hyprland dispatch first, fallback to killing user processes
+hyprctl dispatch exit || pkill -u $USER
