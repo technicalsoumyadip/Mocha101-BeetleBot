@@ -1,137 +1,256 @@
 #!/bin/bash
 
-# Catppuccin Mocha Colors
-MAUVE='\033[0;35m'
-FLAMINGO='\033[0;33m'
-PEACH='\033[0;31m'
-LAVENDER='\033[0;34m'
-GREEN='\033[0;32m'
-BLUE='\033[0;36m'
-SUBTEXT='\033[0;37m'
+# ==============================================================================
+#  ☕ MOCHA 101 INSTALLER
+#  A professional, aesthetic installation script for the Mocha101 Dotfiles.
+# ==============================================================================
+
+# --- COLORS & STYLING ---
+# Using distinct Catppuccin-inspired colors for a cohesive UI
+MAUVE='\033[38;5;183m'
+LAVENDER='\033[38;5;147m'
+BLUE='\033[38;5;117m'
+GREEN='\033[38;5;120m'
+PEACH='\033[38;5;210m'
+FLAMINGO='\033[38;5;217m'
+GRAY='\033[38;5;245m'
+BOLD='\033[1m'
 RESET='\033[0m'
 
-clear
+# --- UI CONSTANTS ---
+ICON_OK="${GREEN}✔${RESET}"
+ICON_FAIL="${PEACH}✘${RESET}"
+ICON_INFO="${BLUE}➜${RESET}"
+ICON_WAIT="${MAUVE}⧖${RESET}"
 
-# 1. Mocha101 ASCII Banner
-echo -e "${MAUVE}"
-echo "  __  __  ____   _____ _    _          _  ___  __ "
-echo " |  \/  |/ __ \ / ____| |  | |   /\   / |/ _ \/_ |"
-echo " | \  / | |  | | |    | |__| |  /  \  | | | | || |"
-echo " | |\/| | |  | | |    |  __  | / /\ \ | | | | || |"
-echo " | |  | | |__| | |____| |  | |/ ____ \| | |_| || |"
-echo " |_|  |_|\____/ \_____|_|  |_/_/    \_\_|\___/ |_|"
-echo -e "${RESET}"
-echo -e "${FLAMINGO}      Brewed with Catppuccin Mocha${RESET}"
-echo ""
+# --- HELPER FUNCTIONS ---
 
-# 2. Arch User Verification
-read -p "Are you an Arch Linux user? (y/n): " is_arch
+# Function to hide cursor
+hide_cursor() { tput civis; }
 
-if [[ $is_arch != "y" && $is_arch != "Y" ]]; then
-    echo -e "\n${PEACH}For non-Arch users, the configurations should be done manually.${RESET}"
-    echo -e "${SUBTEXT}Please manually copy the following folders into your ~/.config folder:${RESET}"
-    echo -e "${LAVENDER}  hypr, kitty, mpd, rmpc, swaync, vicinae, waybar${RESET}\n"
-    
-    echo -e "${GREEN}Required Dependencies to install manually:${RESET}"
-    echo -e "1. Core: hyprland, waybar, swaync, hypridle, hyprlock, hyprpolkitagent, xdg-desktop-portal-hyprland/gnome"
-    echo -e "2. Launcher: vicinae-bin"
-    echo -e "3. Apps: kitty, nautilus, zen-browser, rmpc, pavucontrol"
-    echo -e "4. Tools: hyprshot, grim, slurp, jq, wl-clipboard, brightnessctl, playerctl, awww-daemon"
-    echo -e "5. Style: iMWritingMono Nerd Font Propo, Bibata-Modern-Ice cursor"
+# Function to restore cursor (ensure this runs on exit)
+restore_cursor() { tput cnorm; }
+trap restore_cursor EXIT
+
+# Function to print a centered banner
+print_banner() {
+    clear
+    echo -e "${MAUVE}"
+    echo "   __  __  ____   _____ _    _          _  ___  __  "
+    echo "  |  \/  |/ __ \ / ____| |  | |   /\   / |/ _ \/_ | "
+    echo "  | \  / | |  | | |    | |__| |  /  \  | | | | || | "
+    echo "  | |\/| | |  | | |    |  __  | / /\ \ | | | | || | "
+    echo "  | |  | | |__| | |____| |  | |/ ____ \| | |_| || | "
+    echo "  |_|  |_|\____/ \_____|_|  |_/_/    \_\_|\___/ |_| "
+    echo -e "${RESET}"
+    echo -e "${FLAMINGO}         A minimal and efficient dotfiles setup.${RESET}"
     echo ""
-    read -n 1 -p "Press 'q' to exit the install..." exit_key
+    echo -e "${GRAY}────────────────────────────────────────────────────────────${RESET}"
+    echo ""
+}
+
+# Function to print a section header
+print_step() {
+    echo -e "\n${BOLD}${LAVENDER}:: $1${RESET}"
+}
+
+# Function to display a status message
+log_info() {
+    echo -e "   ${ICON_INFO} $1"
+}
+
+# Function to display success
+log_success() {
+    echo -e "   ${ICON_OK} $1"
+}
+
+# Function to display failure
+log_error() {
+    echo -e "   ${ICON_FAIL} $1"
+}
+
+# Function for processing indicator
+# Usage: run_cmd "Description" "Command"
+run_cmd() {
+    local desc="$1"
+    local cmd="$2"
+    
+    # Print the description with a wait icon, no newline
+    echo -ne "   ${ICON_WAIT} ${desc}..."
+    
+    # Run the command, capturing output to a log (or /dev/null), preserving exit code
+    if eval "$cmd" > /dev/null 2>&1; then
+        # On success, clear line and print success
+        echo -ne "\r\033[K"
+        echo -e "   ${ICON_OK} ${desc}"
+    else
+        # On failure
+        echo -ne "\r\033[K"
+        echo -e "   ${ICON_FAIL} ${desc} ${PEACH}(Failed)${RESET}"
+        # Optional: Exit or prompt? For this script, we warn.
+        sleep 1
+    fi
+}
+
+# --- MAIN SCRIPT ---
+
+hide_cursor
+print_banner
+
+# --- STEP 2: ARCH VERIFICATION ---
+print_step "System Verification"
+echo -ne "   ${BLUE}?${RESET} Are you using Arch Linux? ${GRAY}[y/N]${RESET} "
+read -r is_arch
+
+if [[ ! "$is_arch" =~ ^[yY]$ ]]; then
+    echo ""
+    echo -e "${PEACH}   Installation Cancelled.${RESET}"
+    echo -e "\n${BOLD}   MANUAL INSTALLATION INSTRUCTIONS:${RESET}"
+    echo -e "   ${GRAY}──────────────────────────────────────${RESET}"
+    echo -e "   1. Copy these folders to ${BLUE}~/.config/${RESET}:"
+    echo -e "      ${GRAY}hypr, kitty, mpd, rmpc, swaync, vicinae, waybar${RESET}"
+    echo -e "   2. Install dependencies manually (see README.md)."
+    echo ""
     exit 0
 fi
 
-# 3. Proceed with Arch Installation
-echo -e "\n${GREEN}Detected Arch Linux. Starting automated installation...${RESET}"
-
-# Install Yay if needed
+# --- STEP 3: YAY VERIFICATION ---
+print_step "AUR Helper Check"
 if ! command -v yay &> /dev/null; then
-    read -p "Yay (AUR Helper) not found. Install it now? (y/n): " install_yay
-    if [[ $install_yay == "y" || $install_yay == "Y" ]]; then
-        sudo pacman -S --needed base-devel git --noconfirm
-        git clone https://aur.archlinux.org/yay.git
-        cd yay && makepkg -si --noconfirm && cd .. && rm -rf yay
+    echo -e "   ${PEACH}⚠ yay is missing.${RESET}"
+    echo -ne "   ${BLUE}?${RESET} Install yay (requires sudo)? ${GRAY}[y/N]${RESET} "
+    read -r install_yay
+    if [[ "$install_yay" =~ ^[yY]$ ]]; then
+        echo ""
+        run_cmd "Installing base-devel, git, curl" "sudo pacman -S --needed base-devel git curl --noconfirm"
+        
+        echo -ne "   ${ICON_WAIT} Cloning and building yay (this may take a while)..."
+        if git clone https://aur.archlinux.org/yay.git yay_tmp > /dev/null 2>&1; then
+            cd yay_tmp
+            if makepkg -si --noconfirm > /dev/null 2>&1; then
+                cd .. && rm -rf yay_tmp
+                echo -ne "\r\033[K"
+                log_success "yay installed successfully"
+            else
+                cd .. && rm -rf yay_tmp
+                echo -ne "\r\033[K"
+                log_error "Failed to build yay"
+                exit 1
+            fi
+        else
+            echo -ne "\r\033[K"
+            log_error "Failed to clone yay"
+            exit 1
+        fi
     else
-        echo -e "${PEACH}Yay is required for AUR dependencies. Exiting.${RESET}"
+        log_error "yay is required. Exiting."
         exit 1
     fi
+else
+    log_success "yay is already installed"
 fi
 
-# 4. Install Dependencies
-echo -e "\n${MAUVE}Installing dependencies...${RESET}"
+# --- STEP 4: DEPENDENCIES ---
+print_step "Installing Dependencies"
 
-# Official Repos
-sudo pacman -S --needed \
-    hyprland waybar swaynotificationcenter hypridle hyprlock \
-    xdg-desktop-portal-hyprland xdg-desktop-portal-gnome \
-    kitty nautilus pavucontrol grim slurp jq wl-clipboard \
-    brightnessctl playerctl fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt \
-    --noconfirm
+# Refresh sudo privileges upfront to avoid breaking the UI later
+echo -e "   ${GRAY}Requesting sudo privileges for installation...${RESET}"
+sudo -v
 
-# AUR Repos
-yay -S --needed \
-    hyprpolkitagent-git vicinae-bin zen-browser-bin rmpc-bin \
-    hyprshot-git awww-daemon-bin bibata-cursor-theme \
-    --noconfirm
+# 1. Official Packages
+echo -e "\n   ${BOLD}${MAUVE}CORE COMPONENTS${RESET} ${GRAY}(pacman)${RESET}"
+PACKAGES_CORE="hyprland waybar swaync hypridle hyprlock hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gnome kitty nautilus pavucontrol hyprshot grim slurp jq wl-clipboard brightnessctl playerctl curl unzip"
 
-# 5. Backup and Configuration Deployment
-echo -e "\n${BLUE}Backing up existing configs...${RESET}"
-BACKUP_DIR="$HOME/ConfigBackup_$(date +%Y%m%d_%H%M%S)"
-mkdir -p "$BACKUP_DIR"
+# NOTE: rmpc is often AUR. We try pacman, if fail, we move to yay logic.
+# Splitting loop for better visuals
+for pkg in $PACKAGES_CORE; do
+    run_cmd "Installing $pkg" "sudo pacman -S --needed $pkg --noconfirm"
+done
 
-CONFIG_FOLDERS=("hypr" "kitty" "mpd" "rmpc" "swaync" "vicinae" "waybar")
+# 2. AUR Packages
+echo -e "\n   ${BOLD}${FLAMINGO}AUR UTILITIES${RESET} ${GRAY}(yay)${RESET}"
+# Added rmpc here just in case, as it's often not in official repos yet
+PACKAGES_AUR="vicinae-bin awww-git rmpc"
 
-for folder in "${CONFIG_FOLDERS[@]}"; do
+for pkg in $PACKAGES_AUR; do
+    run_cmd "Installing $pkg" "yay -S --needed $pkg --noconfirm"
+done
+
+# 3. Fonts
+echo -e "\n   ${BOLD}${BLUE}TYPOGRAPHY${RESET} ${GRAY}(Nerd Fonts)${RESET}"
+FONT_DIR="$HOME/.local/share/fonts"
+run_cmd "Creating font directory" "mkdir -p $FONT_DIR"
+run_cmd "Downloading iMWriting Nerd Font" "curl -fLo $FONT_DIR/iMWriting.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/iMWriting.zip"
+run_cmd "Unzipping fonts" "unzip -o $FONT_DIR/iMWriting.zip -d $FONT_DIR/"
+run_cmd "Cleaning up zip" "rm $FONT_DIR/iMWriting.zip"
+run_cmd "Refreshing font cache" "fc-cache -fv"
+
+# Cleanup
+echo -e "\n   ${BOLD}${GRAY}CLEANUP${RESET}"
+run_cmd "Removing pacman cache" "sudo pacman -Sc --noconfirm"
+run_cmd "Removing yay cache" "yay -Sc --noconfirm"
+
+# --- STEP 5: BACKUP ---
+print_step "Backing Up Configurations"
+BACKUP_DIR="$HOME/ConfigBackups"
+TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
+TARGET_FOLDERS=("hypr" "kitty" "mpd" "rmpc" "swaync" "vicinae" "waybar")
+
+run_cmd "Creating backup dir ($BACKUP_DIR)" "mkdir -p $BACKUP_DIR"
+
+for folder in "${TARGET_FOLDERS[@]}"; do
     if [ -d "$HOME/.config/$folder" ]; then
-        mv "$HOME/.config/$folder" "$BACKUP_DIR/"
-        echo -e "  - Backed up $folder to $BACKUP_DIR"
-    fi
-    # Copy from repo folder to ~/.config/
-    if [ -d "./$folder" ]; then
-        cp -r "./$folder" "$HOME/.config/"
-        echo -e "  - Installed $folder to ~/.config/"
+        run_cmd "Backing up $folder" "cp -r $HOME/.config/$folder $BACKUP_DIR/${folder}_$TIMESTAMP"
+    else
+        log_info "No existing config for $folder (skipping backup)"
     fi
 done
 
-# Copy walls.sh to home
+# --- STEP 6: INSTALL CONFIGS ---
+print_step "Deploying Mocha101 Dotfiles"
+
+for folder in "${TARGET_FOLDERS[@]}"; do
+    if [ -d "./$folder" ]; then
+        # Remove existing folder to ensure clean link/copy
+        rm -rf "$HOME/.config/$folder"
+        run_cmd "Installing $folder" "cp -r ./$folder $HOME/.config/"
+    else
+        log_error "Source folder ./$folder not found in repo"
+    fi
+done
+
+# Copy walls.sh
 if [ -f "./walls.sh" ]; then
-    cp "./walls.sh" "$HOME/"
-    chmod +x "$HOME/walls.sh"
+    run_cmd "Installing walls.sh script" "cp ./walls.sh $HOME/ && chmod +x $HOME/walls.sh"
 fi
 
-# 6. Fish Shell Prompt
-read -p "Do you want to install the Fish shell? (y/n): " install_fish
-if [[ $install_fish == "y" || $install_fish == "Y" ]]; then
-    sudo pacman -S fish --noconfirm
-    echo -e "${GREEN}Fish installed. Use 'chsh -s /usr/bin/fish' to make it default.${RESET}"
-fi
-
-# 7. Success Banner
-echo -e "\n"
-echo -e "${MAUVE}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${RESET}"
-echo -e "${MAUVE}┃${RESET}   ${FLAMINGO}✨ MOCHA101 INSTALLED SUCCESSFULLY! ✨${RESET}                           ${MAUVE}┃${RESET}"
-echo -e "${MAUVE}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${RESET}"
-echo -e "  ${SUBTEXT}To complete your setup and have the best experience, follow these steps:${RESET}"
+# --- STEP 7: FINISH ---
+clear
+echo -e "${MAUVE}"
+echo "  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+echo "  ┃                                                                       ┃"
+echo -e "  ┃                ${FLAMINGO}✨ MOCHA 101 INSTALLED SUCCESSFULLY! ✨${MAUVE}                ┃"
+echo "  ┃                                                                       ┃"
+echo "  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+echo -e "${RESET}"
+echo -e "   ${BOLD}Next Steps for the intended experience:${RESET}"
 echo ""
-echo -e "  ${PEACH}1. ACTIVATE VICINAE EXTENSIONS${RESET}"
-echo -e "     ${LAVENDER}Open your Vicinae Settings and enable the following:${RESET}"
-echo -e "     ${GREEN}󰖩  Wifi Commander${RESET}  ${SUBTEXT}(For network management via Waybar)${RESET}"
-echo -e "     ${GREEN}󰂯  Bluetooth${RESET}       ${SUBTEXT}(For device management via Waybar)${RESET}"
-echo -e "     ${GREEN}  AWWW Switcher${RESET}    ${SUBTEXT}(For the wallpaper picker interface)${RESET}"
+echo -e "   ${PEACH}1. ACTIVATE VICINAE EXTENSIONS${RESET}"
+echo -e "      ${GRAY}Open Vicinae Settings and enable:${RESET}"
+echo -e "      ${BLUE}•${RESET} Wifi Commander ${GRAY}(SUPER + ALT + N)${RESET}"
+echo -e "      ${BLUE}•${RESET} Bluetooth      ${GRAY}(SUPER + ALT + B)${RESET}"
+echo -e "      ${BLUE}•${RESET} AWWW Switcher  ${GRAY}(SUPER + SHIFT + W)${RESET}"
 echo ""
-echo -e "  ${PEACH}2. REWIRE YOUR KEYBINDS${RESET}"
-echo -e "     ${LAVENDER}Open ${BLUE}~/.config/hypr/HLconfigs/keybindings.conf${LAVENDER} to customize binds.${RESET}"
+echo -e "   ${PEACH}2. EXPLORE KEYBINDINGS${RESET}"
+echo -e "      ${GRAY}Full documentation at:${RESET} ${BLUE}github.com/BeetleBot/Mocha101${RESET}"
 echo ""
-echo -e "  ${PEACH}3. REBOOT SYSTEM${RESET}"
-echo -e "     ${LAVENDER}A reboot is required to initialize the environment properly.${RESET}"
+echo -e "   ${PEACH}3. SYSTEM REBOOT${RESET}"
+echo -e "      ${GRAY}A restart is recommended to apply all Wayland environments.${RESET}"
 echo ""
-echo -e "${MAUVE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo -e "  ${SUBTEXT}For a full keybind list, visit the repository:${RESET}"
-echo -e "  ${GREEN}GitHub: https://github.com/BeetleBot/Mocha101${RESET}"
-echo -e "${MAUVE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "${GRAY}───────────────────────────────────────────────────────────────────────${RESET}"
+echo -e "${FLAMINGO}   HAPPY RICING!${RESET}"
 echo ""
-echo -e "  ${PEACH}Press any key to finish and exit...${RESET}"
+echo -ne "   ${BOLD}Press any key to exit...${RESET}"
 read -n 1 -s
-echo -e "\n${FLAMINGO}Happy Ricing!${RESET}"
+echo ""
+restore_cursor
