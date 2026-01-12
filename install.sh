@@ -1,106 +1,115 @@
 #!/bin/bash
 
-# --- Colors (Catppuccin Mocha) ---
-MAUVE="\033[38;2;203;166;247m"
-LAVENDER="\033[38;2;180;190;254m"
-GREEN="\033[38;2;166;227;161m"
-PEACH="\033[38;2;250;179;135m"
-RED="\033[38;2;243;139;168m"
-BLUE="\033[38;2;137;180;250m"
-FLAMINGO="\033[38;2;242;205;205m"
-SUBTEXT="\033[38;2;166;173;200m"
-RESET="\033[0m"
+# Catppuccin Mocha Colors
+MAUVE='\033[0;35m'
+FLAMINGO='\033[0;33m'
+PEACH='\033[0;31m'
+LAVENDER='\033[0;34m'
+GREEN='\033[0;32m'
+BLUE='\033[0;36m'
+SUBTEXT='\033[0;37m'
+RESET='\033[0m'
 
-# --- Variables ---
-REPO_DIR="$(pwd)"
-CONFIG_DIR="$HOME/.config"
-BACKUP_DIR="$HOME/ConfigBackup/backup_$(date +%Y%m%d_%H%M%S)"
-WALLPAPER_DEST="$HOME/Pictures/Catppuccin-Wallpapers"
-
-# --- Package List (Force Reinstall Items) ---
-PACKAGES=(
-    "hyprland" "waybar" "swaync" "kitty" "hyprlock"
-    "hypridle" "fastfetch" "zsh" "hyprshot" "ttf-jetbrains-mono-nerd"
-    "awww-git" "vicinae-bin"
-)
-
-# --- Banner Function ---
-show_banner() {
-    clear
-    echo -e "${MAUVE}"
-    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-    echo "  INSTALLING: $(echo $1 | tr '[:lower:]' '[:upper:]')"
-    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-    echo -e "${RESET}"
-}
-
-msg() {
-    echo -e "${BLUE}==>${RESET} ${LAVENDER}$1${RESET}"
-}
-
-# --- Step 1: Verification ---
 clear
+
+# 1. Mocha101 ASCII Banner
 echo -e "${MAUVE}"
-cat << "EOF"
-{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
-{}███╗   ███╗ ██████╗  ██████╗██╗  ██╗ █████╗      ██╗ ██████╗  ██╗ {}
-{}████╗ ████║██╔═══██╗██╔════╝██║  ██║██╔══██╗    ███║██╔═████╗███║ {}
-{}██╔████╔██║██║   ██║██║     ███████║███████║    ╚██║██║██╔██║╚██║ {}
-{}██║╚██╔╝██║██║   ██║██║     ██╔══██║██╔══██║     ██║████╔╝██║ ██║ {}
-{}██║ ╚═╝ ██║╚██████╔╝╚██████╗██║  ██║██║  ██║     ██║╚██████╔╝ ██║ {}
-{}╚═╝     ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝     ╚═╝ ╚═════╝  ╚═╝ {}
-{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
-EOF
+echo "  __  __  ____   _____ _    _          _  ___  __ "
+echo " |  \/  |/ __ \ / ____| |  | |   /\   / |/ _ \/_ |"
+echo " | \  / | |  | | |    | |__| |  /  \  | | | | || |"
+echo " | |\/| | |  | | |    |  __  | / /\ \ | | | | || |"
+echo " | |  | | |__| | |____| |  | |/ ____ \| | |_| || |"
+echo " |_|  |_|\____/ \_____|_|  |_/_/    \_\_|\___/ |_|"
 echo -e "${RESET}"
-echo -e "${MAUVE}::: Mocha101 - High Impact Force Install :::${RESET}\n"
+echo -e "${FLAMINGO}      Brewed with Catppuccin Mocha${RESET}"
+echo ""
 
-read -p "$(echo -e ${PEACH}"Confirm Arch Linux System? (y/n): "${RESET})" confirm
-[[ "$confirm" != [yY] ]] && exit 1
+# 2. Arch User Verification
+read -p "Are you an Arch Linux user? (y/n): " is_arch
 
-# --- Step 2: Yay Check ---
-if ! command -v yay &> /dev/null; then
-    show_banner "YAY HELPER"
-    sudo pacman -S --needed git base-devel --noconfirm
-    git clone https://aur.archlinux.org/yay.git /tmp/yay
-    cd /tmp/yay && makepkg -si --noconfirm && cd "$REPO_DIR"
+if [[ $is_arch != "y" && $is_arch != "Y" ]]; then
+    echo -e "\n${PEACH}For non-Arch users, the configurations should be done manually.${RESET}"
+    echo -e "${SUBTEXT}Please manually copy the following folders into your ~/.config folder:${RESET}"
+    echo -e "${LAVENDER}  hypr, kitty, mpd, rmpc, swaync, vicinae, waybar${RESET}\n"
+    
+    echo -e "${GREEN}Required Dependencies to install manually:${RESET}"
+    echo -e "1. Core: hyprland, waybar, swaync, hypridle, hyprlock, hyprpolkitagent, xdg-desktop-portal-hyprland/gnome"
+    echo -e "2. Launcher: vicinae-bin"
+    echo -e "3. Apps: kitty, nautilus, zen-browser, rmpc, pavucontrol"
+    echo -e "4. Tools: hyprshot, grim, slurp, jq, wl-clipboard, brightnessctl, playerctl, awww-daemon"
+    echo -e "5. Style: iMWritingMono Nerd Font Propo, Bibata-Modern-Ice cursor"
+    echo ""
+    read -n 1 -p "Press 'q' to exit the install..." exit_key
+    exit 0
 fi
 
-# --- Step 3: Force Installation Loop ---
-echo -e "${LAVENDER}Preparing to force install components...${RESET}"
-read -p "$(echo -e ${PEACH}"Begin Force Installation? (y/n): "${RESET})" proceed
-[[ "$proceed" != [yY] ]] && exit 1
+# 3. Proceed with Arch Installation
+echo -e "\n${GREEN}Detected Arch Linux. Starting automated installation...${RESET}"
 
-for pkg in "${PACKAGES[@]}"; do
-    show_banner "$pkg"
-    # Reinstalls even if already present
-    yay -S --noconfirm "$pkg"
-done
+# Install Yay if needed
+if ! command -v yay &> /dev/null; then
+    read -p "Yay (AUR Helper) not found. Install it now? (y/n): " install_yay
+    if [[ $install_yay == "y" || $install_yay == "Y" ]]; then
+        sudo pacman -S --needed base-devel git --noconfirm
+        git clone https://aur.archlinux.org/yay.git
+        cd yay && makepkg -si --noconfirm && cd .. && rm -rf yay
+    else
+        echo -e "${PEACH}Yay is required for AUR dependencies. Exiting.${RESET}"
+        exit 1
+    fi
+fi
 
-# --- Step 4: Configs & Wallpapers ---
-show_banner "Wallpapers & Configs"
-mkdir -p "$WALLPAPER_DEST"
-[ -d "$REPO_DIR/Wallpapers" ] && cp -r "$REPO_DIR/Wallpapers/"* "$WALLPAPER_DEST/"
+# 4. Install Dependencies
+echo -e "\n${MAUVE}Installing dependencies...${RESET}"
 
+# Official Repos
+sudo pacman -S --needed \
+    hyprland waybar swaynotificationcenter hypridle hyprlock \
+    xdg-desktop-portal-hyprland xdg-desktop-portal-gnome \
+    kitty nautilus pavucontrol grim slurp jq wl-clipboard \
+    brightnessctl playerctl fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt \
+    --noconfirm
+
+# AUR Repos
+yay -S --needed \
+    hyprpolkitagent-git vicinae-bin zen-browser-bin rmpc-bin \
+    hyprshot-git awww-daemon-bin bibata-cursor-theme \
+    --noconfirm
+
+# 5. Backup and Configuration Deployment
+echo -e "\n${BLUE}Backing up existing configs...${RESET}"
+BACKUP_DIR="$HOME/ConfigBackup_$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$BACKUP_DIR"
-CONFIGS=("hypr" "waybar" "kitty" "swaync" "customshscripts")
 
-for folder in "${CONFIGS[@]}"; do
-    if [ -d "$REPO_DIR/$folder" ]; then
-        [ -d "$CONFIG_DIR/$folder" ] && mv "$CONFIG_DIR/$folder" "$BACKUP_DIR/"
-        cp -r "$REPO_DIR/$folder" "$CONFIG_DIR/"
+CONFIG_FOLDERS=("hypr" "kitty" "mpd" "rmpc" "swaync" "vicinae" "waybar")
+
+for folder in "${CONFIG_FOLDERS[@]}"; do
+    if [ -d "$HOME/.config/$folder" ]; then
+        mv "$HOME/.config/$folder" "$BACKUP_DIR/"
+        echo -e "  - Backed up $folder to $BACKUP_DIR"
+    fi
+    # Copy from repo folder to ~/.config/
+    if [ -d "./$folder" ]; then
+        cp -r "./$folder" "$HOME/.config/"
+        echo -e "  - Installed $folder to ~/.config/"
     fi
 done
 
-# --- Step 5: Shell Setup ---
-show_banner "ZSH Setup"
-read -p "$(echo -e ${PEACH}"Force Reinstall Oh My Zsh? (y/n): "${RESET})" zsh_confirm
-if [[ "$zsh_confirm" =~ ^[Yy]$ ]]; then
-    rm -rf "$HOME/.oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+# Copy walls.sh to home
+if [ -f "./walls.sh" ]; then
+    cp "./walls.sh" "$HOME/"
+    chmod +x "$HOME/walls.sh"
 fi
 
-# --- Step 6: Final Instructions Banner ---
-clear
+# 6. Fish Shell Prompt
+read -p "Do you want to install the Fish shell? (y/n): " install_fish
+if [[ $install_fish == "y" || $install_fish == "Y" ]]; then
+    sudo pacman -S fish --noconfirm
+    echo -e "${GREEN}Fish installed. Use 'chsh -s /usr/bin/fish' to make it default.${RESET}"
+fi
+
+# 7. Success Banner
+echo -e "\n"
 echo -e "${MAUVE}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${RESET}"
 echo -e "${MAUVE}┃${RESET}   ${FLAMINGO}✨ MOCHA101 INSTALLED SUCCESSFULLY! ✨${RESET}                           ${MAUVE}┃${RESET}"
 echo -e "${MAUVE}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${RESET}"
@@ -125,4 +134,4 @@ echo -e "${MAUVE}━━━━━━━━━━━━━━━━━━━━━
 echo ""
 echo -e "  ${PEACH}Press any key to finish and exit...${RESET}"
 read -n 1 -s
-clear
+echo -e "\n${FLAMINGO}Happy Ricing!${RESET}"
