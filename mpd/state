@@ -1,9 +1,9 @@
 sw_volume: 100
 audio_device_state:1:Pulse/Pipewire Audio
 audio_device_state:1:Visualizer feed
-state: pause
-current: 1
-time: 2.486
+state: play
+current: 7
+time: 206.788
 random: 0
 repeat: 0
 single: 0
@@ -13,23 +13,13 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:OST - The Social Network/01 Hand Covers Bruise.mp3
-1:OST - The Social Network/02 In Motion.mp3
-2:OST - The Social Network/03 A Familiar Taste.mp3
-3:OST - The Social Network/04 It Catches Up With You.mp3
-4:OST - The Social Network/05 Intriguing Possibilities.mp3
-5:OST - The Social Network/06 Painted Sun in Abstract.mp3
-6:OST - The Social Network/07 3-14 Every Night.mp3
-7:OST - The Social Network/08 Pieces Form the Whole.mp3
-8:OST - The Social Network/09 Carbon Prevails.mp3
-9:OST - The Social Network/12 In the Hall of the Mountain King.mp3
-10:OST - The Social Network/13 On We March.mp3
-11:OST - The Social Network/18 The Gentle Hum of Anxiety.mp3
-12:OST - The Social Network/15 Almost Home.mp3
-13:OST - The Social Network/17 Complication with Optimistic Outcome.mp3
-14:OST - The Social Network/10 Eventually We Find Our Way.mp3
-15:OST - The Social Network/16 Hand Covers Bruise. Reprise.mp3
-16:OST - The Social Network/14 Magnetic.mp3
-17:OST - The Social Network/11 Penetration.mp3
-18:OST - The Social Network/19 Soft Trees Break the Fall.mp3
+0:Minnale/Harris Jayaraj_Minnale_01_Poopol Poopol.m4a
+1:Minnale/Harris Jayaraj_Minnale_02_Venmathiye.m4a
+2:Minnale/Harris Jayaraj_Minnale_03_Ooh Mama.m4a
+3:Minnale/Harris Jayaraj_Minnale_04_Maddy Maddy.m4a
+4:Minnale/Harris Jayaraj_Minnale_05_Azhagiya Theeye.m4a
+5:Minnale/Harris Jayaraj_Minnale_06_Ivan Yaaro.m4a
+6:Minnale/Harris Jayaraj_Minnale_07_Nenjai Poopol.m4a
+7:Minnale/Harris Jayaraj_Minnale_08_Vaseegara.m4a
+8:Minnale/Harris Jayaraj_Minnale_09_Orey Nyabagam.m4a
 playlist_end

@@ -10,7 +10,7 @@
 @import "../waybar/colors/mocha.css";
 
 window#waybar {
-    background-color: rgba(30, 30, 46, 0.85);
+    background-color: alpha(@base,0.9);
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -117,11 +117,11 @@ button {
     border-radius: 10px;
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
-    color:@yellow;  
+    color:@green;  
 }
 
 #mpris:hover {
-    background-color: @yellow;
+    background-color: @green;
     color: @base;
 }
 
