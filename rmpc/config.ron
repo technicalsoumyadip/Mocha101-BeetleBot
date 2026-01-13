@@ -31,10 +31,10 @@ ConfigFile(
             "<Tab>":   NextTab,
             "<S-Tab>": PreviousTab,
             "1":       SwitchToTab("Queue"),
-            "2":       SwitchToTab("Artists"),
-            "3":       SwitchToTab("Albums"),
-            "4":       SwitchToTab("Search"),
-            "5":       SwitchToTab("Directories"),
+            "2":       SwitchToTab("Directories"),
+            "3":       SwitchToTab("Artists"),
+            "4":       SwitchToTab("Albums"),
+            "5":       SwitchToTab("Search"),
             "6":       SwitchToTab("Lyrics"),
             "q":       Quit,
             ">":       NextTrack,
@@ -120,6 +120,10 @@ ConfigFile(
             ),
         ),
         (
+            name: "Directories",
+            pane: Pane(Directories),
+        ),
+        (
             name: "Artists",
             pane: Pane(Artists),
         ),
@@ -130,10 +134,6 @@ ConfigFile(
         (
             name: "Search",
             pane: Pane(Search),
-        ),
-        (
-            name: "Directories",
-            pane: Pane(Directories),
         ),
         (
             name: "Lyrics",
