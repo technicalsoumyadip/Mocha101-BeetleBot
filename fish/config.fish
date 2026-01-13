@@ -2,15 +2,6 @@ if status is-interactive
     set fish_greeting ""
 end
 
-function fish_greeting
-    if test -f ~/.config/swaync/current_flavor
-        set -l flavor (cat ~/.config/swaync/current_flavor)
-        # Using hex codes because standard Fish doesn't know "mauve"
-        # cba6f7 = Catppuccin Mauve | 89b4fa = Catppuccin Blue
-        echo (set_color cba6f7)"Welcome back! System flavor: "(set_color -o 89b4fa)"$flavor"
-    end
-end
-
 # --- Theme Switching Logic ---
 
 # Function to reload the theme instantly when receiving SIGUSR1

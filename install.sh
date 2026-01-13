@@ -111,8 +111,10 @@ if [[ ! "$is_arch" =~ ^[yY]$ ]]; then
     echo -e "\n${BOLD}   MANUAL INSTALLATION INSTRUCTIONS:${RESET}"
     echo -e "   ${GRAY}──────────────────────────────────────${RESET}"
     echo -e "   1. Copy these folders to ${BLUE}~/.config/${RESET}:"
-    echo -e "      ${GRAY}hypr, kitty, mpd, rmpc, swaync, vicinae, waybar${RESET}"
-    echo -e "   2. Install dependencies manually (see README.md)."
+    echo -e "      ${GRAY}hypr, kitty, mpd, rmpc, swaync, vicinae, waybar, fish${RESET}"
+    echo -e "   2. Copy the script files to ${BLUE}/myscripts/${RESET}:"
+    echo -e "      ${GRAY} customshscripts/personal scripts/theme_switcher.sh ${RESET}"
+    echo -e "   3. Install dependencies manually (see README.md)."
     echo ""
     exit 0
 fi
@@ -162,7 +164,7 @@ sudo -v
 
 # 1. Official Packages
 echo -e "\n   ${BOLD}${MAUVE}CORE COMPONENTS${RESET} ${GRAY}(pacman)${RESET}"
-PACKAGES_CORE="hyprland waybar swaync hypridle hyprlock hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gnome kitty nautilus pavucontrol hyprshot grim slurp jq wl-clipboard brightnessctl playerctl curl unzip"
+PACKAGES_CORE="hyprland waybar swaync hypridle hyprlock hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gnome kitty fish thunar pavucontrol hyprshot grim slurp jq wl-clipboard brightnessctl playerctl curl unzip"
 
 # NOTE: rmpc is often AUR. We try pacman, if fail, we move to yay logic.
 # Splitting loop for better visuals
@@ -202,7 +204,7 @@ run_cmd "Removing yay cache" "yay -Sc --noconfirm"
 print_step "Backing Up Configurations"
 BACKUP_DIR="$HOME/ConfigBackups"
 TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
-TARGET_FOLDERS=("hypr" "kitty" "mpd" "rmpc" "swaync" "vicinae" "waybar")
+TARGET_FOLDERS=("hypr" "kitty" "mpd" "rmpc" "swaync" "vicinae" "waybar" "fish")
 
 run_cmd "Creating backup dir ($BACKUP_DIR)" "mkdir -p $BACKUP_DIR"
 
@@ -228,8 +230,8 @@ for folder in "${TARGET_FOLDERS[@]}"; do
 done
 
 # Copy walls.sh
-if [ -f "$SCRIPT_DIR/walls.sh" ]; then
-    run_cmd "Installing walls.sh script" "cp $SCRIPT_DIR/walls.sh $HOME/ && chmod +x $HOME/walls.sh"
+if [ -f "$SCRIPT_DIR/customshscripts/personal scripts/theme_switcher.sh" ]; then
+    run_cmd "Installing theme_switcher.sh script" "cp $SCRIPT_DIR/customshscripts/personal scripts/theme_switcher.sh $HOME/myscripts/ && chmod +x $HOME/myscripts/walls.sh"
 fi
 
 # --- STEP 7: FINISH ---

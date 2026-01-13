@@ -1,9 +1,7 @@
 sw_volume: 100
 audio_device_state:1:Pulse/Pipewire Audio
 audio_device_state:1:Visualizer feed
-state: play
-current: 7
-time: 206.788
+state: stop
 random: 0
 repeat: 0
 single: 0
@@ -13,13 +11,13 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:Minnale/Harris Jayaraj_Minnale_01_Poopol Poopol.m4a
-1:Minnale/Harris Jayaraj_Minnale_02_Venmathiye.m4a
-2:Minnale/Harris Jayaraj_Minnale_03_Ooh Mama.m4a
-3:Minnale/Harris Jayaraj_Minnale_04_Maddy Maddy.m4a
-4:Minnale/Harris Jayaraj_Minnale_05_Azhagiya Theeye.m4a
-5:Minnale/Harris Jayaraj_Minnale_06_Ivan Yaaro.m4a
-6:Minnale/Harris Jayaraj_Minnale_07_Nenjai Poopol.m4a
-7:Minnale/Harris Jayaraj_Minnale_08_Vaseegara.m4a
-8:Minnale/Harris Jayaraj_Minnale_09_Orey Nyabagam.m4a
+0:Play That Beat Mr. Raja_ Selected Oddities From The Tamil Film Industry (1984 - 1991)/01 - Ilayaraja - Title Music.mp3
+1:Play That Beat Mr. Raja_ Selected Oddities From The Tamil Film Industry (1984 - 1991)/02 - Ilayaraja - Vikram Vikram.mp3
+2:Play That Beat Mr. Raja_ Selected Oddities From The Tamil Film Industry (1984 - 1991)/03 - Shankar Ganesh - Cola Cola Coca Cola.mp3
+3:Play That Beat Mr. Raja_ Selected Oddities From The Tamil Film Industry (1984 - 1991)/04 - Ilayaraja - Passing out Parade Part.1.mp3
+4:Play That Beat Mr. Raja_ Selected Oddities From The Tamil Film Industry (1984 - 1991)/06 - Ilayaraja - Raaja Rajathi.mp3
+5:Play That Beat Mr. Raja_ Selected Oddities From The Tamil Film Industry (1984 - 1991)/07 - Ilayaraja - Love Theme.mp3
+6:Play That Beat Mr. Raja_ Selected Oddities From The Tamil Film Industry (1984 - 1991)/08 - Ilayaraja - Thakkum Thalaangu Thatthom.mp3
+7:Play That Beat Mr. Raja_ Selected Oddities From The Tamil Film Industry (1984 - 1991)/09 - Ilayaraja - Puthiya Ulagille.mp3
+8:Play That Beat Mr. Raja_ Selected Oddities From The Tamil Film Industry (1984 - 1991)/10 - Ilayaraja - Chittu Kuruvi.mp3
 playlist_end
