@@ -99,4 +99,31 @@ echo "$NEW_FLAVOR" > ~/.config/swaync/current_flavor
 # 3. Signal all open Fish instances to reload
 pkill -USR1 fish
 
+# --- 10. Zen Browser ---
+# Note: Zen uses merged userChrome.css/userContent.css files.
+# It relies on the system-wide color-scheme preference to switch.
+
+if [ "$NEW_FLAVOR" == "latte" ]; then
+    # Signal Zen to use @media (prefers-color-scheme: light)
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+    log_info "Zen Browser set to Light Mode (Latte)"
+else
+    # Signal Zen to use @media (prefers-color-scheme: dark)
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    log_info "Zen Browser set to Dark Mode (Mocha)"
+fi
+
+# --- 11. Rofi Theme Switch (Atomic Method) ---
+# We overwrite the 'colors.rasi' file that config.rasi imports
+ROFI_THEME_DIR="$HOME/.config/rofi/themes"
+
+if [ "$NEW_FLAVOR" == "latte" ]; then
+    cp "$ROFI_THEME_DIR/latte.rasi" "$ROFI_THEME_DIR/colors.rasi"
+else
+    cp "$ROFI_THEME_DIR/mocha.rasi" "$ROFI_THEME_DIR/colors.rasi"
+fi
+
+# Kill any running Rofi instances so the next launch reads the new theme
+pkill -x rofi
+
 notify-send "Theme Toggled" "System set to Catppuccin $NEW_FLAVOR"
