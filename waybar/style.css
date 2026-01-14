@@ -7,7 +7,7 @@
     border-radius: 10 10 10 10px;
 }
 
-@import "../waybar/colors/latte.css";
+@import "../waybar/colors/mocha.css";
 
 window#waybar {
     background-color: alpha(@base,0.9);
