@@ -2,12 +2,12 @@
     /* `otf-font-awesome` is required to be installed for icons */
     /*font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;*/
     font-family: 'iMWritingMono Nerd Font Propo', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     border-radius: 10 10 10 10px;
 }
 
-@import "../waybar/colors/mocha.css";
+@import "../waybar/colors/latte.css";
 
 window#waybar {
     background-color: alpha(@base,0.9);
@@ -155,7 +155,7 @@ button {
 
 #bluetooth{
     border-radius: 10px;
-    font-size: 14;
+    font-size: 15;
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
     color:@flamingo;
@@ -163,7 +163,7 @@ button {
 
 #bluetooth:hover {
     background-color: @flamingo;
-    font-size: 14;
+    font-size: 15;
     color: @base;
 }
 
@@ -201,6 +201,7 @@ button {
     /*border: 2px @lavender solid;
     background-color: @base;*/
     color:@lavender;
+    transition: background-color 0.5s ease;
 }
 
 #network:hover {

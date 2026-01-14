@@ -1,0 +1,19 @@
+* {
+    bg-col:  #eff1f5E6;
+    bg-col-light: #eff1f5;
+    border-col: #eff1f5;
+    
+    /* Workspace Active Color (Mauve) */
+    accent: #8839ef; 
+    
+    /* Text Colors */
+    fg-col: #4c4f69;
+    fg-col2: #d20f39;
+    grey: #acb0be;
+    network: #7287fd;
+    bluetooth: #dd7878;
+    wallpaper: #04a5e5;
+
+    width: 600;
+    font: "JetBrainsMono Nerd Font 13";
+}
