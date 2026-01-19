@@ -29,11 +29,54 @@ Note: I am such a lazy guy. I did not take that many screenshots. These screensh
 
 > Removed all the screenshots as I have to upload a new one soon.
 
-**| Remarks | Dark Mode | Light Mode |**
-| Whole Screen | <img width="1920" height="1080" alt="2026-01-19-154858_hyprshot" src="https://github.com/user-attachments/assets/87e62a18-8c36-4e5d-98e2-58281849342e" />
- | <img width="1920" height="1080" alt="2026-01-19-153910_hyprshot" src="https://github.com/user-attachments/assets/45b7b9e1-d6b5-4802-a490-63064a80d9b4" />
- |
-|  |  |  |
+#### Full - Dark
+<img width="1920" height="1080" alt="2026-01-19-154858_hyprshot" src="https://github.com/user-attachments/assets/87e62a18-8c36-4e5d-98e2-58281849342e" />
+
+#### Full - Light
+<img width="1920" height="1080" alt="2026-01-19-153910_hyprshot" src="https://github.com/user-attachments/assets/45b7b9e1-d6b5-4802-a490-63064a80d9b4" />
+
+#### App Launcher - Light
+<img width="749" height="504" alt="2026-01-19-153936_hyprshot" src="https://github.com/user-attachments/assets/8487e7fa-f1b1-421b-b369-94faa4c23d41" />
+
+#### App Launcher - Dark
+<img width="650" height="409" alt="2026-01-19-154058_hyprshot" src="https://github.com/user-attachments/assets/33a3f69c-6c6d-4be4-bbb1-aedfce107f55" />
+
+#### Wifi Menu - Light
+<img width="670" height="417" alt="2026-01-19-153947_hyprshot" src="https://github.com/user-attachments/assets/cc3e5565-1546-43c4-8030-24b32519728e" />
+
+#### Wifi Menu - Dark
+<img width="650" height="381" alt="2026-01-19-154114_hyprshot" src="https://github.com/user-attachments/assets/f6c64d21-8ee5-4678-864a-1df65a67c3f8" />
+
+#### Bluetooth Menu - Light
+<img width="669" height="416" alt="2026-01-19-154004_hyprshot" src="https://github.com/user-attachments/assets/2b71a3f8-94d7-404e-a018-46ab842b91dc" />
+
+#### Bluetooth Menu - Dark
+<img width="646" height="400" alt="2026-01-19-154122_hyprshot" src="https://github.com/user-attachments/assets/328851ea-fc87-4a0a-8af0-41b210f9b53b" />
+
+#### Wallpaper Menu - Light
+<img width="1848" height="445" alt="2026-01-19-154012_hyprshot" src="https://github.com/user-attachments/assets/e8fe19b8-a911-4967-887a-5d6dc9c04894" />
+
+#### Wallpaper Menu - Dark
+<img width="1819" height="433" alt="2026-01-19-155440_hyprshot" src="https://github.com/user-attachments/assets/04ca0461-4a70-4a80-beca-c29f7220268c" />
+
+#### Notification - Light
+<img width="572" height="166" alt="2026-01-19-155411_hyprshot" src="https://github.com/user-attachments/assets/62b1e37d-477a-4031-8690-c21961f9338b" />
+
+#### Notification - Dark
+<img width="584" height="258" alt="2026-01-19-154130_hyprshot" src="https://github.com/user-attachments/assets/e326fd9b-709b-4b49-b001-8a5b0a371f7e" />
+
+#### SwayNC - Light
+<img width="569" height="1080" alt="2026-01-19-155417_hyprshot" src="https://github.com/user-attachments/assets/5fcc0a92-d675-40c1-8ead-d67ae39333ed" />
+
+#### SwayNC - Dark
+<img width="588" height="1080" alt="2026-01-19-154151_hyprshot" src="https://github.com/user-attachments/assets/6aef4199-beb6-47f6-af72-e54dec13f32f" />
+
+#### Just - Light
+<img width="1920" height="1080" alt="2026-01-19-154517_hyprshot" src="https://github.com/user-attachments/assets/d0cfb97a-c747-4c3d-90ff-1c885cbf062b" />
+
+#### Just - Dark
+<img width="1920" height="1080" alt="2026-01-19-154558_hyprshot" src="https://github.com/user-attachments/assets/4a863e66-5087-463b-80c1-6209c0f22713" />
+
 
 ### **⚙️ Installation**
 Fire it up in just a few steps:  
@@ -81,6 +124,7 @@ The **Super** key (Windows key) is your main modifier.
 | Super + Alt + B | Bluetooth Manager (Rofi) |
 | Super + Shift + W | Wallpaper Grid (Rofi+AWWW) |
 | Super + R | Reload Waybar |
+| Super + Shift + Z | Toggle Theme (Mocha and Latte) |
 
 #### **Applications**
 
