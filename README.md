@@ -2,12 +2,12 @@
 
 # **☕ Mocha 101**
 
-**A sharp (rounded, if you prefer), elegant Hyprland setup brewed with Catppuccin Mocha.**  
+**A sharp (rounded, if you prefer), elegant Hyprland setup brewed with Catppuccin Mocha and Latte.**  
 </div>
 
 ### **About This Setup**
 
-Mocha 101 is a dotfiles configuration that blends **style, performance, and minimalism** into one cohesive Hyprland experience. Built around the **Catppuccin Mocha** palette, it delivers rich colors, crisp edges (only if you need) 😁, and zero fluff.  
+Mocha 101 is a dotfiles configuration that blends **style, performance, and minimalism** into one cohesive Hyprland experience. Built around the **Catppuccin Mocha and Latte** palette, it delivers rich colors, crisp edges (only if you need) 😁, and zero fluff.  
 Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, and just the right amount of aesthetic kick.
 
 ### **🎨 Design Highlights**
@@ -17,7 +17,7 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 ### **✨ Feature Highlights**
 
 * **Wallpapers** — Uses **awww** for dynamic wallpaper switching via the awww wallpaper switcher extension in **Vicinae**.  
-* **Unified theme** — Catppuccin Mocha everywhere, from terminal (Kitty) to the notification center (SwayNC).  
+* **Dual theme** — Catppuccin Mocha and Latte, everywhere. From Terminal to Notification centre. You can manually configure the same for GTK and QT apps as well. Check theme_switcher.sh for the details.
 * **Rofi Ecosystem** — Deeply integrated for application launching, and system controls (Bluetooth/Wifi). 
 * **Notification center** — Beautifully styled **SwayNC** with custom CSS, integrated directly with the Waybar logo.  
 * **Master Layout** — Configured for a productive master-stack workflow with a custom "Shelf" special workspace.  
@@ -27,7 +27,7 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 Note: I am such a lazy guy. I did not take that many screenshots. These screenshots are just here for you guys to get the actual feel of the configuration. Thanks.
 
-> Removed all the screenshots as I have to upload a new one soon.
+> I can see some straight vertical lines some of the screenshots (especially in the light ones at top). NVM those. Those are just some artifacts of screenshoting tool and not how the actual setup is. This is a super clean setup. I am just lazy to replace those with a clean screenshots.
 
 #### Full - Dark
 <img width="1920" height="1080" alt="2026-01-19-154858_hyprshot" src="https://github.com/user-attachments/assets/87e62a18-8c36-4e5d-98e2-58281849342e" />
