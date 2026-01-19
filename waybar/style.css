@@ -2,11 +2,11 @@
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: 'iMWritingMono Nerd Font Propo', sans-serif;
     /*font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;*/
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
 
-@import "../waybar/colors/latte.css";
+@import "../waybar/colors/mocha.css";
 
 window#waybar {
     background-color: alpha(@background,0.9);
@@ -243,6 +243,11 @@ button {
     color: @rosewater;
 }
 
+#battery:hover {
+    background-color: @rosewater;
+    color: @base;
+}
+
 #battery.charging, #battery.plugged {
     color: @green;
     /*background-color: @rosewater;*/
@@ -265,6 +270,15 @@ button {
     animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+#backlight {
+    color: @teal;
+}
+
+#backlight:hover {
+    background-color: @teal;
+    color: @base;
 }
 
 #mpd {
@@ -411,9 +425,5 @@ label:focus {
 
 #disk {
     background-color: #964B00;
-}
-
-#backlight {
-    background-color: #90b1b1;
 }
 
