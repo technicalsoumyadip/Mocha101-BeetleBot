@@ -1,16 +1,15 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    /*font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;*/
     font-family: 'iMWritingMono Nerd Font Propo', sans-serif;
+    /*font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;*/
     font-size: 12px;
     font-weight: bold;
-    border-radius: 10 10 10 10px;
 }
 
-@import "../waybar/colors/mocha.css";
+@import "../waybar/colors/latte.css";
 
 window#waybar {
-    background-color: alpha(@base,0.9);
+    background-color: alpha(@background,0.9);
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -38,7 +37,7 @@ button {
     font-style: normal;
 }
 #workspaces button {
-    border-radius: 10px;
+    border-radius: 0px;
     /*background: @base;*/
     min-width: 20px;
     color: @mauve;
@@ -47,7 +46,7 @@ button {
 #workspaces button.active {
     background: @mauve;
     color: @base;
-    border-radius: 10px;
+    border-radius: 0px;
     min-width: 30px;
     background-size: 400% 400%;
     transition: all 0.1s ease-in-out;
@@ -58,7 +57,7 @@ button {
 #workspaces button:hover {
     background: @mauve;
     color: @base;
-    border-radius: 10px;
+    border-radius: 0px;
     min-width: 30px;
 }
 
@@ -89,7 +88,7 @@ button {
 }
 
 #tray {
-    border-radius: 10px;
+    border-radius: 0px;
     /*border: 2px @lavender solid;*/
     background-color: @base;
     color: @lavender;
@@ -114,7 +113,7 @@ button {
 */
 
 #mpris {
-    border-radius: 10px;
+    border-radius: 0px;
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
     color:@green;  
@@ -126,7 +125,8 @@ button {
 }
 
 #custom-logo {
-    border-radius: 10px;
+    border-radius: 0px;
+    min-width: 40px;
     /*border: 2px @lavender solid;*/
     /*margin-right: 3px;*/
     /*background-color: @base;*/
@@ -134,6 +134,7 @@ button {
 }
 
 #custom-logo:hover {
+    min-width: 40px;
     background-color: @sky;
     color: @base;
 }
@@ -154,8 +155,9 @@ button {
 }
 
 #bluetooth{
-    border-radius: 10px;
+    border-radius: 0px;
     font-size: 15;
+    min-width: 20px;
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
     color:@flamingo;
@@ -168,7 +170,7 @@ button {
 }
 
 #clock {
-    border-radius: 10px;
+    border-radius: 0px;
     /*margin-left: 3px;*/
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
@@ -182,7 +184,7 @@ button {
 
 /*
 #custom-notification {
-    border-radius: 10px;
+    border-radius: 0px;
     border: 2px @lavender solid;
     background-color: @base;   
     color:@teal;
@@ -197,7 +199,7 @@ button {
 */
 
 #network {
-    border-radius: 10px;
+    border-radius: 0px;
     /*border: 2px @lavender solid;
     background-color: @base;*/
     color:@lavender;
@@ -210,20 +212,20 @@ button {
 }
 
 #network.disconnected {
-    border-radius: 10px;
+    border-radius: 0px;
     background-color: @red;
     color: @crust;
 }
 
 #pulseaudio {
-    border-radius: 10px;
+    border-radius: 0px;
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
     color: @sapphire;
 }
 
 #pulseaudio.muted {
-    border-radius: 10px;
+    border-radius: 0px;
     background-color: @red;
     color: @crust;
 }

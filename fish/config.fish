@@ -19,3 +19,8 @@ end
 
 # Quickly toggle system theme
 alias toggle='bash ~/myscripts/theme_switcher.sh'
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /home/nkr/.lmstudio/bin
+# End of LM Studio CLI section
+

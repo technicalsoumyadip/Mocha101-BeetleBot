@@ -1,0 +1,5 @@
+
+window_padding_width 10 
+
+
+include mocha.conf

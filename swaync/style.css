@@ -5,7 +5,7 @@
   font-size: 14px;
   font-family: "JetBrainsMono Nerd Font Propo";
   transition: 100ms;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 /* --- Global Progress/Scales --- */
@@ -21,13 +21,13 @@ scale trough {
   margin: 0rem 1rem;
   min-height: 8px;
   min-width: 70px;
-  border-radius: 10px;
+  border-radius: 0px;
   background-color: @surface0;
 }
 
 trough slider {
   margin: -10px;
-  border-radius: 10px;
+  border-radius: 0px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   transition: all 0.2s ease;
   background-color: @blue;
@@ -43,7 +43,7 @@ trough slider:hover {
   /* Separates the card from the main panel background */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   border: 1px solid @surface0;
-  border-radius: 10px;
+  border-radius: 0px;
   margin: 10px 18px;
   background: @mantle; /* Card color */
   color: @text;
@@ -52,7 +52,7 @@ trough slider:hover {
 
 .notification-background .notification {
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 .notification-background .notification.critical {
@@ -79,7 +79,6 @@ trough slider:hover {
   padding: 4px;
   color: @crust;
   background-color: @red;
-  border-radius: 8px;
 }
 
 .notification-background .close-button:hover {
@@ -87,7 +86,6 @@ trough slider:hover {
 }
 
 .notification .notification-action {
-  border-radius: 8px;
   color: @text;
   background-color: @surface0;
   border: 1px solid @surface1;
@@ -103,7 +101,6 @@ trough slider:hover {
 .control-center {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   border: 2px solid @surface0;
-  border-radius: 12px;
   background-color: alpha(@base, 0.7); 
   color: @text;
   padding: 14px;
@@ -123,7 +120,7 @@ trough slider:hover {
 }
 
 .control-center .widget-title button {
-  border-radius: 10px;
+  border-radius: 0px;
   color: @text;
   background-color: @surface0;
   padding: 8px 12px;
@@ -138,12 +135,11 @@ trough slider:hover {
   margin-top: 8px;
   background: @mantle;
   padding: 8px;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 .widget-dnd > switch {
   background: @surface0;
-  border-radius: 12px;
 }
 
 .widget-dnd > switch:checked {
@@ -153,7 +149,6 @@ trough slider:hover {
 .widget-mpris-player {
   background: @mantle;
   border: 1px solid @surface0;
-  border-radius: 12px;
   padding: 10px;
   margin: 10px 0;
 }
@@ -170,7 +165,7 @@ trough slider:hover {
 
 .widget-volume {
   background: @mantle;
-  border-radius: 10px;
+  border-radius: 0px;
   margin-top: 10px;
   padding: 5px;
 }
@@ -181,7 +176,7 @@ trough slider:hover {
 
 .widget-backlight {
   background: @mantle;
-  border-radius: 10px;
+  border-radius: 0px;
   margin-top: 10px;
   padding: 5px;
 }
@@ -192,5 +187,5 @@ trough slider:hover {
 
 scrollbar slider {
   background: @surface1;
-  border-radius: 10px;
+  border-radius: 0px;
 }

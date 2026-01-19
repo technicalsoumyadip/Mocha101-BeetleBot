@@ -30,7 +30,7 @@ element-text, element-icon , mode-switcher {
 window {
     height: 360px;
     border: 2px;
-    border-radius: 12px;
+    border-radius: 0px;
     border-color: @accent;
     background-color: @bg-col; 
 }
@@ -42,7 +42,7 @@ mainbox {
 inputbar {
     children: [prompt,entry];
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 0px;
     padding: 2px;
 }
 
@@ -50,7 +50,7 @@ prompt {
     background-color: @accent;
     padding: 6px;
     text-color: @bg-col;
-    border-radius: 3px;
+    border-radius: 0px;
     margin: 20px 0px 0px 20px;
 }
 
@@ -113,7 +113,7 @@ message {
     background-color: @bg-col-light;
     margin: 2px;
     padding: 2px;
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 textbox {
