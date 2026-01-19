@@ -1,147 +1,329 @@
 #!/bin/bash
 
 # ==============================================================================
-#  ☕ MOCHA 101 ELITE INSTALLER v2.0
-#  Architected for: BatArch / Hyprland
+#  MOCHA 101 INSTALLER
 # ==============================================================================
 
-# --- PRE-FLIGHT INITIALIZATION ---
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-LOG_FILE="$HOME/mocha_install.log"
-exec > >(tee -a "$LOG_FILE") 2>&1
+# get folder path
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+LOG="$HOME/mocha_install.log"
 
-# --- ELITE CATPPUCCIN PALETTE ---
-MAUVE='\033[38;5;183m'    # Primary
-LAVENDER='\033[38;5;147m' # Secondary
-BLUE='\033[38;5;117m'     # Info
-GREEN='\033[38;5;120m'    # Success
-PEACH='\033[38;5;210m'    # Warning/Fail
-FLAMINGO='\033[38;5;217m' # Accent
-GRAY='\033[38;5;245m'     # Subtext
-BOLD='\033[1m'
-RESET='\033[0m'
+# clear log file
+echo "" > "$LOG"
 
-# --- UI ASSETS ---
-ICON_OK="[ ${GREEN}OK${RESET} ]"
-ICON_FAIL="[ ${PEACH}!!${RESET} ]"
-ICON_INFO="[ ${BLUE}..${RESET} ]"
-ICON_STEP="[ ${MAUVE}>>${RESET} ]"
+# ------------------------------------------------------
+# COLORS (Catppuccin Mocha)
+# ------------------------------------------------------
+BLK='\033[0;30m'
+RED='\033[0;31m'
+GRN='\033[0;32m'
+YLW='\033[0;33m'
+BLU='\033[0;34m'
+MAG='\033[0;35m'
+CYN='\033[0;36m'
+WHT='\033[0;37m'
+B_MAG='\033[1;35m'
+B_CYN='\033[1;36m'
+B_WHT='\033[1;37m'
+RST='\033[0m'
 
-# --- CORE LOGIC FUNCTIONS ---
-hide_cursor() { tput civis; }
-restore_cursor() { tput cnorm; }
-trap restore_cursor EXIT
+# ------------------------------------------------------
+# LISTS
+# ------------------------------------------------------
 
-print_banner() {
-    clear
-    echo -e "${MAUVE}${BOLD}"
-    echo "  ███╗   ███╗ ██████╗  ██████╗██╗  ██╗ █████╗     ██╗ █████╗ ██╗"
-    echo "  ████╗ ████║██╔═══██╗██╔════╝██║  ██║██╔══██╗   ███║██╔══██╗██║"
-    echo "  ██╔████╔██║██║   ██║██║     ███████║███████║   ╚██║██║  ██║██║"
-    echo "  ██║╚██╔╝██║██║   ██║██║     ██╔══██║██╔══██║    ██║██║  ██║██║"
-    echo "  ██║ ╚═╝ ██║╚██████╔╝╚██████╗██║  ██║██║  ██║    ██║╚█████╔╝██║"
-    echo "  ╚═╝     ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝ ╚════╝ ╚═╝"
-    echo -e "${RESET}"
-    echo -e "${GRAY}  ────────────────────────────────────────────────────────────${RESET}"
-    echo -e "  ${FLAMINGO}MINIMAL HYPRLAND DOTFILES${RESET} | ${GRAY}SYSTEM DEPLOYMENT ENGINE v2.0${RESET}"
-    echo -e "${GRAY}  ────────────────────────────────────────────────────────────${RESET}\n"
+# main apps
+CORE_PKGS=(
+    "hyprland" 
+    "waybar" 
+    "rofi" 
+    "rofimoji" 
+    "fd" 
+    "swaync" 
+    "hypridle" 
+    "hyprlock" 
+    "hyprpolkitagent" 
+    "xdg-desktop-portal-hyprland"
+)
+
+# tools and utils
+TOOL_PKGS=(
+    "kitty" 
+    "wl-clipboard" 
+    "cliphist" 
+    "wtype" 
+    "jq" 
+    "fish" 
+    "thunar" 
+    "pavucontrol" 
+    "brightnessctl" 
+    "playerctl" 
+    "curl" 
+    "unzip"
+    "hyprshot"
+    "grim"
+    "slurp"
+)
+
+# folders to move
+DOTFILES=(
+    "hypr" 
+    "kitty" 
+    "rofi" 
+    "swaync" 
+    "waybar" 
+    "fish"
+)
+
+# ------------------------------------------------------
+# HELPERS
+# ------------------------------------------------------
+
+# print big line
+separator() {
+    echo -e "${B_MAG}================================================================================${RST}"
 }
 
-step_header() {
-    echo -e "${BOLD}${LAVENDER}$1${RESET}"
-    echo -e "${GRAY}------------------------------------------------------------${RESET}"
+# print small line
+sub_separator() {
+    echo -e "${BLK}--------------------------------------------------------------------------------${RST}"
 }
 
-run_task() {
-    local desc="$1"
-    local cmd="$2"
-    echo -ne "  ${ICON_INFO} ${desc}..."
-    if eval "$cmd" > /dev/null 2>&1; then
-        echo -ne "\r\033[K"
-        echo -e "  ${ICON_OK} ${desc}"
-    else
-        echo -ne "\r\033[K"
-        echo -e "  ${ICON_FAIL} ${desc} ${PEACH}(Check $LOG_FILE)${RESET}"
-        sleep 0.5
-    fi
+# show info
+info() {
+    echo -e "${BLU}[ INFO ]${RST} $1"
 }
 
-# --- 1. SYSTEM VERIFICATION ---
-hide_cursor
-print_banner
-step_header "PHASE 01: ENVIRONMENT VERIFICATION"
+# show success
+ok() {
+    echo -e "${GRN}[ OKAY ]${RST} $1"
+}
 
-if ! grep -qi "arch" /etc/os-release; then
-    echo -e "  ${PEACH}${ICON_FAIL} FATAL: Non-Arch Linux system detected.${RESET}"
-    echo -e "\n  ${BOLD}MANUAL INSTALLATION PATHS:${RESET}"
-    echo -e "  ${GRAY}1. Configs :${RESET} cp -r {hypr,kitty,fish,etc} ~/.config/"
-    echo -e "  ${GRAY}2. Scripts :${RESET} mkdir -p ~/myscripts"
-    echo -e "  ${GRAY}3. Logic   :${RESET} cp 'customshscripts/personal scripts/theme_switcher.sh' ~/myscripts/"
-    echo -e "  ${GRAY}4. Permissions :${RESET} chmod +x ~/myscripts/theme_switcher.sh"
+# show fail
+fail() {
+    echo -e "${RED}[ FAIL ]${RST} $1"
+}
+
+# show action
+act() {
+    echo -e "${CYN}[ ACTN ]${RST} $1"
+}
+
+# ------------------------------------------------------
+# START
+# ------------------------------------------------------
+
+clear
+echo -e "${B_MAG}"
+echo "  ███╗   ███╗ ██████╗  ██████╗██╗  ██╗ █████╗      ██╗ ██████╗  ██╗"
+echo "  ████╗ ████║██╔═══██╗██╔════╝██║  ██║██╔══██╗    ███║██╔═████╗███║"
+echo "  ██╔████╔██║██║   ██║██║     ███████║███████║    ╚██║██║██╔██║╚██║"
+echo "  ██║╚██╔╝██║██║   ██║██║     ██╔══██║██╔══██║     ██║████╔╝██║ ██║"
+echo "  ██║ ╚═╝ ██║╚██████╔╝╚██████╗██║  ██║██║  ██║     ██║╚██████╔╝ ██║"
+echo "  ╚═╝     ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝     ╚═╝ ╚═════╝  ╚═╝"
+echo -e "${RST}"
+echo -e "  ${B_WHT}:: MOCHA 101 INSTALLER ::${RST}"
+echo -e "  ${BLK}:: Installation Script v4.0 ::${RST}"
+echo ""
+
+# ask user start
+read -p "  Start installation? (y/n) " choice
+if [[ ! $choice =~ ^[Yy]$ ]]; then
     exit 1
 fi
-echo -e "  ${ICON_OK} Host Architecture: $(uname -m) (Arch Linux)"
 
-# --- 2. DEPENDENCY ORCHESTRATION ---
-step_header "PHASE 02: COMPONENT ORCHESTRATION"
+echo ""
+separator
+echo -e " ${B_CYN}PHASE 1 : SYSTEM PRE-FLIGHT${RST}"
+separator
 
-echo -ne "  ${ICON_INFO} Synchronizing Sudo Privileges..."
-sudo -v
-echo -e "\r  ${ICON_OK} Sudo Session Active              "
-
-# Official Repo Packages
-PACKAGES_CORE="hyprland waybar rofi rofimoji fd swaync hypridle hyprlock hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gnome kitty wl-clipboard cliphist wtype jq fish thunar pavucontrol hyprshot grim slurp jq wl-clipboard brightnessctl playerctl curl unzip"
-for pkg in $PACKAGES_CORE; do
-    run_task "Deploying $pkg" "sudo pacman -S --needed $pkg --noconfirm"
-done
-
-# AUR Helper & AUR Packages
-if ! command -v yay &> /dev/null; then
-    run_task "Bootstrapping yay" "git clone https://aur.archlinux.org/yay.git yay_tmp && cd yay_tmp && makepkg -si --noconfirm && cd .. && rm -rf yay_tmp"
-fi
-
-run_task "Deploying awww-git" "yay -S --needed awww-git --noconfirm"
-
-# --- 3. DATA PERSISTENCE & BACKUP ---
-step_header "PHASE 03: CONFIGURATION SHADOWING (BACKUP)"
-BACKUP_DIR="$HOME/ConfigBackups/$(date +%Y%m%d_%H%M%S)"
-TARGET_FOLDERS=("hypr" "kitty" "rofi" "swaync" "waybar" "fish")
-
-mkdir -p "$BACKUP_DIR"
-for folder in "${TARGET_FOLDERS[@]}"; do
-    if [ -d "$HOME/.config/$folder" ]; then
-        run_task "Shadowing $folder" "cp -r $HOME/.config/$folder $BACKUP_DIR/"
-    fi
-done
-
-# --- 4. DEPLOYMENT ---
-step_header "PHASE 04: MOCHA 101 CORE DEPLOYMENT"
-
-for folder in "${TARGET_FOLDERS[@]}"; do
-    if [ -d "$SCRIPT_DIR/$folder" ]; then
-        rm -rf "$HOME/.config/$folder"
-        run_task "Linking $folder" "cp -r \"$SCRIPT_DIR/$folder\" \"$HOME/.config/\""
-    fi
-done
-
-# --- 5. SCRIPT ENGINE DEPLOYMENT ---
-step_header "PHASE 05: SYSTEM ENGINE DEPLOYMENT"
-
-mkdir -p "$HOME/myscripts"
-THEME_SRC="$SCRIPT_DIR/customshscripts/personal scripts/theme_switcher.sh"
-THEME_DEST="$HOME/myscripts/theme_switcher.sh"
-
-if [ -f "$THEME_SRC" ]; then
-    run_task "Installing Theme Switcher" "cp \"$THEME_SRC\" \"$THEME_DEST\" && chmod +x \"$THEME_DEST\""
+# check arch linux
+act "Checking distribution..."
+if grep -q "Arch" /etc/os-release; then
+    ok "Distro match: Arch Linux"
 else
-    echo -e "  ${ICON_FAIL} Missing Engine: $THEME_SRC"
+    fail "Not Arch Linux. Stopping."
+    exit 1
 fi
 
-# --- 6. FINALIZATION ---
-echo -e "\n${MAUVE}  DEPLOYMENT SUCCESSFUL. SYSTEM REBOOT RECOMMENDED.${RESET}"
-echo -e "  ${GRAY}All logs recorded in $LOG_FILE${RESET}\n"
-echo -ne "  ${LAVENDER}${BOLD}➜ Press any key to finalize session...${RESET}"
-read -n 1 -s
+# refresh sudo
+act "Getting root power..."
+sudo -v
+ok "Root power active"
 
-restore_cursor
-hyprctl dispatch exit || pkill -u $USER
+# ------------------------------------------------------
+# INSTALL PACKAGES
+# ------------------------------------------------------
+
+echo ""
+separator
+echo -e " ${B_CYN}PHASE 2 : CORE INJECTION${RST}"
+separator
+
+# update pacman first
+act "Refreshing package database..."
+sudo pacman -Sy --noconfirm >> "$LOG" 2>&1
+
+# loop install core
+for pkg in "${CORE_PKGS[@]}"; do
+    echo -ne "${BLU}[ .... ]${RST} Queuing $pkg..."
+    sleep 0.1 
+    
+    # check if installed
+    if pacman -Qi $pkg &> /dev/null; then
+        echo -e "\r${YLW}[ SKIP ]${RST} $pkg already here."
+    else
+        echo -e "\r${CYN}[ INST ]${RST} Installing $pkg..."
+        if sudo pacman -S --noconfirm --needed $pkg >> "$LOG" 2>&1; then
+            echo -e "\r${GRN}[ DONE ]${RST} Installed $pkg successfully."
+        else
+            echo -e "\r${RED}[ ERR! ]${RST} Failed to install $pkg."
+        fi
+    fi
+done
+
+# loop install tools
+sub_separator
+echo -e " ${B_WHT}:: Installing Utilities ::${RST}"
+sub_separator
+
+for pkg in "${TOOL_PKGS[@]}"; do
+    echo -ne "${BLU}[ .... ]${RST} Queuing $pkg..."
+    sleep 0.1
+    
+    if pacman -Qi $pkg &> /dev/null; then
+        echo -e "\r${YLW}[ SKIP ]${RST} $pkg already here."
+    else
+        echo -e "\r${CYN}[ INST ]${RST} Installing $pkg..."
+        if sudo pacman -S --noconfirm --needed $pkg >> "$LOG" 2>&1; then
+            echo -e "\r${GRN}[ DONE ]${RST} Installed $pkg successfully."
+        else
+            echo -e "\r${RED}[ ERR! ]${RST} Failed to install $pkg."
+        fi
+    fi
+done
+
+# ------------------------------------------------------
+# AUR STUFF
+# ------------------------------------------------------
+
+echo ""
+separator
+echo -e " ${B_CYN}PHASE 3 : AUR MODULES${RST}"
+separator
+
+# check yay exists
+if ! command -v yay &> /dev/null; then
+    act "Yay not found. Building source..."
+    git clone https://aur.archlinux.org/yay.git yay_tmp >> "$LOG" 2>&1
+    cd yay_tmp
+    makepkg -si --noconfirm >> "$LOG" 2>&1
+    cd ..
+    rm -rf yay_tmp
+    ok "Yay builder ready."
+else
+    ok "Yay detected."
+fi
+
+# install wallpaper tool
+act "Injecting 'awww' (Animation Engine)..."
+if yay -S --noconfirm --needed awww-git >> "$LOG" 2>&1; then
+    ok "Engine ready."
+else
+    fail "Engine failed. Check log."
+fi
+
+# ------------------------------------------------------
+# BACKUP AND COPY
+# ------------------------------------------------------
+
+echo ""
+separator
+echo -e " ${B_CYN}PHASE 4 : DOTFILE MIGRATION${RST}"
+separator
+
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+BACKUP_PATH="$HOME/ConfigBackups/$TIMESTAMP"
+
+# safety check block
+echo -e "${YLW}  [ WAIT ]  ${B_WHT}SAFETY CHECKPOINT${RST}"
+echo -e "  ------------------------------------------------"
+echo -e "  Current config files will be moved to:"
+echo -e "  ${B_CYN}$BACKUP_PATH${RST}"
+echo -e "  New elite configs will replace them."
+echo ""
+read -p "  Proceed with deployment? (y/n) " confirm
+
+# check answer
+if [[ ! $confirm =~ ^[Yy]$ ]]; then
+    echo ""
+    fail "User aborted. No files changed."
+    echo -e "${B_WHT}  Exiting safe mode.${RST}"
+    exit 0
+fi
+
+# if yes continue
+act "Creating vault at: $BACKUP_PATH"
+mkdir -p "$BACKUP_PATH"
+
+# loop copy files
+for folder in "${DOTFILES[@]}"; do
+    target="$HOME/.config/$folder"
+    
+    if [ -d "$target" ]; then
+        # backup old
+        echo -e "${YLW}[ MOVE ]${RST} Archiving existing $folder..."
+        cp -r "$target" "$BACKUP_PATH/"
+        
+        # delete old
+        rm -rf "$target"
+    fi
+    
+    # copy new
+    source_folder="$SCRIPT_DIR/$folder"
+    if [ -d "$source_folder" ]; then
+        echo -e "${GRN}[ COPY ]${RST} Deploying $folder to system..."
+        cp -r "$source_folder" "$HOME/.config/"
+    else
+        fail "Source folder $folder missing!"
+    fi
+done
+
+# ------------------------------------------------------
+# SCRIPTS
+# ------------------------------------------------------
+
+echo ""
+separator
+echo -e " ${B_CYN}PHASE 5 : SCRIPT EXECUTABLES${RST}"
+separator
+
+SCRIPT_DEST="$HOME/myscripts"
+THEME_SCRIPT="$SCRIPT_DIR/customshscripts/personal scripts/theme_switcher.sh"
+
+act "Initializing $SCRIPT_DEST..."
+mkdir -p "$SCRIPT_DEST"
+
+if [ -f "$THEME_SCRIPT" ]; then
+    act "Copying theme logic..."
+    cp "$THEME_SCRIPT" "$SCRIPT_DEST/theme_switcher.sh"
+    chmod +x "$SCRIPT_DEST/theme_switcher.sh"
+    ok "Theme Switcher operational."
+else
+    fail "Theme Switcher script missing."
+fi
+
+# ------------------------------------------------------
+# DONE
+# ------------------------------------------------------
+
+echo ""
+separator
+echo -e " ${B_GRN}SYSTEM READY${RST}"
+separator
+echo -e "  ${B_WHT}Log File :${RST} $LOG"
+echo -e "  ${B_WHT}Backup   :${RST} $BACKUP_PATH"
+echo ""
+echo -e "  ${CYN}Please restart Hyprland to apply visual effects.${RST}"
+echo ""
+read -n 1 -s -r -p "Press any key to exit..."
+echo ""
