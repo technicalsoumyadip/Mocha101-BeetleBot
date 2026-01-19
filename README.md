@@ -18,7 +18,7 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 * **Wallpapers** — Uses **awww** for dynamic wallpaper switching via the awww wallpaper switcher extension in **Vicinae**.  
 * **Unified theme** — Catppuccin Mocha everywhere, from terminal (Kitty) to the notification center (SwayNC).  
-* **Vicinae Ecosystem** — Deeply integrated for application launching, system controls (Bluetooth/Wifi), clipboard history, and emoji search.  
+* **Rofi Ecosystem** — Deeply integrated for application launching, and system controls (Bluetooth/Wifi). 
 * **Notification center** — Beautifully styled **SwayNC** with custom CSS, integrated directly with the Waybar logo.  
 * **Master Layout** — Configured for a productive master-stack workflow with a custom "Shelf" special workspace.  
 * **Integrated lock screen** — Cohesive **Hyprlock** + **Hypridle** setup.
@@ -27,21 +27,8 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 Note: I am such a lazy guy. I did not take that many screenshots. These screenshots are just here for you guys to get the actual feel of the configuration. Thanks.
 
-#### **Desktop with Waybar**
+> Removed all the screenshots as I have to upload a new one soon.
 
-<img width="1920" height="1080" alt="Desktop Preview" src="https://github.com/user-attachments/assets/a2c85b17-50a8-408d-8976-b71a37c9444d">
-
-#### **App launcher (Vicinae)**
-
-<img width="881" height="576" alt="App Launcher" src="https://github.com/user-attachments/assets/1a21ebdc-62c2-4ee5-9256-0394268e60ab">
-
-#### **Wallpaper Picker (Vicinae)**
-
-<img width="821" height="539" alt="Wallpaper Picker" src="https://github.com/user-attachments/assets/61e54b5a-5d1f-4931-a5fd-c9918bc0d428">
-
-#### **Wifi & Bluetooth menus (Vicinae)**
-
-<img width="824" height="528" alt="Wifi Menu" src="https://github.com/user-attachments/assets/9be32d83-ea71-4224-82ed-5cf8005d728d">
 
 ### **⚙️ Installation**
 Fire it up in just a few steps:  
@@ -82,12 +69,12 @@ The **Super** key (Windows key) is your main modifier.
 | Super + Shift + X | Poweroff |
 | Super + Shift + R | Reboot |
 | Super + Shift + L | Lock Screen (Hyprlock) |
-| Super + Alt + Space | Search Files (Vicinae) |
-| Super + . | Emoji Search (Vicinae) |
-| Super + / | Clipboard History (Vicinae) |
-| Super + Alt + N | Wifi Commander (Vicinae) |
-| Super + Alt + B | Bluetooth Manager (Vicinae) |
-| Super + Shift + W | Wallpaper Grid (Awww) |
+| Super + Alt + Space | Search Files (Vicinae-manual configuration) |
+| Super + . | Emoji Search (Vicinae-manual configuration) |
+| Super + / | Clipboard History (Vicinae-manual configuration) |
+| Super + Alt + N | Network (Rofi) |
+| Super + Alt + B | Bluetooth Manager (Rofi) |
+| Super + Shift + W | Wallpaper Grid (Rofi+AWWW) |
 | Super + R | Reload Waybar |
 
 #### **Applications**
@@ -131,7 +118,7 @@ The **Super** key (Windows key) is your main modifier.
 | Wallpapers | **Awww** | Handles dynamic background management |
 | Notifications | **SwayNC** | Notification center with Catppuccin CSS |
 | Terminal | **Kitty** | GPU-accelerated terminal emulator |
-| Launcher | **Vicinae** | Search-driven application and system launcher |
+| Launcher | **Rofi** | Search-driven application and system launcher |
 | Screenshots | **Hyprshot** | Essential screenshot utility |
 | Lock Screen | **Hyprlock** | Integrated screen lock |
 | Font | **iMWritingMono Nerd** | Primary font for Waybar and system UI |
