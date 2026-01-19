@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# ==============================================================================
-#  ELITE BLUETOOTH MENU
-#  - Matches Waybar "Flamingo" color
-#  - Smart Connect/Disconnect logic
-#  - Robust MAC address parsing
-# ==============================================================================
-
 # Constants
 NOTIFY_TITLE="Bluetooth"
 

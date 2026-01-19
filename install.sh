@@ -43,7 +43,7 @@ print_banner() {
     echo "  ╚═╝     ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝ ╚════╝ ╚═╝"
     echo -e "${RESET}"
     echo -e "${GRAY}  ────────────────────────────────────────────────────────────${RESET}"
-    echo -e "  ${FLAMINGO}PREMIUM HYPRLAND DOTFILES${RESET} | ${GRAY}SYSTEM DEPLOYMENT ENGINE v2.0${RESET}"
+    echo -e "  ${FLAMINGO}MINIMAL HYPRLAND DOTFILES${RESET} | ${GRAY}SYSTEM DEPLOYMENT ENGINE v2.0${RESET}"
     echo -e "${GRAY}  ────────────────────────────────────────────────────────────${RESET}\n"
 }
 
@@ -90,7 +90,7 @@ sudo -v
 echo -e "\r  ${ICON_OK} Sudo Session Active              "
 
 # Official Repo Packages
-PACKAGES_CORE="hyprland waybar rofi swaync hypridle hyprlock hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gnome kitty fish thunar pavucontrol hyprshot grim slurp jq wl-clipboard brightnessctl playerctl curl unzip"
+PACKAGES_CORE="hyprland waybar rofi rofimoji fd swaync hypridle hyprlock hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gnome kitty wl-clipboard cliphist wtype jq fish thunar pavucontrol hyprshot grim slurp jq wl-clipboard brightnessctl playerctl curl unzip"
 for pkg in $PACKAGES_CORE; do
     run_task "Deploying $pkg" "sudo pacman -S --needed $pkg --noconfirm"
 done
@@ -100,13 +100,12 @@ if ! command -v yay &> /dev/null; then
     run_task "Bootstrapping yay" "git clone https://aur.archlinux.org/yay.git yay_tmp && cd yay_tmp && makepkg -si --noconfirm && cd .. && rm -rf yay_tmp"
 fi
 
-run_task "Deploying rmpc" "yay -S --needed rmpc --noconfirm"
 run_task "Deploying awww-git" "yay -S --needed awww-git --noconfirm"
 
 # --- 3. DATA PERSISTENCE & BACKUP ---
 step_header "PHASE 03: CONFIGURATION SHADOWING (BACKUP)"
 BACKUP_DIR="$HOME/ConfigBackups/$(date +%Y%m%d_%H%M%S)"
-TARGET_FOLDERS=("hypr" "kitty" "rofi" "mpd" "rmpc" "swaync" "waybar" "fish")
+TARGET_FOLDERS=("hypr" "kitty" "rofi" "swaync" "waybar" "fish")
 
 mkdir -p "$BACKUP_DIR"
 for folder in "${TARGET_FOLDERS[@]}"; do
