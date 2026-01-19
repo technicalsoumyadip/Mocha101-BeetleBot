@@ -29,6 +29,11 @@ Note: I am such a lazy guy. I did not take that many screenshots. These screensh
 
 > Removed all the screenshots as I have to upload a new one soon.
 
+**| Remarks | Dark Mode | Light Mode |**
+| Whole Screen | <img width="1920" height="1080" alt="2026-01-19-154858_hyprshot" src="https://github.com/user-attachments/assets/87e62a18-8c36-4e5d-98e2-58281849342e" />
+ | <img width="1920" height="1080" alt="2026-01-19-153910_hyprshot" src="https://github.com/user-attachments/assets/45b7b9e1-d6b5-4802-a490-63064a80d9b4" />
+ |
+|  |  |  |
 
 ### **⚙️ Installation**
 Fire it up in just a few steps:  
