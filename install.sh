@@ -47,6 +47,7 @@ CORE_PKGS=(
 
 # tools and utils
 TOOL_PKGS=(
+    "swww"
     "kitty" 
     "wl-clipboard" 
     "cliphist" 
@@ -203,34 +204,36 @@ for pkg in "${TOOL_PKGS[@]}"; do
 done
 
 # ------------------------------------------------------
-# AUR STUFF
+# FONT DEPLOYMENT
 # ------------------------------------------------------
 
 echo ""
 separator
-echo -e " ${B_CYN}PHASE 3 : AUR MODULES${RST}"
+echo -e " ${B_CYN}PHASE 4.5 : FONT DEPLOYMENT${RST}"
 separator
 
-# check yay exists
-if ! command -v yay &> /dev/null; then
-    act "Yay not found. Building source..."
-    git clone https://aur.archlinux.org/yay.git yay_tmp >> "$LOG" 2>&1
-    cd yay_tmp
-    makepkg -si --noconfirm >> "$LOG" 2>&1
-    cd ..
-    rm -rf yay_tmp
-    ok "Yay builder ready."
-else
-    ok "Yay detected."
+FONT_DIR="$HOME/.local/share/fonts"
+SOURCE_FONTS="$SCRIPT_DIR/Fonts"
+
+act "Preparing font vault..."
+if [ ! -d "$FONT_DIR" ]; then
+    mkdir -p "$FONT_DIR"
+    ok "Created $FONT_DIR"
 fi
 
-# install wallpaper tool
-act "Injecting 'awww' (Animation Engine)..."
-if yay -S --noconfirm --needed awww-git >> "$LOG" 2>&1; then
-    ok "Engine ready."
+if [ -d "$SOURCE_FONTS" ]; then
+    act "Injecting fonts into system..."
+    # Using -u to only copy if source is newer or doesn't exist
+    cp -ru "$SOURCE_FONTS"/* "$FONT_DIR/"
+    
+    act "Rebuilding font cache (this may take a moment)..."
+    fc-cache -f
+    ok "Font library updated and indexed."
 else
-    fail "Engine failed. Check log."
+    fail "Source fonts folder NOT found in $SCRIPT_DIR/fonts"
 fi
+
+
 
 # ------------------------------------------------------
 # BACKUP AND COPY
