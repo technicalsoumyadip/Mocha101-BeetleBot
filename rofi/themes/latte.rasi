@@ -13,6 +13,7 @@
     network: #7287fd;
     bluetooth: #dd7878;
     wallpaper: #04a5e5;
+    music: #40a02b;
 
     width: 600;
     font: "JetBrainsMono Nerd Font 13";

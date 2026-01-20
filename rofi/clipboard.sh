@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# ==============================================================================
-#  ELITE CLIPBOARD MANAGER (Auto-Paste + Fixed Proportions)
-#  - Matches File Search geometry exactly
-#  - Uses 'wtype' to smart-paste
-# ==============================================================================
-
 NOTIFY_TITLE="Clipboard"
 
 # --- THEME OVERRIDE ---
