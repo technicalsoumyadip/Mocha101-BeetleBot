@@ -80,7 +80,6 @@ button {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
-#mpris,
 #mpd {
     padding: 0 10px;
     color: #ffffff;
@@ -112,14 +111,14 @@ button {
 }
 */
 
-#mpris {
+#mpd {
     border-radius: 0px;
     /*border: 2px @lavender solid;*/
     /*background-color: @base;*/
     color:@green;  
 }
 
-#mpris:hover {
+#mpd:hover {
     background-color: @green;
     color: @base;
 }
@@ -279,23 +278,6 @@ button {
 #backlight:hover {
     background-color: @teal;
     color: @base;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
 }
 
 #language {

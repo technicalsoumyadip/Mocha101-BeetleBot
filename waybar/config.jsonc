@@ -1,15 +1,13 @@
 // -*- mode: jsonc -*-
 {
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
-    /*"margin-top": 10,*/
-    /*"width": 1899,*/
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
+    "layer": "top", 
+    "position": "top", 
+    "height": 20, 
+    "spacing": 4, 
+
     "modules-left": [
         "clock",
-        "mpris"
+        "mpd" // Changed from mpris to mpd
     ],
     "modules-center": [
         "hyprland/workspaces"
@@ -22,6 +20,25 @@
         "battery",
         "custom/logo"
     ],
+
+    "mpd": {
+        "server": "127.0.0.1",
+        "port": 6600,
+        "format": "{stateIcon} {title} - {artist}",
+        "format-paused": "{stateIcon} <i>{title} - {artist}</i>",
+        "format-stopped": " Stopped",
+        "format-disconnected": " Disconnected",
+        "state-icons": {
+            "playing": "",
+            "paused": "⏸"
+        },
+        "max-length": 35,
+        "interval": 2,
+        "on-click": "mpc toggle",
+        "on-scroll-up": "mpc next",
+        "on-scroll-down": "mpc prev",
+        "tooltip-format": "MPD: {artist} - {album} - {title}"
+    },
 
     "custom/logo": {
         "format": "  ",
@@ -49,10 +66,6 @@
             "8": "8",
             "9": "9",
             "10": "10"
-            /*
-            "active": "󱓻",
-            "urgent": "󱓻"
-            */
         },
         "persistent-workspaces": {
             "1": [],
@@ -62,34 +75,12 @@
             "5": []
         }
     },
-
-/*
-    "hyprland/workspaces": {
-    "active-only": false,
-    "all-outputs": false,
-    "disable-scroll": false,
-    "on-scroll-up": "hyprctl dispatch workspace e-1",
-    "on-scroll-down": "hyprctl dispatch workspace e+1",
-    "format": "{name}",
-    "on-click": "activate",
-    "sort-by-number": true,
-    
-    "persistent-workspaces": {
-    "HDMI-A-1": 5 // but only three on HDMI-A-1
-        }
-    },
-*/
     
     "bluetooth": {
-        // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
-        // "format": "󰂯 {status}",
-        // format-* handles every state, so default format is not necessary.
         "format-on": "󰂯",
         "format-off": "󰂲",
-        "format-disabled": "", // an empty format will hide the module
+        "format-disabled": "", 
         "format-connected": "󰂱 {num_connections}",
-        // "tooltip-format": "{controller_alias}\t{controller_address}",
-        // "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
         "tooltip-format-connected": "{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "on-click": "$HOME/.config/rofi/bluetooth_menu.sh"
@@ -97,34 +88,20 @@
 
     "clock": {
         "tooltip-format": "{calendar}",
-        /*"format-alt": "  {:%a, %d %b %Y}",
-        "format": "  {:%I:%M %p}"*/
         "format-alt": "{:%a, %d %b %Y}",
         "format": "{:%I:%M %p}"
-
     },
-
-    /*
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    */
 
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": " {essid}",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        // "format-alt": "{ifnae}: {ipaddr}/{cidr}",
         "on-click": "$HOME/.config/rofi/wifi_menu.sh"
     },
 
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}  {format_source}",
         "format-bluetooth-muted": "{icon} {format_source}",
@@ -144,17 +121,13 @@
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
 
-
-
     "backlight": {
-        // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
 
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
@@ -163,56 +136,6 @@
         "format-charging": "󰂄",
         "format-plugged": "",
         "format-alt": "{capacity}% ",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
-    },
-
-"mpris": {
-    "format": "{player_icon} {title} - {artist}",
-    "format-paused": "{status_icon} <i>{title} - {artist}</i>",
-    "player-icons": {
-        "default": "▶",
-        "mpd": "",
-        "firefox": "",
-    },
-    "status-icons": {
-        "paused": "⏸"
-    },
-    "max-length": 35,
-    "interval": 1
-}
-
-
-	// "ignored-players": ["firefox"]
-}
-    /*
-    "tray": {
-        "spacing": 10,
-        "show-passive-items": true
     }
-
-        
-    "custom/notification": {
-    "tooltip": true,
-    "format": "<span size='11pt'> {0} </span>",
-    "format-icons": {
-        "notification": ""
-        "none": "",
-        "dnd-notification": "",
-        "dnd-none": "",
-        "inhibited-notification": "",
-        "inhibited-none": "",
-        "dnd-inhibited-notification": "",
-        "dnd-inhibited-none": ""
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
-    },
-    */
-
 }
