@@ -209,7 +209,7 @@ done
 
 echo ""
 separator
-echo -e " ${B_CYN}PHASE 4.5 : FONT DEPLOYMENT${RST}"
+echo -e " ${B_CYN}PHASE 3: FONT DEPLOYMENT${RST}"
 separator
 
 FONT_DIR="$HOME/.local/share/fonts"
