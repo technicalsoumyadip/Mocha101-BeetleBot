@@ -3,8 +3,8 @@
 CONFIG_FILE="$HOME/.config/rofi/wallpaper_dir"
 NOTIFY_TITLE="Wallpaper"
 
-if ! pgrep -x "awww-daemon" > /dev/null; then
-    awww-daemon &
+if ! pgrep -x "swww-daemon" > /dev/null; then
+    swww-daemon &
 fi
 
 # --- THEMES ---
@@ -114,5 +114,5 @@ elif [ "$CHOSEN" == "Change the Directory" ]; then
 else
     FULL_PATH="$WALL_DIR/$CHOSEN"
     notify-send "$NOTIFY_TITLE" "Setting wallpaper..."
-    awww img "$FULL_PATH" --transition-type grow --transition-step 90 --transition-fps 60
+    swww img "$FULL_PATH" --transition-type grow --transition-step 90 --transition-fps 60
 fi
