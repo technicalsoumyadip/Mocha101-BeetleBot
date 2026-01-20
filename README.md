@@ -1,13 +1,13 @@
 <div align="center">
 
-# **☕ Mocha 101**
+# **☕ Mochalatte v1.0**
 
 **A sharp (rounded, if you prefer), elegant Hyprland setup brewed with Catppuccin Mocha and Latte.**  
 </div>
 
 ### **About This Setup**
 
-Mocha 101 is a dotfiles configuration that blends **style, performance, and minimalism** into one cohesive Hyprland experience. Built around the **Catppuccin Mocha and Latte** palette, it delivers rich colors, crisp edges (only if you need) 😁, and zero fluff.  
+Mochalatte is a dotfiles configuration that blends **style, performance, and minimalism** into one cohesive Hyprland experience. Built around the **Catppuccin Mocha and Latte** palette, it delivers rich colors, crisp edges (only if you need) 😁, and zero fluff.  
 Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, and just the right amount of aesthetic kick.
 
 ### **🎨 Design Highlights**
@@ -81,10 +81,10 @@ Note: I am such a lazy guy. I did not take that many screenshots. These screensh
 ### **⚙️ Installation**
 Fire it up in just a few steps:  
 ```
-git clone https://github.com/BeetleBot/Mocha101.git
+git clone https://github.com/BeetleBot/Mochalatte.git
 ```
 ```
-cd Mocha101  
+cd Mochalatte  
 ```
 ```
 chmod +x install.sh  
