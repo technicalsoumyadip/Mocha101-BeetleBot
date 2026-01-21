@@ -6,10 +6,10 @@
     font-weight: bold;
 }
 
-@import "../waybar/colors/mocha.css";
+@import "../waybar/colors/latte.css";
 
 window#waybar {
-    background-color: alpha(@background,0.9);
+    background-color: @background;
     transition-property: background-color;
     transition-duration: .5s;
 }
