@@ -5,7 +5,7 @@ NOTIFY_TITLE="Clipboard"
 # --- THEME OVERRIDE ---
 # Removed 'width' and 'height' constraints so it matches your config.rasi defaults.
 # Kept the Peach color (#fab387) for the border so you know it's the Clipboard.
-THEME_OVERRIDE="configuration {show-icons:false;} window {border-color: @accent;} prompt {background-color: @accent;} element selected {background-color: @accent;} button selected {text-color: @accent;} textbox {text-color: @accent;}"
+THEME_OVERRIDE="configuration {show-icons:false;} prompt {background-color: @accent;} element selected {background-color: @accent;} button selected {text-color: @accent;} textbox {text-color: @accent;}"
 
 # 1. Check dependencies
 if ! command -v cliphist &> /dev/null; then

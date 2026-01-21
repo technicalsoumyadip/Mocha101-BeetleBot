@@ -16,7 +16,6 @@ THEME_GALLERY="
     configuration { show-icons: true; } 
     window { 
         width: 90%; 
-        border-color: @wallpaper; 
         anchor: center; location: center;
         /* The Master Frame: Exact 40px space all around */
         padding: 20px; 

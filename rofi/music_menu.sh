@@ -7,7 +7,7 @@
 # ==============================================================================
 
 NOTIFY_TITLE="Music"
-THEME_OVERRIDE="configuration {show-icons:false;} window {border-color: @accent;} prompt {background-color: @accent;} element selected {background-color: @accent;} button selected {text-color: @accent;} textbox {text-color: @accent;}"
+THEME_OVERRIDE="configuration {show-icons:false;} prompt {background-color: @accent;} element selected {background-color: @accent;} button selected {text-color: @accent;} textbox {text-color: @accent;}"
 
 # 1. Connectivity Check
 if ! mpc status > /dev/null 2>&1; then

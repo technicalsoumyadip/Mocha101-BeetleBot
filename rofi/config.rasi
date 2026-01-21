@@ -1,124 +1,112 @@
 configuration {
-    /* Use drun (App Launcher) mode */
-    modi: "drun";
-    
-    /* RENAME 'drun' prompt to 'Apps' */
-    display-drun: "Apps"; 
-    
-    /* Disable icons as requested */
-    show-icons: false;
-    drun-display-format: "{name}";
-    disable-history: false;
-    sidebar-mode: false;
-
-    /* --- Fuzzy & History Settings --- */
-    disable-history: false;      /* Remembers what you launched */
-    sort: true;                 /* Enables sorting */
-    sorting-method: "fzf";      /* Uses fuzzy matching logic */
-    case-sensitive: false;      /* Match regardless of CAPS */
-    steal-focus: true;          /* Typing starts immediately */
+    modes: "window,run,ssh,drun";
+    sorting-method: "normal";
+    show-icons: true;
+    matching: "regex";
+    drun-match-fields: "name";
+    /* Disable all display strings */
+    display-drun: "";
+    display-window: "";
+    display-run: "";
+    display-ssh: "";
 }
 
 @theme "themes/colors"
 
-element-text, element-icon , mode-switcher {
-    background-color: inherit;
-    text-color:       inherit;
+* {
+    background-color:   @bg-col;
+    text-color:         @fg-col;
+
+    margin:     0px;
+    padding:    0px;
+    spacing:    0px;
 }
 
-
 window {
-    height: 360px;
-    border: 2px;
-    border-radius: 0px;
-    border-color: @accent;
-    background-color: @bg-col; 
+    location:       center;
+    width:          480;
+    y-offset:       -20;
+    border-radius:  24px;
+    
+    border:         2px;
+    border-color:   @border-col;
+    background-color: @bg-col;
 }
 
 mainbox {
-    background-color: transparent;
+    padding: 12px;
 }
 
 inputbar {
-    children: [prompt,entry];
+    /* Transparent background usually looks best for borderless 
+       so it blends with the window, or use @bg-col-light for a "slot" look */
     background-color: transparent;
-    border-radius: 0px;
-    padding: 2px;
-}
+    border-color:     @accent;
+    
+    /* REMOVED BORDER */
+    border:           0px;
+    border-radius:    12px;
 
-prompt {
-    background-color: @accent;
-    padding: 6px;
-    text-color: @bg-col;
-    border-radius: 0px;
-    margin: 20px 0px 0px 20px;
-}
-
-textbox-prompt-colon {
-    expand: false;
-    str: ":";
+    padding:    10px 14px;
+    spacing:    0px;
+    children:   [ entry ];
 }
 
 entry {
-    padding: 6px;
-    margin: 20px 0px 0px 10px;
-    text-color: @fg-col;
-    background-color: transparent;
-    placeholder: "Search...";
+    placeholder:       "Search...";
     placeholder-color: @grey;
-}
-
-listview {
-    border: 0px 0px 0px;
-    padding: 6px 0px 0px;
-    margin: 10px 0px 0px 20px;
-    columns: 1;
-    lines: 5;
-    background-color: transparent;
-}
-
-element {
-    padding: 5px;
-    background-color: transparent;
-    text-color: @fg-col;
-}
-
-element-icon {
-    size: 0px;
-}
-
-element selected {
-    background-color:  @accent;
-    text-color: @bg-col;
-}
-
-mode-switcher {
-    spacing: 0;
-}
-
-button {
-    padding: 10px;
-    background-color: @bg-col-light;
-    text-color: @grey;
-    vertical-align: 0.5; 
-    horizontal-align: 0.5;
-}
-
-button selected {
-  background-color: @bg-col;
-  text-color: @accent;
+    text-color:        @fg-col;
+    vertical-align:    0.5;
 }
 
 message {
-    background-color: @bg-col-light;
-    margin: 2px;
-    padding: 2px;
-    border-radius: 0px;
+    margin:             12px 0 0;
+    border-radius:      16px;
+    border-color:       @border-col;
+    background-color:   @bg-col;
 }
 
 textbox {
-    padding: 6px;
-    margin: 20px 0px 0px 20px;
+    padding:          8px 24px;
+    background-color: @grey;
+    text-color:       @bg-col;
+}
+
+listview {
+    background-color: transparent;
+    margin:           12px 0 0;
+    columns:          1;
+    lines:            6;
+    fixed-height:     false;
+}
+
+element {
+    padding:       8px 16px;
+    spacing:       8px;
+    border-radius: 16px;
+    background-color: transparent;
+    text-color:       @fg-col;
+}
+
+element normal urgent {
+    text-color: @fg-col2;
+}
+
+element normal active {
     text-color: @accent;
+}
+
+element selected normal, element selected active {
     background-color: @bg-col-light;
+    text-color:       @accent;
+}
+
+element-icon {
+    size:           1.1em;
+    vertical-align: 0.5;
+}
+
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
 }

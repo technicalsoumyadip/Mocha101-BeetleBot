@@ -6,7 +6,7 @@ notify-send "Getting list of available Wi-Fi networks..."
 # We create a theme override string that forces Rofi to use the @network color 
 # instead of the default @accent color for this specific menu.
 # We also bundle the "show-icons: false" here.
-THEME_OVERRIDE="configuration {show-icons:false;} window {border-color: @network;} prompt {background-color: @network;} element selected {background-color: @network;} button selected {text-color: @network;} textbox {text-color: @network;}"
+THEME_OVERRIDE="configuration {show-icons:false;} prompt {background-color: @network;} element selected {background-color: @network;} button selected {text-color: @network;} textbox {text-color: @network;}"
 
 # 1. Check Connectivity State
 connected=$(nmcli -fields WIFI g)

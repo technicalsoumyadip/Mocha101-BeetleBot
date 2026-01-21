@@ -6,7 +6,12 @@ NOTIFY_TITLE="Bluetooth"
 # --- THEME OVERRIDE ---
 # Forces Rofi to use the @bluetooth color for borders and accents.
 # Styles the window to match your Wi-Fi menu's "Elite" look.
-THEME_OVERRIDE="configuration {show-icons:false;} window {border-color: @bluetooth;} prompt {background-color: @bluetooth;} element selected {background-color: @bluetooth;} button selected {text-color: @bluetooth;} textbox {text-color: @bluetooth;}"
+THEME_OVERRIDE="configuration {show-icons:false;} 
+prompt {background-color: @bluetooth;} 
+element selected {background-color: @bluetooth;} 
+button selected {text-color: @bluetooth;} 
+textbox {text-color: @bluetooth;}
+element normal active {background-color: @bluetooth;}"
 
 # 1. Check Power State
 power_state=$(bluetoothctl show | grep "Powered: yes")
