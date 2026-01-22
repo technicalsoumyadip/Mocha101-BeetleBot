@@ -25,58 +25,59 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 ### **☕ Screenshots**
 
-Note: I am such a lazy guy. I did not take that many screenshots. These screenshots are just here for you guys to get the actual feel of the configuration. Thanks.
-
-> I can see some straight vertical lines some of the screenshots (especially in the light ones at top). NVM those. Those are just some artifacts of screenshoting tool and not how the actual setup is. This is a super clean setup. I am just lazy to replace those with a clean screenshots.
-
 #### Full - Dark
-<img width="1920" height="1080" alt="2026-01-19-154858_hyprshot" src="https://github.com/user-attachments/assets/87e62a18-8c36-4e5d-98e2-58281849342e" />
+<img width="1920" height="1080" alt="20260122_163322" src="https://github.com/user-attachments/assets/0ed748b8-c7e5-4b9d-a1b0-d74369604d6f" />
 
 #### Full - Light
-<img width="1920" height="1080" alt="2026-01-19-153910_hyprshot" src="https://github.com/user-attachments/assets/45b7b9e1-d6b5-4802-a490-63064a80d9b4" />
+<img width="1920" height="1080" alt="20260122_163306" src="https://github.com/user-attachments/assets/8f8d0824-cc3f-4f0e-a791-036e91522315" />
 
-#### App Launcher - Light
-<img width="749" height="504" alt="2026-01-19-153936_hyprshot" src="https://github.com/user-attachments/assets/8487e7fa-f1b1-421b-b369-94faa4c23d41" />
+#### Waybar - Dark
+<img width="1920" height="87" alt="20260122_164623" src="https://github.com/user-attachments/assets/b5284412-9a95-426a-b729-6b8fc4d813d3" />
+
+#### Waybar - Light
+<img width="1920" height="104" alt="20260122_164614" src="https://github.com/user-attachments/assets/0a9920b5-c750-4b86-9c39-3dc602ae97d7" />
 
 #### App Launcher - Dark
-<img width="650" height="409" alt="2026-01-19-154058_hyprshot" src="https://github.com/user-attachments/assets/33a3f69c-6c6d-4be4-bbb1-aedfce107f55" />
+<img width="581" height="402" alt="20260122_163513" src="https://github.com/user-attachments/assets/719aa639-330b-42ee-b244-97ee5cab29cb" />
 
-#### Wifi Menu - Light
-<img width="670" height="417" alt="2026-01-19-153947_hyprshot" src="https://github.com/user-attachments/assets/cc3e5565-1546-43c4-8030-24b32519728e" />
+#### App Launcher - Light
+<img width="553" height="380" alt="20260122_163541" src="https://github.com/user-attachments/assets/9fd8cdbb-7fa0-409d-8b7f-0a075610a46a" />
+
+#### File Search - Dark
+<img width="541" height="334" alt="20260122_163805" src="https://github.com/user-attachments/assets/1ed34009-5fcd-4bea-a940-5c8a4f4869e5" />
+
+#### File Search - Light
+<img width="567" height="332" alt="20260122_163752" src="https://github.com/user-attachments/assets/017550a5-0c9e-4902-b3cd-0753a850520d" />
+
+#### Wallpaper Picker - Dark
+<img width="1830" height="514" alt="20260122_163104" src="https://github.com/user-attachments/assets/d0311a50-89e1-4c2e-9598-a31feee0d2fd" />
+
+#### Wallpaper Picker - Light
+<img width="1807" height="505" alt="20260122_163150" src="https://github.com/user-attachments/assets/94d3474d-b34b-4601-b38f-bb57fd1838bb" />
 
 #### Wifi Menu - Dark
-<img width="650" height="381" alt="2026-01-19-154114_hyprshot" src="https://github.com/user-attachments/assets/f6c64d21-8ee5-4678-864a-1df65a67c3f8" />
+<img width="549" height="375" alt="20260122_164225" src="https://github.com/user-attachments/assets/0b40d7db-22c5-4c50-9f08-7f2869238b16" />
 
-#### Bluetooth Menu - Light
-<img width="669" height="416" alt="2026-01-19-154004_hyprshot" src="https://github.com/user-attachments/assets/2b71a3f8-94d7-404e-a018-46ab842b91dc" />
+#### Wifi Menu - Light
+<img width="550" height="377" alt="20260122_164234" src="https://github.com/user-attachments/assets/0e0befd3-f682-4cd0-b755-39fa6c3ace44" />
 
 #### Bluetooth Menu - Dark
-<img width="646" height="400" alt="2026-01-19-154122_hyprshot" src="https://github.com/user-attachments/assets/328851ea-fc87-4a0a-8af0-41b210f9b53b" />
+<img width="548" height="296" alt="20260122_164336" src="https://github.com/user-attachments/assets/fcbf3232-c5b0-44a9-a1ec-e55fc8315691" />
 
-#### Wallpaper Menu - Light
-<img width="1848" height="445" alt="2026-01-19-154012_hyprshot" src="https://github.com/user-attachments/assets/e8fe19b8-a911-4967-887a-5d6dc9c04894" />
-
-#### Wallpaper Menu - Dark
-<img width="1819" height="433" alt="2026-01-19-155440_hyprshot" src="https://github.com/user-attachments/assets/04ca0461-4a70-4a80-beca-c29f7220268c" />
-
-#### Notification - Light
-<img width="572" height="166" alt="2026-01-19-155411_hyprshot" src="https://github.com/user-attachments/assets/62b1e37d-477a-4031-8690-c21961f9338b" />
-
-#### Notification - Dark
-<img width="584" height="258" alt="2026-01-19-154130_hyprshot" src="https://github.com/user-attachments/assets/e326fd9b-709b-4b49-b001-8a5b0a371f7e" />
-
-#### SwayNC - Light
-<img width="569" height="1080" alt="2026-01-19-155417_hyprshot" src="https://github.com/user-attachments/assets/5fcc0a92-d675-40c1-8ead-d67ae39333ed" />
+#### Bluetooth Menu - Light
+<img width="547" height="301" alt="20260122_164324" src="https://github.com/user-attachments/assets/e8f1a447-6425-4e4b-ada3-b01383696ff7" />
 
 #### SwayNC - Dark
-<img width="588" height="1080" alt="2026-01-19-154151_hyprshot" src="https://github.com/user-attachments/assets/6aef4199-beb6-47f6-af72-e54dec13f32f" />
+<img width="568" height="347" alt="20260122_164430" src="https://github.com/user-attachments/assets/d288702c-c489-4658-8ca8-df0d4f1ff56c" />
 
-#### Just - Light
-<img width="1920" height="1080" alt="2026-01-19-154517_hyprshot" src="https://github.com/user-attachments/assets/d0cfb97a-c747-4c3d-90ff-1c885cbf062b" />
+#### SwayNC - Light
+<img width="572" height="340" alt="20260122_164435" src="https://github.com/user-attachments/assets/dd661f2b-8f90-43b4-86ab-89d71531c202" />
 
-#### Just - Dark
-<img width="1920" height="1080" alt="2026-01-19-154558_hyprshot" src="https://github.com/user-attachments/assets/4a863e66-5087-463b-80c1-6209c0f22713" />
+#### Custom Music Launcher - Dark
+<img width="564" height="375" alt="20260122_164749" src="https://github.com/user-attachments/assets/619a6a7b-7de6-4d3c-8410-a268d9899d72" />
 
+#### Custom Music Launcher - Light
+<img width="524" height="366" alt="20260122_164814" src="https://github.com/user-attachments/assets/1d7ff2c9-7ded-4b60-a45c-a268d8db0efb" />
 
 ### **⚙️ Installation**
 Fire it up in just a few steps:  
