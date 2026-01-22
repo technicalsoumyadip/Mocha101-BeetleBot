@@ -8,7 +8,7 @@
 
     "modules-left": [
         "clock",
-        "mpd" // Changed from mpris to mpd
+        "mpd"
     ],
     "modules-center": [
         "hyprland/workspaces"
