@@ -51,7 +51,8 @@ TOOL_PKGS=(
     "kitty" 
     "wl-clipboard" 
     "cliphist" 
-    "wtype" 
+    "wtype"
+    "wl-clipboard" 
     "jq" 
     "fish" 
     "thunar" 
@@ -63,6 +64,12 @@ TOOL_PKGS=(
     "hyprshot"
     "grim"
     "slurp"
+)
+
+# AUR packages (Yay)
+YAY_PKGS=(
+    "grimblast-git"
+    "hyprpicker"
 )
 
 # folders to move
@@ -120,7 +127,6 @@ echo "  ██████╔╝██████╔╝█████╗  █�
 echo "  ██╔══██╗██╔══██╗██╔══╝  ██║███╗██║██║     ██╔══██║██║╚██╗██║██║  ██║"
 echo "  ██████╔╝██║  ██║███████╗╚███╔███╔╝███████╗██║  ██║██║ ╚████║██████╔╝"
 echo "  ╚═════╝ ╚═╝  ╚═╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ "
-echo -e "                            ${B_MAG}v2.0${RST}"
 echo -e "${RST}"
 echo -e "  ${B_WHT}:: BREWLAND INSTALLER ::${RST}"
 echo -e "  ${BLK}:: System Deployment v2.0 ::${RST}"
@@ -202,6 +208,67 @@ for pkg in "${TOOL_PKGS[@]}"; do
         fi
     fi
 done
+
+# ------------------------------------------------------
+# INSTALL YAY & AUR PKGS
+# ------------------------------------------------------
+
+echo ""
+separator
+echo -e " ${B_CYN}PHASE 2.1 : AUR HELPER${RST}"
+separator
+
+if command -v yay &> /dev/null; then
+    ok "Yay is already installed."
+else
+    act "Yay not found."
+    read -p "  Install 'yay' AUR helper? (y/n) " install_yay
+    if [[ $install_yay =~ ^[Yy]$ ]]; then
+        act "Installing dependencies (git, base-devel)..."
+        sudo pacman -S --needed --noconfirm git base-devel >> "$LOG" 2>&1
+        
+        act "Cloning yay-bin..."
+        git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin >> "$LOG" 2>&1
+        
+        act "Building yay..."
+        cd /tmp/yay-bin || exit
+        makepkg -si --noconfirm >> "$LOG" 2>&1
+        cd ..
+        rm -rf /tmp/yay-bin
+        
+        if command -v yay &> /dev/null; then
+            ok "Yay installed successfully."
+        else
+            fail "Yay installation failed."
+            exit 1
+        fi
+    else
+        echo -e "${YLW}[ SKIP ]${RST} Skipping AUR setup."
+    fi
+fi
+
+if command -v yay &> /dev/null; then
+    echo ""
+    separator
+    echo -e " ${B_CYN}PHASE 2.2 : AUR ARSENAL${RST}"
+    separator
+    
+    for pkg in "${YAY_PKGS[@]}"; do
+        echo -ne "${BLU}[ .... ]${RST} Queuing $pkg..."
+        sleep 0.1
+        
+        if pacman -Qi $pkg &> /dev/null; then
+            echo -e "\r${YLW}[ SKIP ]${RST} $pkg already here."
+        else
+            echo -e "\r${CYN}[ INST ]${RST} Installing $pkg..."
+            if yay -S --noconfirm --needed $pkg >> "$LOG" 2>&1; then
+                echo -e "\r${GRN}[ DONE ]${RST} Installed $pkg successfully."
+            else
+                echo -e "\r${RED}[ ERR! ]${RST} Failed to install $pkg."
+            fi
+        fi
+    done
+fi
 
 # ------------------------------------------------------
 # FONT DEPLOYMENT
