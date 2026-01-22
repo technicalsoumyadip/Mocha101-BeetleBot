@@ -4,6 +4,7 @@
     "position": "top", 
     "height": 20, 
     "spacing": 4, 
+    "margin-top": 5,
 
     "modules-left": [
         "clock",
@@ -41,7 +42,7 @@
     },
 
     "custom/logo": {
-        "format": "  ",
+        "format": "  ",
         "tooltip": false,
         "return-type": "json",
         "exec-if": "which swaync-client",
@@ -77,7 +78,7 @@
     },
     
     "bluetooth": {
-        "format-on": "󰂯",
+        "format-on": "",
         "format-off": "󰂲",
         "format-disabled": "", 
         "format-connected": "󰂱 {num_connections}",
@@ -127,15 +128,14 @@
     },
 
     "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}",
-        "format-full": "{icon}",
-        "format-charging": "󰂄",
-        "format-plugged": "",
-        "format-alt": "{capacity}% ",
-        "format-icons": ["", "", "", "", ""]
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": " {capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "interval": 60
     }
+
 }
