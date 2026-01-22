@@ -72,6 +72,7 @@ DOTFILES=(
     "rofi" 
     "swaync" 
     "waybar"
+    "brewland"
 )
 
 # ------------------------------------------------------
@@ -289,30 +290,6 @@ for folder in "${DOTFILES[@]}"; do
         fail "Source folder $folder missing!"
     fi
 done
-
-# ------------------------------------------------------
-# SCRIPTS
-# ------------------------------------------------------
-
-echo ""
-separator
-echo -e " ${B_CYN}PHASE 5 : SCRIPT EXECUTABLES${RST}"
-separator
-
-SCRIPT_DEST="$HOME/myscripts"
-THEME_SCRIPT="$SCRIPT_DIR/customshscripts/personal scripts/theme_switcher.sh"
-
-act "Initializing $SCRIPT_DEST..."
-mkdir -p "$SCRIPT_DEST"
-
-if [ -f "$THEME_SCRIPT" ]; then
-    act "Copying theme logic..."
-    cp "$THEME_SCRIPT" "$SCRIPT_DEST/theme_switcher.sh"
-    chmod +x "$SCRIPT_DEST/theme_switcher.sh"
-    ok "Theme Switcher operational."
-else
-    fail "Theme Switcher script missing."
-fi
 
 # ------------------------------------------------------
 # DONE
