@@ -2,12 +2,13 @@
 
 # **☕ BrewLand v2.0**
 
-**A sharp (rounded, if you prefer), elegant Hyprland setup brewed with Catppuccin Mocha and Latte.**  
+**An elegant Hyprland setup brewed with Catppuccin Mocha and Latte.**  
 </div>
 
 ### **About This Setup**
 
-BrewLand is a dotfiles configuration that blends **style, performance, and minimalism** into one cohesive Hyprland experience. Built around the **Catppuccin Mocha and Latte** palette, it delivers rich colors, crisp edges (only if you need) 😁, and zero fluff.  
+BrewLand is a dotfiles configuration that blends **style, performance, and minimalism** into one cohesive Hyprland experience. Built around the **Catppuccin Mocha and Latte** palette, it delivers rich colors, smooth animations and zero fluff.  
+
 Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, and just the right amount of aesthetic kick.
 
 ### **🎨 Design Highlights**
@@ -16,11 +17,11 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 ### **✨ Feature Highlights**
 
-* **Wallpapers** — Uses **awww** for dynamic wallpaper switching via the awww wallpaper switcher extension in **Vicinae**.  
+* **Wallpapers** — Uses **swww** for dynamic wallpaper switching via a custom wallpaper picker made with rofi.
 * **Dual theme** — Catppuccin Mocha and Latte, everywhere. From Terminal to Notification centre. You can manually configure the same for GTK and QT apps as well. Check theme_switcher.sh for the details.
 * **Rofi Ecosystem** — Deeply integrated for application launching, and system controls (Bluetooth/Wifi). 
 * **Notification center** — Beautifully styled **SwayNC** with custom CSS, integrated directly with the Waybar logo.  
-* **Master Layout** — Configured for a productive master-stack workflow with a custom "Shelf" special workspace.  
+* **Master Layout** — Configured for a productive master-stack workflow with a custom "Shelf" ie., special workspace.  
 * **Integrated lock screen** — Cohesive **Hyprlock** + **Hypridle** setup.
 
 ### **☕ Screenshots**
@@ -48,6 +49,18 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 #### File Search - Light
 <img width="567" height="332" alt="20260122_163752" src="https://github.com/user-attachments/assets/017550a5-0c9e-4902-b3cd-0753a850520d" />
+
+#### Emoji Picker - Dark
+<img width="526" height="416" alt="20260122_165423" src="https://github.com/user-attachments/assets/33b1d3fb-f568-4de8-95d7-5e61938f4565" />
+
+#### Emoji Picker - Light
+<img width="507" height="408" alt="20260122_165415" src="https://github.com/user-attachments/assets/1b6b6445-ed62-4a68-933e-309d0b33bca8" />
+
+#### Clipboard Manager - Dark
+<img width="536" height="355" alt="20260122_165432" src="https://github.com/user-attachments/assets/86a6da0c-eae6-498b-bf10-38cef79fbed9" />
+
+#### Clipboard Manager - Light
+<img width="526" height="349" alt="20260122_165444" src="https://github.com/user-attachments/assets/ce09ff41-cbd6-4302-ac01-d296a2fd5c31" />
 
 #### Wallpaper Picker - Dark
 <img width="1830" height="514" alt="20260122_163104" src="https://github.com/user-attachments/assets/d0311a50-89e1-4c2e-9598-a31feee0d2fd" />
@@ -95,12 +108,11 @@ chmod +x install.sh
 ```
 The installer handles everything:
 
-* Verifies you're on Arch Linux  
-* Sets up **yay** if needed  
+* Verifies you're on Arch Linux
+* Sets up **yay** if needed    
 * Installs all required dependencies (AUR + official repos)  
 * Backs up existing configs to ~/ConfigBackup/  
 * Deploys new configs to ~/.config/  
-* Copies walls.sh to your home directory  
 * Suggests a reboot to apply changes
 
 ### **⌨️ Keybindings**
@@ -112,18 +124,18 @@ The **Super** key (Windows key) is your main modifier.
 | Keybind | Action |
 | :---- | :---- |
 | Super + Return | Open Terminal (Kitty) |
-| Super + Space | Open App Launcher (Vicinae) |
+| Super + Space | Open App Launcher |
 | Super + Q | Kill Active Window |
 | Super + X | Exit Hyprland |
 | Super + Shift + X | Poweroff |
 | Super + Shift + R | Reboot |
 | Super + Shift + L | Lock Screen (Hyprlock) |
-| Super + Alt + Space | Search Files (Vicinae-manual configuration) |
-| Super + . | Emoji Search (Vicinae-manual configuration) |
-| Super + / | Clipboard History (Vicinae-manual configuration) |
+| Super + Alt + Space | Search Files |
+| Super + . | Emoji Search |
+| Super + / | Clipboard History |
 | Super + Alt + N | Network (Rofi) |
 | Super + Alt + B | Bluetooth Manager (Rofi) |
-| Super + Shift + W | Wallpaper Grid (Rofi+AWWW) |
+| Super + Shift + W | Wallpaper Grid (Rofi+SWWW) |
 | Super + R | Reload Waybar |
 | Super + Shift + Z | Toggle Theme (Mocha and Latte) |
 
@@ -131,12 +143,12 @@ The **Super** key (Windows key) is your main modifier.
 
 | Keybind | Action |
 | :---- | :---- |
-| Super + E | File Manager (Nautilus) |
+| Super + E | File Manager (thunar) |
 | Super + W | Zen Browser |
 | Super + C | Codium |
 | Super + O | Obsidian |
 | Super + F | Fadein |
-| Super + Shift + M | Music Player (rmpc) |
+| Super + Shift + M | Music launcher |
 
 #### **Screenshots (Hyprshot)**
 
@@ -165,10 +177,10 @@ The **Super** key (Windows key) is your main modifier.
 | :---- | :---- | :---- |
 | Compositor | **Hyprland** | Dynamic tiling Wayland compositor |
 | Bar | **Waybar** | Highly customized status bar with blur |
-| Wallpapers | **Awww** | Handles dynamic background management |
+| Wallpapers | **swww** | Handles dynamic background management |
 | Notifications | **SwayNC** | Notification center with Catppuccin CSS |
 | Terminal | **Kitty** | GPU-accelerated terminal emulator |
 | Launcher | **Rofi** | Search-driven application and system launcher |
-| Screenshots | **Hyprshot** | Essential screenshot utility |
+| Screenshots | **Grimblast** | Essential screenshot utility |
 | Lock Screen | **Hyprlock** | Integrated screen lock |
 | Font | **iMWritingMono Nerd** | Primary font for Waybar and system UI |
