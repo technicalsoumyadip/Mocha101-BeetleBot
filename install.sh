@@ -61,7 +61,6 @@ TOOL_PKGS=(
     "playerctl" 
     "curl" 
     "unzip"
-    "hyprshot"
     "grim"
     "slurp"
 )
