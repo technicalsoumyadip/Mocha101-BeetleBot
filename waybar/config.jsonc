@@ -1,13 +1,14 @@
-// -*- mode: jsonc -*-
 {
-    "layer": "top", 
-    "position": "top", 
-    "height": 20, 
-    "spacing": 4, 
-    "margin-top": 5,
+    // GLOBAL CONFIGURATION //
+    "layer": "top",
+    "position": "top",
+    "height": 20,
+    "spacing": 4,
 
+    // MODULE LAYOUT //
     "modules-left": [
         "clock",
+        "custom/pomodoro",
         "mpd"
     ],
     "modules-center": [
@@ -22,37 +23,7 @@
         "custom/logo"
     ],
 
-    "mpd": {
-        "server": "127.0.0.1",
-        "port": 6600,
-        "format": "{stateIcon} {title} - {artist}",
-        "format-paused": "{stateIcon} <i>{title} - {artist}</i>",
-        "format-stopped": " Stopped",
-        "format-disconnected": " Disconnected",
-        "state-icons": {
-            "playing": "",
-            "paused": "⏸"
-        },
-        "max-length": 35,
-        "interval": 2,
-        "on-click": "mpc toggle",
-        "on-scroll-up": "mpc next",
-        "on-scroll-down": "mpc prev",
-        "tooltip-format": "MPD: {artist} - {album} - {title}"
-    },
-
-    "custom/logo": {
-        "format": "  ",
-        "tooltip": false,
-        "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "on-click-middle": "$HOME/.config/rofi/wallpaper_menu.sh",
-        "escape": true
-    },
-
+    // WORKSPACES //
     "hyprland/workspaces": {
         "on-click": "activate",
         "format": "{icon}",
@@ -76,30 +47,32 @@
             "5": []
         }
     },
-    
-    "bluetooth": {
-        "format-on": "",
-        "format-off": "󰂲",
-        "format-disabled": "", 
-        "format-connected": "󰂱 {num_connections}",
-        "tooltip-format-connected": "{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "$HOME/.config/rofi/bluetooth_menu.sh"
+
+    // MEDIA PLAYER //
+    "mpd": {
+        "server": "127.0.0.1",
+        "port": 6600,
+        "format": "{stateIcon} {title} - {artist}",
+        "format-paused": "{stateIcon} <i>{title} - {artist}</i>",
+        "format-stopped": "",
+        "format-disconnected": " Disconnected",
+        "state-icons": {
+            "playing": "",
+            "paused": "⏸"
+        },
+        "max-length": 35,
+        "interval": 2,
+        "on-click": "mpc toggle",
+        "on-scroll-up": "mpc next",
+        "on-scroll-down": "mpc prev",
+        "tooltip-format": "MPD: {artist} - {album} - {title}"
     },
 
+    // SYSTEM & HARDWARE //
     "clock": {
         "tooltip-format": "{calendar}",
         "format-alt": "{:%a, %d %b %Y}",
         "format": "{:%I:%M %p}"
-    },
-
-    "network": {
-        "format-wifi": " {essid}",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "on-click": "$HOME/.config/rofi/wifi_menu.sh"
     },
 
     "pulseaudio": {
@@ -128,14 +101,57 @@
     },
 
     "battery": {
-    "states": {
-        "warning": 30,
-        "critical": 15
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-full": "{icon}",
+        "format-charging": "󰂄",
+        "format-plugged": "",
+        "format-alt": "{capacity}% ",
+        "format-icons": ["", "", "", "", ""]
     },
-    "format": "{capacity}% {icon}",
-    "format-charging": " {capacity}% {icon}",
-    "format-icons": ["", "", "", "", ""],
-    "interval": 60
-    }
 
+    // CONNECTIVITY //
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "on-click": "$HOME/.config/rofi/wifi_menu.sh"
+    },
+
+    "bluetooth": {
+        "format-on": "󰂯",
+        "format-off": "󰂲",
+        "format-disabled": "", 
+        "format-connected": "󰂱 {num_connections}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "$HOME/.config/rofi/bluetooth_menu.sh"
+    },
+
+    // CUSTOM MODULES //
+    "custom/logo": {
+        "format": "  ",
+        "tooltip": false,
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "on-click-middle": "$HOME/.config/rofi/wallpaper_menu.sh",
+        "escape": true
+    },
+
+    "custom/pomodoro": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "~/.config/brewland/pomodoro.sh",
+        "interval": 1,
+        "on-click": "~/.config/brewland/pomodoro.sh click",
+        "on-click-middle": "~/.config/brewland/pomodoro.sh toggle"
+    }
 }

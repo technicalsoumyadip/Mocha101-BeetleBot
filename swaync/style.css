@@ -1,14 +1,16 @@
+/* IMPORTS */
 @import "colors/current_colors.css";
 
+/* GLOBAL */
 * {
   all: unset;
   font-size: 14px;
   font-family: "JetBrainsMono Nerd Font Propo";
   transition: 100ms;
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
 }
 
-/* --- Global Progress/Scales --- */
+/* SCALES & PROGRESS */
 trough highlight {
   background: @maroon;
 }
@@ -21,13 +23,13 @@ scale trough {
   margin: 0rem 1rem;
   min-height: 8px;
   min-width: 70px;
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
   background-color: @surface0;
 }
 
 trough slider {
   margin: -10px;
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   transition: all 0.2s ease;
   background-color: @blue;
@@ -38,21 +40,20 @@ trough slider:hover {
   box-shadow: 0 0 8px @blue;
 }
 
-/* --- Notifications Layering --- */
+/* NOTIFICATIONS */
 .notification-background {
-  /* Separates the card from the main panel background */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid @surface0;
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
   margin: 10px 18px;
-  background: @mantle; /* Card color */
+  background: @mantle;
   color: @text;
   padding: 0;
 }
 
 .notification-background .notification {
   padding: 10px;
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
 }
 
 .notification-background .notification.critical {
@@ -73,13 +74,12 @@ trough slider:hover {
   color: @subtext0;
 }
 
-/* --- Buttons & Actions --- */
 .notification-background .close-button {
   margin: 7px;
   padding: 4px;
   color: @crust;
   background-color: @red;
-  border-radius: 10px; /* Added explicit radius just in case */
+  border-radius: 10px;
 }
 
 .notification-background .close-button:hover {
@@ -92,24 +92,23 @@ trough slider:hover {
   border: 1px solid @surface1;
   margin: 4px;
   padding: 8px;
-  border-radius: 10px; /* Inherits from * but good to be safe */
+  border-radius: 10px;
 }
 
 .notification .notification-action:hover {
   background-color: @surface1;
 }
 
-/* --- Control Center Main Panel --- */
+/* CONTROL CENTER */
 .control-center {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   border: 2px solid @surface0;
-  background-color: @base; /* REMOVED TRANSPARENCY */
+  background-color: @base;
   color: @text;
   padding: 14px;
-  border-radius: 10px; /* Added radius to main panel */
+  border-radius: 10px;
 }
 
-/* Inner cards inside control center list */
 .control-center .notification-background {
   margin: 6px 4px;
   background-color: @mantle;
@@ -123,7 +122,7 @@ trough slider:hover {
 }
 
 .control-center .widget-title button {
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
   color: @text;
   background-color: @surface0;
   padding: 8px 12px;
@@ -133,12 +132,12 @@ trough slider:hover {
   background-color: @surface1;
 }
 
-/* --- Widgets --- */
+/* WIDGETS */
 .widget-dnd {
   margin-top: 8px;
   background: @mantle;
   padding: 8px;
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
 }
 
 .widget-dnd > switch {
@@ -155,7 +154,7 @@ trough slider:hover {
   border: 1px solid @surface0;
   padding: 10px;
   margin: 10px 0;
-  border-radius: 10px; /* Added radius */
+  border-radius: 10px;
 }
 
 .widget-mpris-title {
@@ -170,7 +169,7 @@ trough slider:hover {
 
 .widget-volume {
   background: @mantle;
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
   margin-top: 10px;
   padding: 5px;
 }
@@ -181,7 +180,7 @@ trough slider:hover {
 
 .widget-backlight {
   background: @mantle;
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
   margin-top: 10px;
   padding: 5px;
 }
@@ -190,7 +189,8 @@ trough slider:hover {
   color: @yellow;
 }
 
+/* SCROLLBAR */
 scrollbar slider {
   background: @surface1;
-  border-radius: 10px; /* Changed from 0px */
+  border-radius: 10px;
 }

@@ -3,31 +3,34 @@
 
   "positionX": "right",
   "positionY": "top",
+  "layer": "overlay",
+  "layer-shell": true,
+  "cssPriority": "user",
+
+  "control-center-layer": "overlay",
   "control-center-positionX": "none",
   "control-center-positionY": "none",
+  "control-center-width": 500,
+  "control-center-height": -1,
   "control-center-margin-top": 8,
   "control-center-margin-bottom": 8,
   "control-center-margin-right": 8,
   "control-center-margin-left": 8,
-  "control-center-width": 500,
-  "control-center-height": -1,
-  "fit-to-screen": false,
-  "layer-shell-cover-screen": true,
 
-  "layer-shell": true,
-  "layer": "overlay",
-  "control-center-layer": "overlay",
-  "cssPriority": "user",
+  "notification-window-width": 500,
   "notification-body-image-height": 100,
   "notification-body-image-width": 200,
   "notification-inline-replies": true,
+
   "timeout": 10,
   "timeout-low": 5,
   "timeout-critical": 0,
-  "notification-window-width": 500,
+  "transition-time": 200,
+
+  "fit-to-screen": false,
+  "layer-shell-cover-screen": true,
   "keyboard-shortcuts": true,
   "image-visibility": "always",
-  "transition-time": 200,
   "hide-on-clear": true,
   "hide-on-action": true,
   "script-fail-notify": true,
@@ -37,15 +40,8 @@
     "dnd",
     "notifications"
   ],
+
   "widget-config": {
-    "notifications": {
-      "vexpand": false
-    },
-    "inhibitors": {
-      "text": "Inhibitors",
-      "button-text": "Clear All",
-      "clear-all-button": true
-    },
     "title": {
       "text": "Notifications",
       "clear-all-button": false,
@@ -57,6 +53,14 @@
     "label": {
       "max-lines": 5,
       "text": "Label Text"
+    },
+    "inhibitors": {
+      "text": "Inhibitors",
+      "button-text": "Clear All",
+      "clear-all-button": true
+    },
+    "notifications": {
+      "vexpand": false
     }
   }
 }

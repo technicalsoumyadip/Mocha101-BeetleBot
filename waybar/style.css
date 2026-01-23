@@ -1,7 +1,6 @@
+/*-- GLOBAL SETTINGS --*/
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: 'iMWritingMono Nerd Font Propo', sans-serif;
-    /*font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;*/
     font-size: 14px;
     font-weight: bold;
 }
@@ -19,26 +18,19 @@ window#waybar.hidden {
 }
 
 button {
-    /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
     border: none;
     border-radius: 0;
 }
 
-/* WORKSPACES*/
-
-
+/*-- WORKSPACES --*/
 #workspaces {
-    /*border: 2px @lavender solid;*/
-    /*background: @base;*/
     color: @mauve;
     font-weight: normal;
     font-style: normal;
 }
 #workspaces button {
     border-radius: 0px;
-    /*background: @base;*/
     min-width: 20px;
     color: @mauve;
     transition: all 0.1s ease-in-out;
@@ -52,8 +44,6 @@ button {
     transition: all 0.1s ease-in-out;
 }
 
-/* you can set a style on hover for any module like this */
-
 #workspaces button:hover {
     background: @mauve;
     color: @base;
@@ -61,8 +51,7 @@ button {
     min-width: 30px;
 }
 
-/* WORKSPACES END*/
-
+/*-- GENERAL MODULE PADDING --*/
 #clock,
 #bluetooth,
 #battery,
@@ -80,41 +69,23 @@ button {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
+#custom-pomodoro,
 #mpd {
     padding: 0 10px;
     color: #ffffff;
     margin: 0 0px;
 }
 
+/*-- TRAY --*/
 #tray {
     border-radius: 0px;
-    /*border: 2px @lavender solid;*/
-    background-color: @base;
-    color: @lavender;
-/*  background-color: @base;
-    color:@lavender;  */
-}
-
-/* #tray > .active {
-    background-color: @lavender;
-    color:@lavender;
-}
-
-#tray > .passive {
     background-color: @base;
     color: @lavender;
 }
 
-#tray > .needs-attention {
-    background-color: #eba0ac;
-    color: #11111b; 
-}
-*/
-
+/*-- MPD --*/
 #mpd {
     border-radius: 0px;
-    /*border: 2px @lavender solid;*/
-    /*background-color: @base;*/
     color:@green;  
 }
 
@@ -123,12 +94,10 @@ button {
     color: @base;
 }
 
+/*-- CUSTOM LOGO --*/
 #custom-logo {
     border-radius: 0px;
     min-width: 40px;
-    /*border: 2px @lavender solid;*/
-    /*margin-right: 3px;*/
-    /*background-color: @base;*/
     color:@sky;  
 }
 
@@ -138,27 +107,25 @@ button {
     color: @base;
 }
 
+/*-- WINDOW & WORKSPACE MARGINS --*/
 #window,
 #workspaces {
     margin: 0 0px;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
     margin-left: 0px;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
 }
 
+/*-- BLUETOOTH --*/
 #bluetooth{
     border-radius: 0px;
     font-size: 15;
     min-width: 20px;
-    /*border: 2px @lavender solid;*/
-    /*background-color: @base;*/
     color:@flamingo;
 }
 
@@ -168,39 +135,20 @@ button {
     color: @base;
 }
 
+/*-- CLOCK --*/
 #clock {
     border-radius: 0px;
-    /*margin-left: 3px;*/
-    /*border: 2px @lavender solid;*/
-    /*background-color: @base;*/
-    color: @maroon;
+    color: @yellow;
 }
 
 #clock:hover {
-    background-color: @maroon;
+    background-color: @yellow;
     color: @base;
 }
 
-/*
-#custom-notification {
-    border-radius: 0px;
-    border: 2px @lavender solid;
-    background-color: @base;   
-    color:@teal;
-}
-
-
-#custom-notification:hover {
-    background-color: @teal;
-    color: @base;
-}
-
-*/
-
+/*-- NETWORK --*/
 #network {
     border-radius: 0px;
-    /*border: 2px @lavender solid;
-    background-color: @base;*/
     color:@lavender;
     transition: background-color 0.5s ease;
 }
@@ -216,10 +164,9 @@ button {
     color: @crust;
 }
 
+/*-- PULSEAUDIO --*/
 #pulseaudio {
     border-radius: 0px;
-    /*border: 2px @lavender solid;*/
-    /*background-color: @base;*/
     color: @sapphire;
 }
 
@@ -234,11 +181,48 @@ button {
     color: @base;
 }
 
+/*-- POMODORO --*/
+#custom-pomodoro {
+    padding: 0 10px;
+    color: @maroon;
+}
 
-/*MODULES THAT ARE NOT IN USE*/
+#custom-pomodoro.paused {
+    color: @yellow;
+}
 
+#custom-pomodoro.critical {
+    background-color: @red;
+    color: @base;
+    animation-name: blink-red;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#custom-pomodoro.done {
+    background-color: @green;
+    color: @base;
+    animation-name: blink-green;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink-red {
+    0% { background-color: @red; color: @base; }
+    50% { background-color: @base; color: @red; }
+    100% { background-color: @red; color: @base; }
+}
+
+@keyframes blink-green {
+    0% { background-color: @green; color: @base; }
+    50% { background-color: @base; color: @green; }
+    100% { background-color: @green; color: @base; }
+}
+
+/*-- BATTERY --*/
 #battery {
-    /*background-color: @base;*/
     color: @rosewater;
 }
 
@@ -249,7 +233,6 @@ button {
 
 #battery.charging, #battery.plugged {
     color: @green;
-    /*background-color: @rosewater;*/
 }
 
 @keyframes blink {
@@ -259,10 +242,7 @@ button {
     }
 }
 
-    /*Using steps() instead of linear as a timing function to limit cpu usage*/
-
 #battery.critical:not(.charging) {
-    /*background-color: @red;*/
     color: @red;
     animation-name: blink;
     animation-duration: 0.5s;
@@ -271,6 +251,7 @@ button {
     animation-direction: alternate;
 }
 
+/*-- BACKLIGHT --*/
 #backlight {
     color: @teal;
 }
@@ -280,6 +261,7 @@ button {
     color: @base;
 }
 
+/*-- LANGUAGE --*/
 #language {
     background: #00b093;
     color: #740864;
@@ -288,6 +270,7 @@ button {
     min-width: 16px;
 }
 
+/*-- KEYBOARD --*/
 #keyboard-state {
     background: #97e1ad;
     color: #000000;
@@ -304,6 +287,7 @@ button {
     background: rgba(0, 0, 0, 0.2);
 }
 
+/*-- SCRATCHPAD --*/
 #scratchpad {
     background: rgba(0, 0, 0, 0.2);
 }
@@ -312,6 +296,7 @@ button {
 	background-color: transparent;
 }
 
+/*-- PRIVACY --*/
 #privacy {
     padding: 0;
 }
@@ -333,6 +318,7 @@ button {
     background-color: #0069d4;
 }
 
+/*-- WIREPLUMBER --*/
 #wireplumber {
     background-color: #fff0f5;
     color: #000000;
@@ -342,6 +328,7 @@ button {
     background-color: #f53c3c;
 }
 
+/*-- CUSTOM MEDIA --*/
 #custom-media {
     background-color: #66cc99;
     color: #2a5c45;
@@ -356,6 +343,7 @@ button {
     background-color: #ffa000;
 }
 
+/*-- TEMPERATURE --*/
 #temperature {
     background-color: #f0932b;
 }
@@ -364,6 +352,7 @@ button {
     background-color: #eb4d4b;
 }
 
+/*-- IDLE INHIBITOR --*/
 #idle_inhibitor {
     background-color: #2d3436;
 }
@@ -373,6 +362,7 @@ button {
     color: #2d3436;
 }
 
+/*-- POWER PROFILES --*/
 #power-profiles-daemon {
     padding-right: 15px;
 }
@@ -396,16 +386,18 @@ label:focus {
     background-color: #000000;
 }
 
+/*-- CPU --*/
 #cpu {
     background-color: #2ecc71;
     color: #000000;
 }
 
+/*-- MEMORY --*/
 #memory {
     background-color: #9b59b6;
 }
 
+/*-- DISK --*/
 #disk {
     background-color: #964B00;
 }
-
