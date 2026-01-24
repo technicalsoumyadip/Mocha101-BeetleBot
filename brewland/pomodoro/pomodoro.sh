@@ -55,9 +55,9 @@ if [ "$status" == "running" ]; then
         paplay $HOME/.config/brewland/pomodoro/sound/pomodoro.mp3 &
         
         if [ "$state" == "work" ]; then
-            notify-send "POMODORO" "WORK DONE! Break time." -u critical
+            notify-send "POMODORO" "WORK DONE! Break time."
         else
-            notify-send "POMODORO" "BREAK OVER! Get to work." -u normal
+            notify-send "POMODORO" "BREAK OVER! Get to work."
         fi
     fi
 fi
