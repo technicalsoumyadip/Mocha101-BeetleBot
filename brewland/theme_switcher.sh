@@ -2,6 +2,7 @@
 
 # Paths
 THEME_DIR="$HOME/.config/hypr/themes"
+GTK_THEME_DIR="$HOME/.config/brewland/themes/gtkthemes"
 BRIDGE_FILE="$HOME/.config/hypr/HLconfigs/theme-colors.conf"
 KITTY_CONF="$HOME/.config/kitty/kitty.conf"
 WAYBAR_STYLE="$HOME/.config/waybar/style.css"
@@ -40,14 +41,31 @@ ln -sf "$THEME_DIR/$NEW_FLAVOR.conf" "$BRIDGE_FILE"
 hyprctl reload
 
 # 2. GTK & Nautilus
+
+# 2. GTK & Nautilus
+
+# A. Handle GTK 3 Discovery
+# GTK 3 looks in ~/.local/share/themes, so we link your repo folder there.
+mkdir -p "$HOME/.local/share/themes"
+
+# Check if the link already exists to avoid errors, if not, create it
+if [ ! -d "$HOME/.local/share/themes/$GTK_THEME" ]; then
+    ln -sf "$GTK_THEME_DIR/$GTK_THEME" "$HOME/.local/share/themes/$GTK_THEME"
+fi
+
+# Apply GTK 3 Settings via GSettings
 gsettings set org.gnome.desktop.interface color-scheme "$COLOR_SCHEME"
 gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"
 
+# B. Handle GTK 4 Override (Libadwaita)
+# We force GTK 4 to use your theme by overwriting its config files with symlinks.
 mkdir -p "$HOME/.config/gtk-4.0"
-ln -sf "/usr/share/themes/$GTK_THEME/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
-ln -sf "/usr/share/themes/$GTK_THEME/gtk-4.0/gtk-dark.css" "$HOME/.config/gtk-4.0/gtk-dark.css"
-ln -sf "/usr/share/themes/$GTK_THEME/gtk-4.0/assets" "$HOME/.config/gtk-4.0/assets"
 
+ln -sf "$GTK_THEME_DIR/$GTK_THEME/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
+ln -sf "$GTK_THEME_DIR/$GTK_THEME/gtk-4.0/gtk-dark.css" "$HOME/.config/gtk-4.0/gtk-dark.css"
+ln -sf "$GTK_THEME_DIR/$GTK_THEME/gtk-4.0/assets" "$HOME/.config/gtk-4.0/assets"
+
+# Restart Nautilus to apply changes immediately
 if pidof nautilus > /dev/null; then
     nautilus -q
     sleep 0.3
