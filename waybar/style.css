@@ -23,6 +23,26 @@ button {
     border-radius: 0;
 }
 
+/* ========================================= */
+/* NEW HARDWARE DRAWER STYLING         */
+/* ========================================= */
+
+#hardware {
+    background-color: @background;
+    margin: 0 5px;
+    padding: 0;
+}
+
+/* Optional: Add hover glow to the drawer itself */
+#hardware:hover {
+    background-color: @background;
+}
+
+/* Ensure items inside don't have conflicting margins */
+#hardware.drawer-child {
+    margin: 0; 
+}
+
 /*-- WORKSPACES --*/
 #workspaces {
     color: @mauve;
@@ -189,6 +209,11 @@ button {
 
 #custom-pomodoro.paused {
     color: @yellow;
+}
+
+#custom-pomodoro:hover {
+    background-color: @maroon;
+    color: @base;
 }
 
 #custom-pomodoro.critical {
@@ -401,3 +426,4 @@ label:focus {
 #disk {
     background-color: #964B00;
 }
+

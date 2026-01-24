@@ -8,20 +8,33 @@
     // MODULE LAYOUT //
     "modules-left": [
         "clock",
-        "custom/pomodoro",
         "mpd"
     ],
     "modules-center": [
         "hyprland/workspaces"
     ],
     "modules-right": [
-        "pulseaudio",
-        "backlight",
-        "bluetooth",
-        "network",
-        "battery",
-        "custom/logo"
+        "custom/pomodoro",
+        "group/hardware"
     ],
+
+    // HARDWARE DRAWER GROUP //
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/logo",
+            "pulseaudio",
+            "bluetooth",
+            "network",
+            "battery",
+            "backlight"            
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "drawer-child",
+            "transition-left-to-right": false
+        }
+    },
 
     // WORKSPACES //
     "hyprland/workspaces": {
