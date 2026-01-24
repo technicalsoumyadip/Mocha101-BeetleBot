@@ -62,6 +62,8 @@ TOOL_PKGS=(
     "unzip"
     "grim"
     "slurp"
+    "libpulse"
+    "sound-theme-freedesktop"
 )
 
 # AUR packages (Yay)

@@ -162,9 +162,9 @@
     "custom/pomodoro": {
         "format": "{}",
         "return-type": "json",
-        "exec": "~/.config/brewland/pomodoro.sh",
+        "exec": "~/.config/brewland/pomodoro/pomodoro.sh",
         "interval": 1,
-        "on-click": "~/.config/brewland/pomodoro.sh click",
-        "on-click-middle": "~/.config/brewland/pomodoro.sh toggle"
+        "on-click": "~/.config/brewland/pomodoro/pomodoro.sh click",
+        "on-click-middle": "~/.config/brewland/pomodoro/pomodoro.sh toggle"
     }
 }
