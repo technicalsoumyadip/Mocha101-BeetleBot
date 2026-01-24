@@ -5,7 +5,7 @@
     font-weight: bold;
 }
 
-@import "../waybar/colors/latte.css";
+@import "../waybar/colors/mocha.css";
 
 window#waybar {
     background-color: @background;
