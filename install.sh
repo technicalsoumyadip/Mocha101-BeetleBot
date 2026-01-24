@@ -6,7 +6,7 @@
 
 # get folder path
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-LOG="$HOME/mocha_install.log"
+LOG="$HOME/brewland_install.log"
 
 # clear log file
 echo "" > "$LOG"
@@ -48,8 +48,7 @@ CORE_PKGS=(
 # tools and utils
 TOOL_PKGS=(
     "swww"
-    "kitty" 
-    "wl-clipboard" 
+    "kitty"
     "cliphist" 
     "wtype"
     "wl-clipboard" 
@@ -78,6 +77,7 @@ DOTFILES=(
     "rofi" 
     "swaync" 
     "waybar"
+    "cava"
     "brewland"
 )
 

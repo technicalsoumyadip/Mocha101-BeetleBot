@@ -6,7 +6,7 @@
 
 # 1. Define the folders you want to link
 # (These must exist in your repo folder)
-DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "brewland")
+DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "cava" "brewland")
 
 # 2. Get Paths
 REPO_DIR=$(pwd)

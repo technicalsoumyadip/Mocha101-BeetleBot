@@ -9,6 +9,7 @@ WAYBAR_STYLE="$HOME/.config/waybar/style.css"
 CODIUM_SETTINGS="$HOME/.config/VSCodium/User/settings.json"
 FASTFETCH_CONFIG="$HOME/.config/fastfetch/config.jsonc"
 FASTFETCH_THEMES="$HOME/.config/fastfetch/themes"
+CAVA_DIR="$HOME/.config/cava"
 
 # Toggle Logic
 CURRENT_THEME=$(readlink "$BRIDGE_FILE")
@@ -118,5 +119,15 @@ pkill -x rofi
 
 # 12. Fastfetch Theme Switch
 ln -sf "$FASTFETCH_THEMES/$NEW_FLAVOR.jsonc" "$FASTFETCH_CONFIG"
+
+
+# 13. Cava Theme Switch
+
+ln -sf "$CAVA_DIR/themes/$NEW_FLAVOR-transparent.cava" "$CAVA_DIR/config"
+
+# Refresh Cava
+if pidof cava > /dev/null; then
+    pkill -x cava
+fi
 
 notify-send "Theme Toggled" "System set to Catppuccin $NEW_FLAVOR"
