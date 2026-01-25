@@ -3,6 +3,7 @@
     font-family: 'iMWritingMono Nerd Font Propo', sans-serif;
     font-size: 14px;
     font-weight: bold;
+    min-height: 0;
 }
 
 @import "../waybar/colors/mocha.css";
@@ -29,7 +30,7 @@ button {
 
 #hardware {
     background-color: @background;
-    margin: 0 5px;
+    margin: 0;
     padding: 0;
 }
 
@@ -144,14 +145,12 @@ button {
 /*-- BLUETOOTH --*/
 #bluetooth{
     border-radius: 0px;
-    font-size: 15;
     min-width: 20px;
     color:@flamingo;
 }
 
 #bluetooth:hover {
     background-color: @flamingo;
-    font-size: 15;
     color: @base;
 }
 

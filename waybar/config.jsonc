@@ -2,8 +2,8 @@
     // GLOBAL CONFIGURATION //
     "layer": "top",
     "position": "top",
-    "height": 20,
     "spacing": 4,
+    "height": 30,
 
     // MODULE LAYOUT //
     "modules-left": [
@@ -102,7 +102,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": ["󰕿", "󰖀", "󰕾"]
         },
         "on-click-middle": "pavucontrol",
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -128,16 +128,17 @@
 
     // CONNECTIVITY //
     "network": {
-        "format-wifi": " {essid}",
+        "format-wifi": "󰤨 {essid}",
+        "format-off": "󰤭",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
+        "format-disconnected": "Disconnected 󰤮",
         "on-click": "$HOME/.config/rofi/wifi_menu.sh"
     },
 
     "bluetooth": {
-        "format-on": "󰂯",
+        "format-on": "",
         "format-off": "󰂲",
         "format-disabled": "", 
         "format-connected": "󰂱 {num_connections}",
