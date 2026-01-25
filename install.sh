@@ -48,6 +48,7 @@ CORE_PKGS=(
 # tools and utils
 TOOL_PKGS=(
     "swww"
+    "fastfetch"
     "kitty"
     "cliphist" 
     "wtype"
@@ -81,6 +82,7 @@ DOTFILES=(
     "waybar"
     "cava"
     "brewland"
+    "fastfetch"
 )
 
 # ------------------------------------------------------

@@ -1,0 +1,78 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "source": "~/.config/fastfetch/ascii_latte.txt",
+        "type": "file",
+        "position": "left",
+        "padding": { "top": 2, "right": 6 }
+    },
+    "display": {
+        "separator": " ",
+        "color": "black",
+        "key": { "width": 16 },
+        "bar": {
+            "char": { "elapsed": "", "total": " " },
+            "border": { "open": "", "close": "" },
+            "width": 15
+        }
+    },
+    "modules": [
+        {
+            "type": "title",
+            "format": "\u001b[38;2;136;57;239mWelcome to Brewland\u001b[0m"
+        },
+        {
+            "type": "custom",
+            "format": "{#90}──────────────────────────────{#}"
+        },
+        "break",
+        {
+            "type": "custom",
+            "format": "\u001b[38;2;23;146;153m  SOFTWARE \u001b[90m──────────"
+        },
+        {
+            "type": "os",
+            "key": "\u001b[38;2;23;146;153m  ├─\u001b[38;2;254;100;11m  \u001b[38;2;223;142;29mOS",
+            "format": "{2}"
+        },
+        {
+            "type": "kernel",
+            "key": "\u001b[38;2;23;146;153m  ├─\u001b[38;2;254;100;11m  \u001b[38;2;223;142;29mKernel"
+        },
+        {
+            "type": "wm",
+            "key": "\u001b[38;2;23;146;153m  ├─\u001b[38;2;254;100;11m  \u001b[38;2;223;142;29mWM"
+        },
+        {
+            "type": "packages",
+            "key": "\u001b[38;2;23;146;153m  ╰─\u001b[38;2;254;100;11m  \u001b[38;2;223;142;29mPkgs"
+        },
+        "break",
+        {
+            "type": "custom",
+            "format": "\u001b[38;2;23;146;153m  HARDWARE \u001b[90m──────────"
+        },
+        {
+            "type": "cpu",
+            "key": "\u001b[38;2;23;146;153m  ├─\u001b[38;2;254;100;11m  \u001b[38;2;223;142;29mCPU"
+        },
+        {
+            "type": "gpu",
+            "key": "\u001b[38;2;23;146;153m  ├─\u001b[38;2;254;100;11m 󰢮 \u001b[38;2;223;142;29mGPU"
+        },
+        {
+            "type": "memory",
+            "key": "\u001b[38;2;23;146;153m  ├─\u001b[38;2;254;100;11m  \u001b[38;2;223;142;29mRAM"
+        },
+        {
+            "type": "disk",
+            "key": "\u001b[38;2;23;146;153m  ╰─\u001b[38;2;254;100;11m  \u001b[38;2;223;142;29mDisk"
+        },
+        "break",
+        {
+            "type": "colors",
+            "paddingLeft": 2,
+            "symbol": "circle"
+        }
+    ]
+}
