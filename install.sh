@@ -72,7 +72,7 @@ act "Checking distribution..."
 
 if [ -f /etc/os-release ]; then
     . /etc/os-release
-    
+
     if [[ "$ID" == "arch" || "$ID_LIKE" =~ "arch" ]]; then
         ok "Distro match: $PRETTY_NAME"
     else
@@ -88,14 +88,6 @@ sudo -v
 ok "Root power active"
 
 # --- PHASE 2: CORE INJECTION ---
-echo ""
-separator
-echo -e " ${B_CYN}PHASE 2 : CORE INJECTION${RST}"
-separator
-# ------------------------------------------------------
-# INSTALL PACKAGES
-# ------------------------------------------------------
-
 echo ""
 separator
 echo -e " ${B_CYN}PHASE 2 : CORE INJECTION${RST}"
