@@ -359,8 +359,8 @@ EOF'
 else
     echo ""
     echo -e "${YLW}[ WARN ]${RST} Skipping network configuration."
-    echo -e "         The ${B_WHT}Impala module${RST} and ${B_WHT}Wifi keybinds${RST} may NOT work."
-    echo -e "         You will need to configure your network stack manually."
+    echo -e "         The ${B_WHT}Impala module${RST} may not work as intended."
+    echo -e "         You may need to configure your network stack manually."
     echo -e "         (Resuming in 5 seconds...)"
     sleep 5
 fi
