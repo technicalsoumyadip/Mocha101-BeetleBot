@@ -296,6 +296,75 @@ for folder in "${DOTFILES[@]}"; do
     fi
 done
 
+# ------------------------------------------------------
+# PHASE 5 : NETWORK CONFIGURATION (Impala/iwd)
+# ------------------------------------------------------
+echo ""
+separator
+echo -e " ${B_CYN}PHASE 5 : NETWORK OPS${RST}"
+separator
+
+echo -e "  Impala requires a specific network backend to function correctly."
+echo -e "  We need to configure the following for a seamless experience:"
+echo ""
+echo -e "  ${B_WHT}1.${RST} Disable conflicting managers (NetworkManager/wpa_supplicant)"
+echo -e "  ${B_WHT}2.${RST} Enable built-in DHCP (so you get an IP address automatically)"
+echo -e "  ${B_WHT}3.${RST} Link System DNS to systemd-resolved (so websites load)"
+echo -e "  ${B_WHT}4.${RST} Enable the iwd wireless service"
+echo ""
+echo -e "  ${YLW}NOTE:${RST} This will replace your current network configuration."
+echo ""
+
+read -p "  Proceed with Impala network configuration? (y/n) " net_choice
+
+if [[ $net_choice =~ ^[Yy]$ ]]; then
+    # 1. Cleaning up conflicting services
+    act "Neutralizing NetworkManager & wpa_supplicant..."
+    sudo systemctl stop NetworkManager 2>/dev/null || true
+    sudo systemctl disable NetworkManager 2>/dev/null || true
+    sudo systemctl stop wpa_supplicant 2>/dev/null || true
+    sudo systemctl disable wpa_supplicant 2>/dev/null || true
+    ok "Conflicts removed."
+
+    # 2. Configuring iwd backend (DHCP support)
+    act "Configuring iwd backend for DHCP..."
+    sudo mkdir -p /etc/iwd
+    # Writing the config using sudo bash -c to handle permissions
+    sudo bash -c 'cat > /etc/iwd/main.conf <<EOF
+[General]
+EnableNetworkConfiguration=true
+
+[Network]
+NameResolvingService=systemd
+EOF'
+    ok "Backend configured (/etc/iwd/main.conf)"
+
+    # 3. Setting up DNS (systemd-resolved)
+    act "Linking DNS to systemd-resolved..."
+    sudo systemctl enable --now systemd-resolved 2>/dev/null
+    # Force the symlink to systemd's stub resolver
+    sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+    ok "DNS linked successfully."
+
+    # 4. Enabling the service
+    act "Starting iwd service..."
+    sudo systemctl enable --now iwd
+    ok "Wireless daemon active."
+
+    # 5. Permission fix reminder
+    echo ""
+    echo -e "${GRN}[ DONE ]${RST} Network stack active."
+    echo -e "         ${YLW}IMPORTANT:${RST} For your FIRST connection, run: ${B_WHT}sudo impala${RST}"
+
+else
+    echo ""
+    echo -e "${YLW}[ WARN ]${RST} Skipping network configuration."
+    echo -e "         The ${B_WHT}Impala module${RST} and ${B_WHT}Wifi keybinds${RST} may NOT work."
+    echo -e "         You will need to configure your network stack manually."
+    echo -e "         (Resuming in 5 seconds...)"
+    sleep 5
+fi
+
 # --- FINISH ---
 echo ""
 separator
