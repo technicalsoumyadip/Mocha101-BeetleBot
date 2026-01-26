@@ -30,7 +30,7 @@ RST='\033[0m'
 # ------------------------------------------------------
 # LISTS
 # ------------------------------------------------------
-CORE_PKGS=("hyprland" "waybar" "rofi" "rofimoji" "fd" "swaync" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland")
+CORE_PKGS=("hyprland" "waybar" "rofi" "rofimoji" "fd" "iwd" "swaync" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland")
 TOOL_PKGS=("swww" "fastfetch" "kitty" "cliphist" "wtype" "wl-clipboard" "jq" "fish" "thunar" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "impala" "curl" "unzip" "grim" "slurp" "libpulse" "sound-theme-freedesktop")
 YAY_PKGS=("grimblast-git" "hyprpicker")
 DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "cava" "brewland" "fastfetch")
