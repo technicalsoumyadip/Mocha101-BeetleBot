@@ -59,6 +59,8 @@ TOOL_PKGS=(
     "pavucontrol" 
     "brightnessctl" 
     "playerctl" 
+    "bluetui"
+    "impala"
     "curl" 
     "unzip"
     "grim"

@@ -134,7 +134,7 @@
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected 󰤮",
-        "on-click": "$HOME/.config/rofi/wifi_menu.sh"
+        "on-click": "kitty --class impala -e impala"
     },
 
     "bluetooth": {
@@ -144,7 +144,7 @@
         "format-connected": "󰂱 {num_connections}",
         "tooltip-format-connected": "{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "$HOME/.config/rofi/bluetooth_menu.sh"
+        "on-click": "kitty --class bluetui -e bluetui"
     },
 
     // CUSTOM MODULES //
