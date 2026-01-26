@@ -19,10 +19,11 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 * **Wallpapers** — Uses **swww** for dynamic wallpaper switching via a custom wallpaper picker made with rofi.
 * **Dual theme** — Catppuccin Mocha and Latte, everywhere. From Terminal to Notification centre. You can manually configure the same for GTK and QT apps as well. Check theme_switcher.sh for the details.
-* **Rofi Ecosystem** — Deeply integrated for application launching, and system controls (Bluetooth/Wifi). 
-* **Notification center** — Beautifully styled **SwayNC** with custom CSS, integrated directly with the Waybar logo.  
+* **Rofi Ecosystem** — Deeply integrated for application launching, emoji picker, file search, wallpaper picker and music picker.
+* **Notification center** — Beautifully styled **SwayNC** with custom CSS, integrated directly with the Waybar module.  
 * **Master Layout** — Configured for a productive master-stack workflow with a custom "Shelf" ie., special workspace.  
 * **Integrated lock screen** — Cohesive **Hyprlock** + **Hypridle** setup.
+* **Wifi and Bluetooth** - A well built impala and bluetui for Bluetooth and Wifi setups. Integrated with a custom keybind and respective waybar module.
 
 ### **☕ Screenshots**
 
@@ -112,7 +113,7 @@ The installer handles everything:
 * Sets up **yay** if needed    
 * Installs all required dependencies (AUR + official repos)  
 * Backs up existing configs to ~/ConfigBackup/  
-* Deploys new configs to ~/.config/  
+* Deploys new configs to ~/.config/  (or symlink, your choice)
 * Suggests a reboot to apply changes
 
 ### **⌨️ Keybindings**
@@ -133,9 +134,9 @@ The **Super** key (Windows key) is your main modifier.
 | Super + Alt + Space | Search Files |
 | Super + . | Emoji Search |
 | Super + / | Clipboard History |
-| Super + Alt + N | Network (Rofi) |
-| Super + Alt + B | Bluetooth Manager (Rofi) |
-| Super + Shift + W | Wallpaper Grid (Rofi+SWWW) |
+| Super + Alt + N | Network (impala) |
+| Super + Alt + B | Bluetooth Manager (bluetui) |
+| Super + Shift + W | Wallpaper Grid |
 | Super + R | Reload Waybar |
 | Super + Shift + Z | Toggle Theme (Mocha and Latte) |
 
