@@ -1,5 +1,9 @@
 <div align="center">
 
+# Development Details
+
+> _Notice:_ The stable branch is currently frozen and will not receive updates for the next few months. Active development has shifted to the beta branch. Once the new features have been thoroughly tested and stabilized, they will be merged back into stable.
+
 # **☕ BrewLand v2.0**
 
 **An elegant Hyprland setup brewed with Catppuccin Mocha and Latte.**  
@@ -68,18 +72,6 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 
 #### Wallpaper Picker - Light
 <img width="1807" height="505" alt="20260122_163150" src="https://github.com/user-attachments/assets/94d3474d-b34b-4601-b38f-bb57fd1838bb" />
-
-#### Wifi Menu - Dark
-<img width="549" height="375" alt="20260122_164225" src="https://github.com/user-attachments/assets/0b40d7db-22c5-4c50-9f08-7f2869238b16" />
-
-#### Wifi Menu - Light
-<img width="550" height="377" alt="20260122_164234" src="https://github.com/user-attachments/assets/0e0befd3-f682-4cd0-b755-39fa6c3ace44" />
-
-#### Bluetooth Menu - Dark
-<img width="548" height="296" alt="20260122_164336" src="https://github.com/user-attachments/assets/fcbf3232-c5b0-44a9-a1ec-e55fc8315691" />
-
-#### Bluetooth Menu - Light
-<img width="547" height="301" alt="20260122_164324" src="https://github.com/user-attachments/assets/e8f1a447-6425-4e4b-ada3-b01383696ff7" />
 
 #### SwayNC - Dark
 <img width="568" height="347" alt="20260122_164430" src="https://github.com/user-attachments/assets/d288702c-c489-4658-8ca8-df0d4f1ff56c" />
