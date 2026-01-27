@@ -56,8 +56,8 @@ echo "  ██╔══██╗██╔══██╗██╔══╝  █�
 echo "  ██████╔╝██║  ██║███████╗╚███╔███╔╝███████╗██║  ██║██║ ╚████║██████╔╝"
 echo "  ╚═════╝ ╚═╝  ╚═╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ "
 echo -e "${RST}"
-echo -e "  ${B_WHT}:: BREWLAND INSTALLER ::${RST}"
-echo -e "  ${BLK}:: System Deployment v2.2 ::${RST}"
+echo -e "  ${B_WHT}:: BREWLAND beta INSTALLER ::${RST}"
+echo -e "  ${BLK}:: System Deployment ::${RST}"
 echo ""
 
 read -p "  Start installation? (y/n) " choice
