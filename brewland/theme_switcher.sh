@@ -75,12 +75,8 @@ if pidof nautilus > /dev/null; then
 fi
 
 # 3. Waybar
-# 3. Waybar
 sed -i "s|@import .*|@import \"../waybar/colors/$NEW_FLAVOR.css\";|" "$WAYBAR_STYLE"
-# Force a full restart so Cava re-initializes correctly
-killall waybar
-sleep 0.5 
-hyprctl dispatch exec waybar
+pkill -USR2 waybar
 
 # 4. Kitty
 sed -i "s|^include .*|include $NEW_FLAVOR.conf|" "$KITTY_CONF"

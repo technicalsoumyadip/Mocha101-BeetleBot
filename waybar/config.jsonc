@@ -14,17 +14,16 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
-        "custom/cava",
         "custom/pomodoro",
         "group/hardware"
     ],
 
-    // CAVA //
-    "custom/cava": {
-        "exec": "cava -p ~/.config/cava/waybar.conf | sed -u 's/;//g;s/0/ /g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'",
-        "format": "{}",
-        "tooltip": false
-    },
+// CAVA //
+//    "custom/cava": {
+//        "exec": "cava -p ~/.config/cava/waybar.conf | sed -u 's/;//g;s/0/ /g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'",
+//        "format": "{}",
+//        "tooltip": false
+//    },
 
     // HARDWARE DRAWER GROUP //
     "group/hardware": {
