@@ -7,22 +7,17 @@ if ! pgrep -x "swww-daemon" > /dev/null; then
     swww-daemon &
 fi
 
-# --- THEMES ---
-
-# 1. FILMSTRIP THEME (Geometric Fix)
-# - window padding: 40px (The Master Frame)
-# - element-text: Added 'expand: true' to force vertical centering
+## THEME DEFINITIONS
 THEME_GALLERY="
     configuration { show-icons: true; } 
     window { 
         width: 90%; 
         anchor: center; location: center;
-        /* The Master Frame: Exact 40px space all around */
         padding: 20px; 
     } 
     mainbox {
         background-color: transparent;
-        children: [ listview ]; /* Force only listview, no hidden inputs taking space */
+        children: [ listview ];
     }
     listview { 
         columns: 6; lines: 1; 
@@ -47,16 +42,14 @@ THEME_GALLERY="
     element-text { 
         horizontal-align: 0.5; 
         vertical-align: 0.5; 
-        expand: true; /* Forces text to consume remaining space and center itself */
+        expand: true;
         background-color: transparent;
     } 
     
-    /* Colors */
     element selected { background-color: @wallpaper; } 
     textbox { text-color: @wallpaper; } 
 "
 
-# 2. FILE BROWSER THEME
 THEME_PICKER="
     window { width: 40%; height: 50%; border-color: @wallpaper; }
     prompt { background-color: @wallpaper; text-color: @bg-col; }
@@ -65,8 +58,7 @@ THEME_PICKER="
     element-icon { size: 24px; }
 "
 
-# --- FUNCTIONS ---
-
+## DIRECTORY BROWSER
 pick_dir() {
     local current_dir="$HOME"
     while true; do
@@ -80,8 +72,7 @@ pick_dir() {
     done
 }
 
-# --- MAIN LOGIC ---
-
+## MAIN LOGIC
 if [ ! -f "$CONFIG_FILE" ]; then
     INIT_DIR=$(pick_dir)
     if [ -n "$INIT_DIR" ]; then echo "$INIT_DIR" > "$CONFIG_FILE"; else exit; fi
@@ -89,19 +80,17 @@ fi
 
 WALL_DIR=$(cat "$CONFIG_FILE")
 
-# 2. Generate Gallery List
+# Populate gallery list with images
 ROFI_LIST="Change the Directory\0icon\x1ffolder\n"
-
 shopt -s nullglob
 for img in "$WALL_DIR"/*.{jpg,jpeg,png,gif,webp,bmp}; do
     filename=$(basename "$img")
     ROFI_LIST+="$filename\0icon\x1f$img\n"
 done
 
-# 3. Launch
 CHOSEN=$(echo -e "$ROFI_LIST" | rofi -dmenu -i -p "Wallpapers" -theme-str "$THEME_GALLERY")
 
-# 4. Handle Selection
+## ACTION HANDLER
 if [ -z "$CHOSEN" ]; then
     exit
 elif [ "$CHOSEN" == "Change the Directory" ]; then
@@ -113,5 +102,6 @@ elif [ "$CHOSEN" == "Change the Directory" ]; then
 else
     FULL_PATH="$WALL_DIR/$CHOSEN"
     notify-send "$NOTIFY_TITLE" "Setting wallpaper..."
+    # Apply wallpaper with a grow transition
     swww img "$FULL_PATH" --transition-type grow --transition-step 90 --transition-fps 60
 fi
