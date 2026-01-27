@@ -115,6 +115,17 @@ button {
     color: @base;
 }
 
+/* In ~/.config/waybar/style.css */
+
+#custom-cava {
+    color: @green; /* This variable comes from mocha.css or latte.css */
+    font-family: "JetBrainsMono Nerd Font";
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: @background;
+    border-radius: 12px;
+}
+
 /*-- CUSTOM LOGO --*/
 #custom-logo {
     border-radius: 0px;
