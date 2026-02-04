@@ -6,7 +6,7 @@
     min-height: 0;
 }
 
-@import "../waybar/colors/mocha.css";
+@import "../waybar/colors/latte.css";
 
 window#waybar {
     background-color: @background;
