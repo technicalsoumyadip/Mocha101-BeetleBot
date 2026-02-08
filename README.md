@@ -1,5 +1,9 @@
 <div align="center">
 
+# Development Details
+
+> _Notice:_ The stable branch is very stable now and may not receive updates for the next few months. Active development has shifted to the beta branch. Once the new features have been thoroughly tested and stabilized, they will be merged back into stable.
+
 # **☕ BrewLand v2.0**
 
 **An elegant Hyprland setup brewed with Catppuccin Mocha and Latte.**  
