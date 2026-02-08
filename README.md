@@ -86,7 +86,7 @@ Think of it as the perfect espresso shot for your Linux desktop: smooth, bold, a
 <img width="524" height="366" alt="20260122_164814" src="https://github.com/user-attachments/assets/1d7ff2c9-7ded-4b60-a45c-a268d8db0efb" />
 
 ### **⚙️ Installation**
-Fire it up in just a few steps:  
+Fire it up in just a few steps(ONLY RUN THIS ON **ARCH LINUX**):  
 ```
 git clone https://github.com/BeetleBot/BrewLand.git
 ```
