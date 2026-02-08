@@ -68,21 +68,7 @@ echo ""
 separator
 echo -e " ${B_CYN}PHASE 1 : SYSTEM PRE-FLIGHT${RST}"
 separator
-act "Checking distribution..."
 
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
-
-    if [[ "$ID" == "arch" || "$ID_LIKE" =~ "arch" ]]; then
-        ok "Distro match: $PRETTY_NAME"
-    else
-        fail "Detected $PRETTY_NAME. This script requires an Arch-based system."
-        exit 1
-    fi
-else
-    fail "/etc/os-release not found. Cannot verify OS."
-    exit 1
-fi
 act "Getting root power..."
 sudo -v
 ok "Root power active"
