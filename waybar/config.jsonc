@@ -14,6 +14,7 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
+        "idle_inhibitor",
         "custom/pomodoro",
         "group/hardware"
     ],
@@ -86,6 +87,19 @@
         "on-scroll-up": "mpc next",
         "on-scroll-down": "mpc prev",
         "tooltip-format": "MPD: {artist} - {album} - {title}"
+    },
+
+    //IDLE_INHIBITOR//
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": "" 
+        },
+        "tooltip": true,
+        "tooltip-format-activated": "Caffeine Mode: Active (Stay Awake)",
+        "tooltip-format-deactivated": "Caffeine Mode: Inactive (Sleep Enabled)"
     },
 
     // SYSTEM & HARDWARE //

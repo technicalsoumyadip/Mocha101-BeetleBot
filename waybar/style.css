@@ -97,6 +97,26 @@ button {
     margin: 0 0px;
 }
 
+/* ========================================= */
+/*              IDLE_INHIBITOR               */
+/* ========================================= */
+#idle_inhibitor {
+    background-color: @background;
+    color: @peach;                
+    min-width: 20px;
+    border-radius: 0px;
+}
+
+#idle_inhibitor.activated {
+    background-color: @peach;     
+    color: @base;                 
+}
+
+#idle_inhibitor:hover {
+    background-color: @peach;     
+    color: @base;
+}
+
 /*-- TRAY --*/
 #tray {
     border-radius: 0px;
@@ -385,16 +405,6 @@ button {
 
 #temperature.critical {
     background-color: #eb4d4b;
-}
-
-/*-- IDLE INHIBITOR --*/
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
 }
 
 /*-- POWER PROFILES --*/
