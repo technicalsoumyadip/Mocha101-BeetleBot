@@ -143,4 +143,18 @@ if pgrep -x "cava" > /dev/null; then
     # kitty -e cava & disown 
 fi
 
+# --- 14. Neovim ---
+NVIM_FLAVOR_FILE="$HOME/.config/nvim/current_flavor"
+
+# Ensure the nvim config directory exists
+mkdir -p "$HOME/.config/nvim"
+
+# Write the new flavor to Neovim's dedicated file
+echo "$NEW_FLAVOR" > "$NVIM_FLAVOR_FILE"
+
+# Send SIGUSR1 to all running Neovim instances to trigger the live reload
+if pgrep -x nvim > /dev/null; then
+    pkill -USR1 -x nvim
+fi
+
 notify-send "Theme Toggled" "System set to Catppuccin $NEW_FLAVOR"
