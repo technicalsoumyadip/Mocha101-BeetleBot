@@ -147,16 +147,16 @@ button {
 /*-- CUSTOM LOGO --*/
 #custom-logo {
     margin-right: 10px;
-    background-color: @sky;
+    background-color: @background;
     border-radius: 10px;
     min-width: 40px;
-    color:@background;  
+    color:@sky;  
 }
 
 #custom-logo:hover {
     min-width: 40px;
-    background-color: @background;
-    color: @sky;
+    background-color: @sky;
+    color: @base;
 }
 
 
@@ -176,6 +176,7 @@ button {
 
 /*-- BLUETOOTH --*/
 #bluetooth{
+    margin-left: 4px;
     background-color: @background;
     border-radius: 10px;
     min-width: 20px;
@@ -201,6 +202,7 @@ button {
 
 /*-- NETWORK --*/
 #network {
+    margin-left: 4px;
     background-color: @background;
     border-radius: 10px;
     color:@lavender;
@@ -243,13 +245,12 @@ button {
 
 #hardware {
     margin-right: 10px;
-    padding-left: 10px;
     border-radius: 10px;
-    background-color: @sky;
+    background-color: @transparent;
 }
 
 #hardware:hover {
-    background-color: @background;
+    background-color: @transparent;
 }
 
 /* Ensure items inside don't have conflicting margins */
@@ -305,6 +306,7 @@ button {
 
 /*-- BATTERY --*/
 #battery {
+    margin-left: 4px;
     background-color: @background;
     color: @rosewater;
 }
@@ -336,6 +338,8 @@ button {
 
 /*-- BACKLIGHT --*/
 #backlight {
+    margin-left: 4px;
+    margin-right: 4px;
     background-color: @background;
     color: @teal;
 }

@@ -33,7 +33,6 @@
     "group/hardware": {
         "format": "  ",
         "orientation": "horizontal",
-        "spacing": 0,
         "modules": [
             "custom/logo",
             "pulseaudio",
