@@ -189,7 +189,7 @@
     },
 
     "custom/logo": {
-        "format": " 󰎟 ",
+        "format": "  ",
         "tooltip": false,
         "return-type": "json",
         "exec-if": "which swaync-client",

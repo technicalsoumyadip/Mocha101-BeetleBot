@@ -135,12 +135,12 @@ button {
     margin-left: 10px;
     border-radius: 10px;
     min-width: 40px;
-    color:@sky;  
+    color:@teal;  
 }
 
 #custom-start:hover {
     min-width: 40px;
-    background-color: @sky;
+    background-color: @teal;
     color: @base;
 }
 
