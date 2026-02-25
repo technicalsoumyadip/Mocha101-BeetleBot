@@ -30,9 +30,16 @@ RST='\033[0m'
 # ------------------------------------------------------
 # LISTS
 # ------------------------------------------------------
-CORE_PKGS=("hyprland" "waybar" "rofi" "rofimoji" "fd" "iwd" "swaync" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland")
-TOOL_PKGS=("swww" "fastfetch" "kitty" "cliphist" "wtype" "wl-clipboard" "jq" "fish" "thunar" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "impala" "curl" "unzip" "grim" "slurp" "libpulse" "sound-theme-freedesktop")
-YAY_PKGS=("grimblast-git" "hyprpicker")
+# Core OS, Window Manager, and Desktop Environment Essentials
+CORE_PKGS=("hyprland" "waybar" "rofi" "iwd" "swaync" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland" "libpulse" "sound-theme-freedesktop")
+
+# User Applications, CLI Utilities, and Theming Tools
+TOOL_PKGS=("kitty" "thunar" "fish" "swww" "fastfetch" "rofimoji" "fd" "cliphist" "wl-clipboard" "wtype" "kvantum" "qt5ct" "qt6ct" "jq" "curl" "unzip" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "impala" "grim" "slurp")
+
+# AUR Packages
+YAY_PKGS=("grimblast-git" "hyprpicker" "kvantum-theme-catppuccin-git")
+
+# Dotfile Folders
 DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "cava" "brewland" "fastfetch")
 
 # ------------------------------------------------------
@@ -68,6 +75,30 @@ echo ""
 separator
 echo -e " ${B_CYN}PHASE 1 : SYSTEM PRE-FLIGHT${RST}"
 separator
+
+act "Checking OS compatibility..."
+if [ -f /etc/os-release ]; then
+    # Load OS information variables
+    . /etc/os-release
+    
+    # Check if the OS is directly Arch, or if it lists 'arch' in its lineage
+    if [[ "$ID" == "arch" || "$ID_LIKE" == *"arch"* ]]; then
+        # Uses the official name (e.g., "EndeavourOS" or "Manjaro Linux")
+        ok "Compatible OS detected: ${B_WHT}${PRETTY_NAME}${RST}"
+    else
+        fail "Incompatible OS: ${PRETTY_NAME:-$ID}"
+        fail "This script requires Arch Linux or an Arch-based distribution."
+        exit 1
+    fi
+else
+    fail "Cannot determine OS. /etc/os-release is missing."
+    exit 1
+fi
+
+if [ "$EUID" -eq 0 ]; then
+    fail "Do not run this script as root! Run it as your normal user."
+    exit 1
+fi
 
 act "Getting root power..."
 sudo -v
