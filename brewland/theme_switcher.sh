@@ -35,10 +35,12 @@ fi
 # Variables based on choice
 if [ "$NEW_FLAVOR" == "latte" ]; then
     GTK_THEME="catppuccin-latte-mauve-standard+default"
+    KVANTUM_THEME="catppuccin-latte-mauve"
     COLOR_SCHEME="prefer-light"
     VSCODE_THEME="Catppuccin Latte"
 else
     GTK_THEME="catppuccin-mocha-mauve-standard+default"
+    KVANTUM_THEME="catppuccin-mocha-mauve"
     COLOR_SCHEME="prefer-dark"
     VSCODE_THEME="Catppuccin Mocha"
 fi
@@ -63,14 +65,6 @@ mkdir -p "$HOME/.config/gtk-4.0"
 ln -sf "$GTK_THEME_DIR/$GTK_THEME/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
 ln -sf "$GTK_THEME_DIR/$GTK_THEME/gtk-4.0/gtk-dark.css" "$HOME/.config/gtk-4.0/gtk-dark.css"
 ln -sf "$GTK_THEME_DIR/$GTK_THEME/gtk-4.0/assets" "$HOME/.config/gtk-4.0/assets"
-
-# Restart Nautilus safely
-if pgrep -x nautilus > /dev/null; then
-    nautilus -q
-    sleep 0.2
-    nautilus --new-window & 
-    disown
-fi
 
 # --- 3. Waybar ---
 sed -i "s|@import .*|@import \"../waybar/colors/$NEW_FLAVOR.css\";|" "$WAYBAR_STYLE"
@@ -155,6 +149,11 @@ echo "$NEW_FLAVOR" > "$NVIM_FLAVOR_FILE"
 # Send SIGUSR1 to all running Neovim instances to trigger the live reload
 if pgrep -x nvim > /dev/null; then
     pkill -USR1 -x nvim
+fi
+
+# --- 15. Qt / Kvantum ---
+if command -v kvantummanager &> /dev/null; then
+    kvantummanager --set "$KVANTUM_THEME"
 fi
 
 notify-send "Theme Toggled" "System set to Catppuccin $NEW_FLAVOR"
