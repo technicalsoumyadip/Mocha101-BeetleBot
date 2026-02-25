@@ -11,8 +11,6 @@
 
 </div>
 
-> **⚠️ Notice:** The `stable` branch is highly stable and may not receive updates for the next few months. Active development has shifted to the `beta` branch. Once new features are tested and stabilized, they will be merged back into stable.
-
 ## 📖 About This Setup
 
 **BrewLand** is a dotfiles configuration that blends style, performance, and minimalism into one cohesive Hyprland experience. Built heavily around the [Catppuccin Mocha and Latte](https://github.com/catppuccin/catppuccin) palettes, it delivers rich colors, smooth animations, and zero fluff.
