@@ -242,7 +242,6 @@ button {
 
 /*-- BATTERY --*/
 #battery {
-    margin-left: 4px;
     background-color: @background;
     color: @rosewater;
 }
