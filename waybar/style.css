@@ -4,12 +4,14 @@
     font-size: 14px;
     font-weight: bold;
     min-height: 0;
+    margin: 0;
+    border-radius: 10px;
 }
 
 @import "../waybar/colors/mocha.css";
 
 window#waybar {
-    background-color: @background;
+    background-color: @transparent;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -21,37 +23,18 @@ window#waybar.hidden {
 button {
     box-shadow: inset 0 -3px transparent;
     border: none;
-    border-radius: 0;
-}
-
-/* ========================================= */
-/* NEW HARDWARE DRAWER STYLING         */
-/* ========================================= */
-
-#hardware {
-    background-color: @background;
-    margin: 0;
-    padding: 0;
-}
-
-/* Optional: Add hover glow to the drawer itself */
-#hardware:hover {
-    background-color: @background;
-}
-
-/* Ensure items inside don't have conflicting margins */
-#hardware.drawer-child {
-    margin: 0; 
+    border-radius: 10px;
 }
 
 /*-- WORKSPACES --*/
 #workspaces {
+    background-color: @background;
     color: @mauve;
     font-weight: normal;
     font-style: normal;
 }
 #workspaces button {
-    border-radius: 0px;
+    border-radius: 10px;
     min-width: 20px;
     color: @mauve;
     transition: all 0.1s ease-in-out;
@@ -59,7 +42,7 @@ button {
 #workspaces button.active {
     background: @mauve;
     color: @base;
-    border-radius: 0px;
+    border-radius: 10px;
     min-width: 30px;
     background-size: 400% 400%;
     transition: all 0.1s ease-in-out;
@@ -68,7 +51,7 @@ button {
 #workspaces button:hover {
     background: @mauve;
     color: @base;
-    border-radius: 0px;
+    border-radius: 10px;
     min-width: 30px;
 }
 
@@ -104,7 +87,7 @@ button {
     background-color: @background;
     color: @peach;                
     min-width: 20px;
-    border-radius: 0px;
+    border-radius: 10px;
 }
 
 #idle_inhibitor.activated {
@@ -119,14 +102,14 @@ button {
 
 /*-- TRAY --*/
 #tray {
-    border-radius: 0px;
+    border-radius: 10px;
     background-color: @base;
     color: @lavender;
 }
 
 /*-- MPD --*/
 #mpd {
-    border-radius: 0px;
+    background-color: @background;    border-radius: 10px;
     color:@green;  
 }
 
@@ -146,9 +129,27 @@ button {
     border-radius: 12px;
 } */
 
+/*-- CUSTOM START --*/
+#custom-start {
+    background-color: @background;
+    margin-left: 10px;
+    border-radius: 10px;
+    min-width: 40px;
+    color:@sky;  
+}
+
+#custom-start:hover {
+    min-width: 40px;
+    background-color: @sky;
+    color: @base;
+}
+
+
 /*-- CUSTOM LOGO --*/
 #custom-logo {
-    border-radius: 0px;
+    margin-right: 10px;
+    background-color: @background;
+    border-radius: 10px;
     min-width: 40px;
     color:@sky;  
 }
@@ -175,7 +176,8 @@ button {
 
 /*-- BLUETOOTH --*/
 #bluetooth{
-    border-radius: 0px;
+    background-color: @background;
+    border-radius: 10px;
     min-width: 20px;
     color:@flamingo;
 }
@@ -187,7 +189,8 @@ button {
 
 /*-- CLOCK --*/
 #clock {
-    border-radius: 0px;
+    background-color: @background;
+    border-radius: 10px;
     color: @yellow;
 }
 
@@ -198,7 +201,8 @@ button {
 
 /*-- NETWORK --*/
 #network {
-    border-radius: 0px;
+    background-color: @background;
+    border-radius: 10px;
     color:@lavender;
     transition: background-color 0.5s ease;
 }
@@ -209,19 +213,20 @@ button {
 }
 
 #network.disconnected {
-    border-radius: 0px;
+    border-radius: 10px;
     background-color: @red;
     color: @crust;
 }
 
 /*-- PULSEAUDIO --*/
 #pulseaudio {
-    border-radius: 0px;
+    background-color: @background;
+    border-radius: 10px;
     color: @sapphire;
 }
 
 #pulseaudio.muted {
-    border-radius: 0px;
+    border-radius: 10px;
     background-color: @red;
     color: @crust;
 }
@@ -231,8 +236,31 @@ button {
     color: @base;
 }
 
+
+/* ========================================= */
+/* NEW HARDWARE DRAWER STYLING         */
+/* ========================================= */
+
+#hardware {
+    border-radius: 10px;
+    background-color: @background;
+    margin: 0;
+    padding: 0;
+}
+
+#hardware:hover {
+    background-color: @background;
+}
+
+/* Ensure items inside don't have conflicting margins */
+#hardware.drawer-child {
+    margin: 0; 
+}
+
+
 /*-- POMODORO --*/
 #custom-pomodoro {
+    background-color: @background;
     padding: 0 10px;
     color: @maroon;
 }
@@ -278,6 +306,7 @@ button {
 
 /*-- BATTERY --*/
 #battery {
+    background-color: @background;
     color: @rosewater;
 }
 
@@ -308,6 +337,7 @@ button {
 
 /*-- BACKLIGHT --*/
 #backlight {
+    background-color: @background;
     color: @teal;
 }
 
