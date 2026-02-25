@@ -33,6 +33,7 @@
     "group/hardware": {
         "format": "  ",
         "orientation": "horizontal",
+        "spacing": 0,
         "modules": [
             "custom/logo",
             "pulseaudio",
@@ -46,6 +47,7 @@
             "children-class": "drawer-child",
             "transition-left-to-right": false
         }
+
     },
 
     // WORKSPACES //

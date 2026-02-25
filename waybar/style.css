@@ -147,16 +147,16 @@ button {
 /*-- CUSTOM LOGO --*/
 #custom-logo {
     margin-right: 10px;
-    background-color: @background;
+    background-color: @sky;
     border-radius: 10px;
     min-width: 40px;
-    color:@sky;  
+    color:@background;  
 }
 
 #custom-logo:hover {
     min-width: 40px;
-    background-color: @sky;
-    color: @base;
+    background-color: @background;
+    color: @sky;
 }
 
 
@@ -243,8 +243,9 @@ button {
 
 #hardware {
     margin-right: 10px;
+    padding-left: 10px;
     border-radius: 10px;
-    background-color: @background;
+    background-color: @sky;
 }
 
 #hardware:hover {
