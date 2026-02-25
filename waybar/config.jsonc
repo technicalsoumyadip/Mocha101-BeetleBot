@@ -36,10 +36,10 @@
         "modules": [
             "custom/logo",
             "pulseaudio",
-            "bluetooth",
-            "network",
+            "backlight",
             "battery",
-            "backlight"            
+            "bluetooth",
+            "network"            
         ],
         "drawer": {
             "transition-duration": 500,

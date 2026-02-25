@@ -174,20 +174,6 @@ button {
     margin-right: 0;
 }
 
-/*-- BLUETOOTH --*/
-#bluetooth{
-    margin-left: 4px;
-    background-color: @background;
-    border-radius: 10px;
-    min-width: 20px;
-    color:@flamingo;
-}
-
-#bluetooth:hover {
-    background-color: @flamingo;
-    color: @base;
-}
-
 /*-- CLOCK --*/
 #clock {
     background-color: @background;
@@ -197,44 +183,6 @@ button {
 
 #clock:hover {
     background-color: @yellow;
-    color: @base;
-}
-
-/*-- NETWORK --*/
-#network {
-    margin-left: 4px;
-    background-color: @background;
-    border-radius: 10px;
-    color:@lavender;
-    transition: background-color 0.5s ease;
-}
-
-#network:hover {
-    background-color: @lavender;
-    color: @base;
-}
-
-#network.disconnected {
-    border-radius: 10px;
-    background-color: @red;
-    color: @crust;
-}
-
-/*-- PULSEAUDIO --*/
-#pulseaudio {
-    background-color: @background;
-    border-radius: 10px;
-    color: @sapphire;
-}
-
-#pulseaudio.muted {
-    border-radius: 10px;
-    background-color: @red;
-    color: @crust;
-}
-
-#pulseaudio:hover {
-    background-color: @sapphire;
     color: @base;
 }
 
@@ -256,6 +204,100 @@ button {
 /* Ensure items inside don't have conflicting margins */
 #hardware.drawer-child {
 }
+
+/*-- NETWORK --*/
+#network {
+    margin-right: 4px;
+    background-color: @background;
+    border-radius: 10px;
+    color:@lavender;
+    transition: background-color 0.5s ease;
+}
+
+#network:hover {
+    background-color: @lavender;
+    color: @base;
+}
+
+#network.disconnected {
+    border-radius: 10px;
+    background-color: @red;
+    color: @crust;
+}
+
+/*-- BLUETOOTH --*/
+#bluetooth{
+    margin-right: 4px;
+    margin-left: 4px;
+    background-color: @background;
+    border-radius: 10px;
+    min-width: 20px;
+    color:@flamingo;
+}
+
+#bluetooth:hover {
+    background-color: @flamingo;
+    color: @base;
+}
+
+/*-- BATTERY --*/
+#battery {
+    margin-left: 4px;
+    background-color: @background;
+    color: @rosewater;
+}
+
+#battery:hover {
+    background-color: @rosewater;
+    color: @base;
+}
+
+#battery.charging, #battery.plugged {
+    color: @green;
+}
+
+@keyframes blink {
+    to {
+        background-color: @crust;
+        color: @text;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/*-- BACKLIGHT --*/
+#backlight {
+    margin-right: 4px;
+    margin-left: 4px;
+    background-color: @background;
+    color: @teal;
+}
+
+/*-- PULSEAUDIO --*/
+#pulseaudio {
+    background-color: @background;
+    border-radius: 10px;
+    color: @sapphire;
+}
+
+#pulseaudio.muted {
+    border-radius: 10px;
+    background-color: @red;
+    color: @crust;
+}
+
+#pulseaudio:hover {
+    background-color: @sapphire;
+    color: @base;
+}
+
 
 
 /*-- POMODORO --*/
@@ -302,46 +344,6 @@ button {
     0% { background-color: @green; color: @base; }
     50% { background-color: @base; color: @green; }
     100% { background-color: @green; color: @base; }
-}
-
-/*-- BATTERY --*/
-#battery {
-    margin-left: 4px;
-    background-color: @background;
-    color: @rosewater;
-}
-
-#battery:hover {
-    background-color: @rosewater;
-    color: @base;
-}
-
-#battery.charging, #battery.plugged {
-    color: @green;
-}
-
-@keyframes blink {
-    to {
-        background-color: @crust;
-        color: @text;
-    }
-}
-
-#battery.critical:not(.charging) {
-    color: @red;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-/*-- BACKLIGHT --*/
-#backlight {
-    margin-left: 4px;
-    margin-right: 4px;
-    background-color: @background;
-    color: @teal;
 }
 
 #backlight:hover {
