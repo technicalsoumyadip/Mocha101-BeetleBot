@@ -1,12 +1,15 @@
 {
     // GLOBAL CONFIGURATION //
     "layer": "top",
-    "position": "top",
+    "position": "bottom",
     "spacing": 4,
+    //"width": 1900,
+    "margin-bottom": 5,
     "height": 30,
 
     // MODULE LAYOUT //
     "modules-left": [
+        "custom/start",
         "clock",
         "mpd"
     ],
@@ -16,7 +19,13 @@
     "modules-right": [
         "idle_inhibitor",
         "custom/pomodoro",
-        "group/hardware"
+        "pulseaudio",
+        "bluetooth",
+        "network",
+        "battery",
+        "backlight",
+        "custom/logo"
+//        "group/hardware"
     ],
 
 // CAVA //
@@ -27,22 +36,22 @@
 //    },
 
     // HARDWARE DRAWER GROUP //
-    "group/hardware": {
-        "orientation": "horizontal",
-        "modules": [
-            "custom/logo",
-            "pulseaudio",
-            "bluetooth",
-            "network",
-            "battery",
-            "backlight"            
-        ],
-        "drawer": {
-            "transition-duration": 500,
-            "children-class": "drawer-child",
-            "transition-left-to-right": false
-        }
-    },
+//    "group/hardware": {
+//       "orientation": "horizontal",
+//        "modules": [
+//            "custom/logo",
+//            "pulseaudio",
+//            "bluetooth",
+//            "network",
+//            "battery",
+//           "backlight"            
+//        ],
+//        "drawer": {
+//            "transition-duration": 500,
+//            "children-class": "drawer-child",
+//            "transition-left-to-right": false
+//        }
+//    },
 
     // WORKSPACES //
     "hyprland/workspaces": {
@@ -169,8 +178,18 @@
     },
 
     // CUSTOM MODULES //
-    "custom/logo": {
+        "custom/start": {
         "format": "  ",
+        "tooltip": false,
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "rofi -show drun",
+        "escape": true
+    },
+
+    "custom/logo": {
+        "format": " 󰎟 ",
         "tooltip": false,
         "return-type": "json",
         "exec-if": "which swaync-client",
