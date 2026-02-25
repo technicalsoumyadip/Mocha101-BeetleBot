@@ -99,11 +99,11 @@ The **Super** (Windows) key is your primary modifier.
 | `Super + .` | Emoji Picker |
 | `Super + Alt + Space` | Search Files |
 | `Super + Shift + W` | Wallpaper Menu |
-| `Super + Shift + M` | Music Menu |
+| `Super + Shift + M` | Music Menu (You have to look through the directory setup in the rofi file and mpd,mpc,rmpc files) |
 | `Super + Alt + N` | Network Manager (`impala`) |
 | `Super + Alt + B` | Bluetooth Manager (`bluetui`) |
-| `Super + Shift + D` | Drive Script |
-| `Super + Shift + B` | Backup Drive Script |
+| `Super + Shift + D` | Drive Script (Personal, you can do use this to open ur own rclone drive - name it 'work') |
+| `Super + Shift + B` | Backup Drive Script (Personal, you can do use this to open ur own rclone drive - name it 'backup') |
 
 ### Window Management & Layout
 
