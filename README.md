@@ -19,8 +19,6 @@ Think of it as the perfect espresso shot for your Linux desktop: **smooth, bold,
 
 <img width="1920" height="1080" alt="20260225_195335" src="https://github.com/user-attachments/assets/548e7985-0143-4f40-b35c-d10ef3d750e1" />
 
-<img width="1920" height="1080" alt="20260225_201122" src="https://github.com/user-attachments/assets/5e93b5cd-d4ce-487a-9c28-57610e87b9cd" />
-
 
 ## ✨ Features
 
