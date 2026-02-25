@@ -19,13 +19,7 @@
     "modules-right": [
         "idle_inhibitor",
         "custom/pomodoro",
-        "pulseaudio",
-        "bluetooth",
-        "network",
-        "battery",
-        "backlight",
-        "custom/logo"
-//        "group/hardware"
+        "group/hardware"
     ],
 
 // CAVA //
@@ -36,22 +30,23 @@
 //    },
 
     // HARDWARE DRAWER GROUP //
-//    "group/hardware": {
-//       "orientation": "horizontal",
-//        "modules": [
-//            "custom/logo",
-//            "pulseaudio",
-//            "bluetooth",
-//            "network",
-//            "battery",
-//           "backlight"            
-//        ],
-//        "drawer": {
-//            "transition-duration": 500,
-//            "children-class": "drawer-child",
-//            "transition-left-to-right": false
-//        }
-//    },
+    "group/hardware": {
+        "format": "  ",
+        "orientation": "horizontal",
+        "modules": [
+            "custom/logo",
+            "pulseaudio",
+            "bluetooth",
+            "network",
+            "battery",
+            "backlight"            
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "drawer-child",
+            "transition-left-to-right": false
+        }
+    },
 
     // WORKSPACES //
     "hyprland/workspaces": {

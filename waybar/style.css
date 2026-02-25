@@ -4,7 +4,6 @@
     font-size: 14px;
     font-weight: bold;
     min-height: 0;
-    margin: 0;
     border-radius: 10px;
 }
 
@@ -160,6 +159,7 @@ button {
     color: @base;
 }
 
+
 /*-- WINDOW & WORKSPACE MARGINS --*/
 #window,
 #workspaces {
@@ -242,10 +242,9 @@ button {
 /* ========================================= */
 
 #hardware {
+    margin-right: 10px;
     border-radius: 10px;
     background-color: @background;
-    margin: 0;
-    padding: 0;
 }
 
 #hardware:hover {
@@ -254,7 +253,6 @@ button {
 
 /* Ensure items inside don't have conflicting margins */
 #hardware.drawer-child {
-    margin: 0; 
 }
 
 
