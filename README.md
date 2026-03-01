@@ -112,7 +112,7 @@ The **Super** (Windows) key is your primary modifier.
 | `Super + V` | Toggle Floating Mode |
 | `Super + Left Click` | Move Floating Window (Drag) |
 | `Super + Right Click` | Resize Floating Window (Drag) |
-| `Super + Arrows` | Move Focus (Left/Right/Up/Down) |
+| `Super + (Up/Down/Left/Right)Arrows` | Move Focus (Up/Down/Left/Right) |
 
 #### Scroll layout specific
 
