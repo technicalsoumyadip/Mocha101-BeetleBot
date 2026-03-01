@@ -26,7 +26,7 @@ Think of it as the perfect espresso shot for your Linux desktop: **smooth, bold,
 - **🖼️ Dynamic Wallpapers:** Uses `swww` for dynamic wallpaper switching, powered by a custom wallpaper picker built with Rofi.
 - **🔍 Deep Rofi Integration:** A fully integrated Rofi ecosystem for application launching, emoji picking, file searching, wallpaper selection, and music picking.
 - **🔔 Notification Center:** Beautifully styled `SwayNC` with custom Catppuccin CSS, perfectly integrated with the Waybar module.
-- **🖥️ Master Layout:** Configured for a productive master-stack workflow, featuring a custom "Shelf" (special workspace) for minimized/background apps.
+- **🖥️ Scrolling Layout:** Configured for a productive scrolling-stack workflow, featuring a special workspace for minimized/background apps.
 - **🔒 Integrated Lock Screen:** A cohesive `hyprlock` + `hypridle` setup for seamless security and power management.
 - **🌐 Network & Bluetooth:** Features well-built `impala` (WiFi) and `bluetui` (Bluetooth) setups, mapped to custom keybinds and Waybar modules.
 
