@@ -109,13 +109,19 @@ The **Super** (Windows) key is your primary modifier.
 
 | Keybind | Action |
 | --- | --- |
-| `Super + Arrows` | Move Focus (Up/Down/Left/Right) |
-| `Super + Shift + Left` | Swap Window with Master |
 | `Super + V` | Toggle Floating Mode |
-| `Super + G` | Toggle Tabbed Group |
-| `Super + Tab` | Cycle Active Group |
 | `Super + Left Click` | Move Floating Window (Drag) |
 | `Super + Right Click` | Resize Floating Window (Drag) |
+| `Super + Arrows` | Move Focus (Left/Right/Up/Down) |
+
+#### Scroll layout specific
+
+| Keybind | Action |
+| --- | --- |
+| `Super + Shift + (Left/Right) Arrows` | Swap Focused Window with (Left/Right) Window |
+| `Super + Shift + Return` | Make the focused window fit the whole screen |
+| `Super + Shift + (Up/Down) Arrows` | Adjust the column size of the window |
+| `Super + Scroll` | Cycle Through the Windows |
 
 ### Workspaces
 
@@ -123,7 +129,7 @@ The **Super** (Windows) key is your primary modifier.
 | --- | --- |
 | `Super + 1-0` | Switch to Workspace 1-10 |
 | `Super + Shift + 1-0` | Move Active Window to Workspace 1-10 |
-| `Super + Scroll` | Cycle Through Workspaces |
+| `Super + Shift + Scroll` | Cycle Through Workspaces |
 | `Super + S` | Toggle "Magic" Shelf (Special Workspace) |
 | `Super + Shift + S` | Move Active Window to "Magic" Shelf |
 | `Super + Alt + S` | Bring Window to Current Workspace |
