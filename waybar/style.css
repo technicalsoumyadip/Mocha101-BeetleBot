@@ -79,26 +79,6 @@ button {
     margin: 0 0px;
 }
 
-/*-- CUSTOM UPDATES --*/
-
-#custom-updates {
-    background-color: @background;
-    border-radius: 10px;
-    color: @sapphire;
-    padding: 0 10px;
-    transition: all 0.3s ease-in-out;
-}
-
-#custom-updates.pending {
-    background-color: @red;
-    color: @sapphire;
-}
-
-#custom-updates:hover {
-    background-color: @sapphire;
-    color: @background;
-}
-
 /* ========================================= */
 /*              IDLE_INHIBITOR               */
 /* ========================================= */
