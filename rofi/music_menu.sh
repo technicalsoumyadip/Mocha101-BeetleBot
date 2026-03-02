@@ -3,7 +3,7 @@
 NOTIFY_TITLE="Music Menu"
 
 THEME_OVERRIDE="
-    configuration { show-icons: true; } 
+    configuration { show-icons: true; }
     window { 
         width: 90%; 
         anchor: center; location: center;
@@ -11,17 +11,7 @@ THEME_OVERRIDE="
     } 
     mainbox {
         background-color: transparent;
-        children: [ inputbar, listview ];
-    }
-    inputbar {
-        background-color: transparent;
-        border: 0px;
-        margin: 0px 0px 20px 0px;
-        padding: 10px 0px;
-    }
-    entry {
-        background-color: transparent;
-        text-color: @fg-col;
+        children: [ listview ];
     }
     listview { 
         columns: 6; lines: 1; 
@@ -71,6 +61,14 @@ fi
 
 declare -A THUMB_CACHE
 MAP_FILE="/tmp/rofi_music_map"
+CURRENT_DIR_FILE="/tmp/rofi_music_dir"
+
+# Load last directory or start at root
+if [ -f "$CURRENT_DIR_FILE" ]; then
+    CURRENT_DIR=$(cat "$CURRENT_DIR_FILE")
+else
+    CURRENT_DIR=""
+fi
 
 get_thumbnail() {
     local file_path="$1"
@@ -101,210 +99,114 @@ get_thumbnail() {
         done
     done
     
-    # Generic audio file fallback
+    # Generic fallback
     THUMB_CACHE["$dir_path"]="audio-x-generic"
     echo "audio-x-generic"
 }
 
-STATE="main"
-CURRENT_DIR=""
-CURRENT_ALBUM=""
+# Fetch contents of current directory
+DISPLAY_LIST=""
+> "$MAP_FILE" 
 
-while true; do
-    DISPLAY_LIST=""
-    PROMPT="Music"
-    > "$MAP_FILE" 
+PLAYLIST=$(mpc ls "$CURRENT_DIR" 2>/dev/null)
 
-    if [ "$STATE" = "main" ]; then
-        PROMPT="Main Menu"
-        DISPLAY_LIST="  Albums\0icon\x1ffolder-music\n  Songs\0icon\x1ffolder-music\n  Folders\0icon\x1ffolder"
+# Only show Go Up if we are not at the root
+if [ -n "$CURRENT_DIR" ]; then
+    DISPLAY_LIST="..  (Go Up)\0icon\x1fgo-up\n"
+fi
 
-    elif [ "$STATE" = "albums" ]; then
-        PROMPT="Albums"
-        DISPLAY_LIST="..  (Go Up)\0icon\x1fgo-up\n"
-        
-        if [ -z "${ALBUM_CACHE:-}" ]; then
-            declare -A ALBUM_FILE_CACHE
-            while IFS='|' read -r fil alb; do
-                if [ -n "$alb" ] && [ -z "${ALBUM_FILE_CACHE["$alb"]}" ]; then
-                    ALBUM_FILE_CACHE["$alb"]="$fil"
+while IFS= read -r item; do
+    [ -z "$item" ] && continue
+    name=$(basename "$item")
+    
+    if [[ "$item" == *.* ]]; then
+        # It's a file
+        icon=$(get_thumbnail "$item")
+        display_str="  $name"
+        DISPLAY_LIST+="${display_str}\0icon\x1f$icon\n"
+        echo "${display_str}|${item}" >> "$MAP_FILE"
+    else
+        # It's a folder
+        icon="folder"
+        full_dir="$MUSIC_DIR/$item"
+        for ext in jpg png; do
+            for cname in cover folder front album art; do
+                if [ -f "$full_dir/$cname.$ext" ]; then
+                    icon="$full_dir/$cname.$ext"
+                    break 2
                 fi
-            done <<< "$(mpc --format "%file%|%album%" search filename "")"
-            ALBUM_CACHE="built"
-        fi
-        
-        while IFS= read -r alb; do
-            [ -z "$alb" ] && continue
-            icon="folder-music"
-            if [ -n "${ALBUM_FILE_CACHE["$alb"]}" ]; then
-                thumbnail=$(get_thumbnail "${ALBUM_FILE_CACHE["$alb"]}")
-                if [ "$thumbnail" != "audio-x-generic" ]; then
-                    icon="$thumbnail"
+                if [ -f "$full_dir/${cname^}.$ext" ]; then
+                    icon="$full_dir/${cname^}.$ext"
+                    break 2
                 fi
-            fi
-            DISPLAY_LIST+="  $alb\0icon\x1f$icon\n"
-        done <<< "$(mpc list album | awk 'NF')"
-
-    elif [ "$STATE" = "album_songs" ]; then
-        PROMPT="Album: $CURRENT_ALBUM"
-        DISPLAY_LIST="..  (Go Up)\0icon\x1fgo-up\n"
-        
-        while IFS='|' read -r file title; do
-            [ -z "$file" ] && continue
-            icon=$(get_thumbnail "$file")
-            name="${title:-$(basename "$file")}"
-            display_str="  $name"
-            DISPLAY_LIST+="${display_str}\0icon\x1f$icon\n"
-            echo "${display_str}|${file}" >> "$MAP_FILE"
-        done <<< "$(mpc --format "%file%|%title%" search album "$CURRENT_ALBUM")"
-
-    elif [ "$STATE" = "songs" ]; then
-        PROMPT="All Songs"
-        DISPLAY_LIST="..  (Go Up)\0icon\x1fgo-up\n"
-        
-        while IFS='|' read -r file title artist; do
-            [ -z "$file" ] && continue
-            icon=$(get_thumbnail "$file")
-            if [ -n "$title" ] && [ -n "$artist" ]; then
-                name="$title - $artist"
-            elif [ -n "$title" ]; then
-                name="$title"
-            else
-                name="$(basename "$file")"
-            fi
-            display_str="  $name"
-            DISPLAY_LIST+="${display_str}\0icon\x1f$icon\n"
-            echo "${display_str}|${file}" >> "$MAP_FILE"
-        done <<< "$(mpc --format "%file%|%title%|%artist%" search filename "")"
-
-    elif [ "$STATE" = "folders" ]; then
-        PROMPT="Folders"
-        PLAYLIST=$(mpc ls "$CURRENT_DIR" 2>/dev/null)
-        DISPLAY_LIST="..  (Go Up)\0icon\x1fgo-up\n"
-        
-        while IFS= read -r item; do
-            [ -z "$item" ] && continue
-            name=$(basename "$item")
-            
-            if [[ "$item" == *.* ]]; then
-                icon=$(get_thumbnail "$item")
-                display_str="  $name"
-                DISPLAY_LIST+="${display_str}\0icon\x1f$icon\n"
-                echo "${display_str}|${item}" >> "$MAP_FILE"
-            else
-                icon="folder"
-                full_dir="$MUSIC_DIR/$item"
-                for ext in jpg png; do
-                    for cname in cover folder front album art; do
-                        if [ -f "$full_dir/$cname.$ext" ]; then
-                            icon="$full_dir/$cname.$ext"
-                            break 2
-                        fi
-                        if [ -f "$full_dir/${cname^}.$ext" ]; then
-                            icon="$full_dir/${cname^}.$ext"
-                            break 2
-                        fi
-                    done
-                done
-                DISPLAY_LIST+="  $name\0icon\x1f$icon\n"
-            fi
-        done <<< "$PLAYLIST"
+            done
+        done
+        DISPLAY_LIST+="  $name\0icon\x1f$icon\n"
     fi
+done <<< "$PLAYLIST"
 
-    # Using -n suppresses the trailing newline Bash naturally adds to echo [web:148]
-    # We also remove any trailing \n added programmatically at the end of the built string
-    DISPLAY_LIST=$(echo "$DISPLAY_LIST" | sed 's/\\n$//')
-    CHOSEN=$(echo -e -n "$DISPLAY_LIST" | rofi -dmenu -i -p "$PROMPT" -theme-str "$THEME_OVERRIDE")
+# Clean trailing newline
+DISPLAY_LIST=$(echo "$DISPLAY_LIST" | sed '/^$/d')
 
-    if [ -z "$CHOSEN" ]; then
-        exit 0
+# Trigger Rofi Menu
+# We added single-click functionality via command line arguments here instead of the theme!
+CHOSEN=$(echo -e -n "$DISPLAY_LIST" | rofi -dmenu -i -theme-str "$THEME_OVERRIDE" -hover-select -me-select-entry '' -me-accept-entry MousePrimary)
+
+# If empty (user pressed Escape or closed window)
+if [ -z "$CHOSEN" ]; then
+    # Reset dir file so it opens fresh next time
+    echo "" > "$CURRENT_DIR_FILE"
+    exit 0
+fi
+
+# --- FOLDER / FILE NAVIGATION ---
+if [[ "$CHOSEN" == "..  (Go Up)" ]]; then
+    if [ -n "$CURRENT_DIR" ]; then
+        CURRENT_DIR=$(dirname "$CURRENT_DIR")
+        [ "$CURRENT_DIR" = "." ] && CURRENT_DIR=""
+        echo "$CURRENT_DIR" > "$CURRENT_DIR_FILE"
     fi
+    # Re-run the script to show the new folder
+    exec "$0"
+fi
 
-    if [ "$CHOSEN" = ":p" ]; then
-        mpc toggle > /dev/null
-        notify-send "$NOTIFY_TITLE" "Playback Toggled"
-        continue
-    elif [ "$CHOSEN" = ":s" ]; then
-        mpc stop > /dev/null
-        notify-send "$NOTIFY_TITLE" "Playback Stopped"
-        continue
+# If it's a Folder (Starts with the folder icon)
+if [[ "$CHOSEN" == * ]]; then
+    clean_name="${CHOSEN:3}"
+    if [ -z "$CURRENT_DIR" ]; then
+        CURRENT_DIR="$clean_name"
+    else
+        CURRENT_DIR="$CURRENT_DIR/$clean_name"
     fi
+    echo "$CURRENT_DIR" > "$CURRENT_DIR_FILE"
+    # Re-run the script to show the new folder
+    exec "$0"
+fi
 
-    if [[ "$CHOSEN" == "..  (Go Up)" ]]; then
-        if [ "$STATE" = "folders" ]; then
-            if [ -z "$CURRENT_DIR" ]; then
-                STATE="main"
-            else
-                CURRENT_DIR=$(dirname "$CURRENT_DIR")
-                [ "$CURRENT_DIR" = "." ] && CURRENT_DIR=""
-            fi
-        elif [ "$STATE" = "albums" ] || [ "$STATE" = "songs" ]; then
-            STATE="main"
-        elif [ "$STATE" = "album_songs" ]; then
-            STATE="albums"
-        fi
-        continue
+# If it's a File (Starts with the music icon)
+if [[ "$CHOSEN" == * ]]; then
+    file_path=$(grep -F "$CHOSEN|" "$MAP_FILE" | head -n 1 | cut -d'|' -f2-)
+    
+    mpc clear > /dev/null
+    
+    # Add the entire directory to the playlist so you can skip through it
+    if [ -z "$CURRENT_DIR" ]; then
+        mpc add "$file_path" > /dev/null
+    else
+        mpc add "$CURRENT_DIR" > /dev/null
     fi
-
-    if [ "$STATE" = "main" ]; then
-        if [[ "$CHOSEN" == *"Albums"* ]]; then STATE="albums"; fi
-        if [[ "$CHOSEN" == *"Songs"* ]]; then STATE="songs"; fi
-        if [[ "$CHOSEN" == *"Folders"* ]]; then STATE="folders"; fi
-        continue
+    
+    # Find the exact position of the selected song in the new playlist
+    song_pos=$(mpc playlist -f "%file%" | grep -nFx "$file_path" | cut -d: -f1 | head -n 1)
+    
+    if [ -n "$song_pos" ]; then
+        mpc play "$song_pos" > /dev/null
+    else
+        mpc play > /dev/null
     fi
-
-    if [ "$STATE" = "albums" ]; then
-        CURRENT_ALBUM="${CHOSEN:3}"
-        STATE="album_songs"
-        continue
-    fi
-
-    if [[ "$CHOSEN" == * ]]; then
-        clean_name="${CHOSEN:3}"
-        if [ -z "$CURRENT_DIR" ]; then
-            CURRENT_DIR="$clean_name"
-        else
-            CURRENT_DIR="$CURRENT_DIR/$clean_name"
-        fi
-        continue
-    fi
-
-    if [[ "$CHOSEN" == * ]]; then
-        file_path=$(grep -F "$CHOSEN|" "$MAP_FILE" | head -n 1 | cut -d'|' -f2-)
-        
-        if [ "$STATE" = "folders" ]; then
-            mpc clear > /dev/null
-            if [ -z "$CURRENT_DIR" ]; then
-                mpc add "$file_path" > /dev/null
-            else
-                mpc add "$CURRENT_DIR" > /dev/null
-            fi
-            song_pos=$(mpc playlist -f "%file%" | grep -nFx "$file_path" | cut -d: -f1 | head -n 1)
-            
-            if [ -n "$song_pos" ]; then
-                mpc play "$song_pos" > /dev/null
-            else
-                mpc play > /dev/null
-            fi
-            
-        elif [ "$STATE" = "album_songs" ]; then
-            mpc clear > /dev/null
-            mpc findadd album "$CURRENT_ALBUM" > /dev/null
-            song_pos=$(mpc playlist -f "%file%" | grep -nFx "$file_path" | cut -d: -f1 | head -n 1)
-            
-            if [ -n "$song_pos" ]; then
-                mpc play "$song_pos" > /dev/null
-            else
-                mpc play > /dev/null
-            fi
-            
-        elif [ "$STATE" = "songs" ]; then
-            mpc clear > /dev/null
-            mpc add "$file_path" > /dev/null
-            mpc play > /dev/null
-        fi
-        
-        notify-send "$NOTIFY_TITLE" "Playing: ${CHOSEN:3}"
-        exit 0
-    fi
-done
+    
+    notify-send "$NOTIFY_TITLE" "Playing: ${CHOSEN:3}"
+    # Reset dir to root when a song is picked so it opens cleanly next time
+    echo "" > "$CURRENT_DIR_FILE"
+    exit 0
+fi
