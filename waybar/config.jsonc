@@ -11,7 +11,8 @@
     "modules-left": [
         "custom/start",
         "clock",
-        "mpd"
+        "custom/updates",
+        "mpris"
     ],
     "modules-center": [
         "hyprland/workspaces"
@@ -28,6 +29,19 @@
 //        "format": "{}",
 //        "tooltip": false
 //    },
+
+
+
+    // Custom Updates Module //
+    
+    "custom/updates": {
+        "format": "󰚰 {}",
+        "return-type": "json",
+        "interval": 300,
+        "exec": "~/.config/brewland/update_menu/update_menu.sh --status",
+        "on-click": "kitty --class update-terminal -e ~/.config/brewland/update_menu/update_menu.sh",
+        "signal": 8
+    },
 
     // HARDWARE DRAWER GROUP //
     "group/hardware": {
@@ -73,6 +87,28 @@
     },
 
     // MEDIA PLAYER //
+
+    "mpris": {
+        "format": "{status_icon} {title} - {artist}",
+        "format-paused": "{status_icon} <i>{title} - {artist}</i>",
+        "player-icons": {
+            "default": "▶",
+            "spotify": "",
+            "firefox": "󰈹",
+            "vlc": "󰕼"
+        },
+        "status-icons": {
+            "playing": "",
+            "paused": "⏸"
+        },
+        "max-length": 35,
+        "interval": 1,
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "tooltip-format": "Player: {player}\nTitle: {title}\nArtist: {artist}\nAlbum: {album}"
+    },
+
     "mpd": {
         "server": "127.0.0.1",
         "port": 6600,

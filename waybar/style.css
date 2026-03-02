@@ -79,6 +79,26 @@ button {
     margin: 0 0px;
 }
 
+/*-- CUSTOM UPDATES --*/
+
+#custom-updates {
+    background-color: @background;
+    border-radius: 10px;
+    color: @sapphire;
+    padding: 0 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+#custom-updates.pending {
+    background-color: @red;
+    color: @sapphire;
+}
+
+#custom-updates:hover {
+    background-color: @sapphire;
+    color: @background;
+}
+
 /* ========================================= */
 /*              IDLE_INHIBITOR               */
 /* ========================================= */
@@ -104,6 +124,20 @@ button {
     border-radius: 10px;
     background-color: @base;
     color: @lavender;
+}
+
+/*-- MPRIS --*/
+#mpris {
+    background-color: @background;
+    border-radius: 10px;
+    color: @green;
+    /* Adding a little padding often helps with text alignment in Waybar */
+    padding: 0 10px; 
+}
+
+#mpris:hover {
+    background-color: @green;
+    color: @base;
 }
 
 /*-- MPD --*/
@@ -415,6 +449,7 @@ button {
 #wireplumber.muted {
     background-color: #f53c3c;
 }
+
 
 /*-- CUSTOM MEDIA --*/
 #custom-media {
