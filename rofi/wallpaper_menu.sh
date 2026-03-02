@@ -17,7 +17,17 @@ THEME_GALLERY="
     } 
     mainbox {
         background-color: transparent;
-        children: [ listview ];
+        children: [ inputbar, listview ];
+    }
+    inputbar {
+        background-color: transparent;
+        border: 0px;
+        margin: 0px 0px 20px 0px;
+        padding: 10px 0px;
+    }
+    entry {
+        background-color: transparent;
+        text-color: @fg-col;
     }
     listview { 
         columns: 6; lines: 1; 
@@ -64,7 +74,11 @@ pick_dir() {
     while true; do
         dirs=$(find "$current_dir" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -printf "%f\n" | sort)
         options="  Use This Folder\n..\n$dirs"
-        chosen=$(echo -e "$options" | rofi -dmenu -i -p "$current_dir" -theme-str "$THEME_PICKER")
+        
+        # Prevent empty trailing newline ghost-boxes in the picker too
+        options=$(echo "$options" | sed '/^$/d')
+        chosen=$(echo -e -n "$options" | rofi -dmenu -i -p "$current_dir" -theme-str "$THEME_PICKER")
+        
         if [ -z "$chosen" ]; then exit 1
         elif [ "$chosen" == "  Use This Folder" ]; then echo "$current_dir"; return 0
         elif [ "$chosen" == ".." ]; then current_dir=$(dirname "$current_dir")
@@ -88,7 +102,9 @@ for img in "$WALL_DIR"/*.{jpg,jpeg,png,gif,webp,bmp}; do
     ROFI_LIST+="$filename\0icon\x1f$img\n"
 done
 
-CHOSEN=$(echo -e "$ROFI_LIST" | rofi -dmenu -i -p "Wallpapers" -theme-str "$THEME_GALLERY")
+# Strip the trailing newline from the loop to prevent the empty blank box 
+ROFI_LIST=$(echo "$ROFI_LIST" | sed 's/\\n$//')
+CHOSEN=$(echo -e -n "$ROFI_LIST" | rofi -dmenu -i -p "Wallpapers" -theme-str "$THEME_GALLERY")
 
 ## ACTION HANDLER
 if [ -z "$CHOSEN" ]; then
