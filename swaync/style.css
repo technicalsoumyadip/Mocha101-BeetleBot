@@ -5,35 +5,49 @@
   border-radius: 10px;
 }
 
-.control-center .notification-row:focus,
-.control-center .notification-row:hover {
-  opacity: 1;
-  background: @mantle;
+/* Floating notification window */
+.floating-notifications {
+  background: transparent;
 }
 
+/* Notification rows */
 .notification-row {
   outline: none;
-  background: @base;
+  background: transparent;
   margin: 0;
   padding: 0;
+  transition: background 0.15s ease-in-out;
 }
 
+.notification-row:hover,
+.notification-row:focus {
+  background: transparent;
+  opacity: 1;
+}
+
+/* Notification card */
 .notification {
   background: @base;
-  margin: 3px -2px 3px 0;
+  margin: 8px 10px 8px 0;
+  padding: 10px 10px 10px 10px;
+  border-radius: 12px;
+  border: 2px solid alpha(@mauve, 0.85);
+  box-shadow: none;
 }
 
+/* App icon */
 .notification .app-icon {
   margin-right: 16px;
 }
 
+/* Close button */
 .close-button {
   background: @red;
   color: @base;
   text-shadow: none;
   padding: 0;
   margin-top: 5px;
-  margin-right: 5px;    /* Gives the grouped cards some breathing room */
+  margin-right: 5px;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   border: none;
@@ -46,23 +60,106 @@
 .close-button:hover {
   background: @maroon;
   box-shadow: none;
-  transition: all 0.15s ease-in-out;
 }
 
+/* Title */
+.summary {
+  font-family: "iMWritingMono Nerd Font Propo";
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  padding-top: 2px;
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  background: transparent;
+  color: @sapphire;
+}
+
+/* Time */
+.time {
+  font-size: 14px;
+  font-weight: 600;
+  color: @text;
+  margin-right: 18px;
+}
+
+/* Body */
+.body {
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 800;
+  color: @text;
+}
+
+/* Grouped notifications */
 .notification-group {
-  background-color: @base; 
+  background-color: @base;
   border: 2px solid @mauve;
-  border-radius: 10px;     
-  padding: 8px;            
-  margin: 0px 10px 10px 0px; 
+  border-radius: 10px;
+  padding: 8px;
+  margin: 6px 10px 10px 0;
 }
 
-.notification-default-action:hover,
-.notification-action:hover {
-  color: @blue;
+/* Control center */
+.control-center {
   background: @base;
+  padding: 12px 6px 6px 6px;
 }
 
+.control-center .notification-row:hover,
+.control-center .notification-row:focus {
+  background: @mantle;
+  opacity: 1;
+}
+
+/* Header widget */
+.widget-title {
+  color: @mauve;
+  background: @mantle;
+  padding: 8px 12px;
+  margin: 10px;
+  font-size: 1.4rem;
+  border-bottom: 1px solid @surface0;
+}
+
+.widget-title > button {
+  font-size: 1rem;
+  color: @text;
+  background: @crust;
+  box-shadow: none;
+  border: none;
+}
+
+.widget-title > button:hover {
+  background: @red;
+  color: @base;
+}
+
+/* DND widget */
+.widget-dnd {
+  margin: 0 10px 10px 10px;
+  padding: 8px 12px;
+  background: @mantle;
+  font-weight: 600;
+}
+
+.widget-dnd:hover {
+  background: @surface0;
+}
+
+/* Action buttons */
+.notification-action > button {
+  color: @text;
+  background: @crust;
+  border: 1px solid @surface0;
+  box-shadow: none;
+}
+
+.notification-action > button:hover {
+  background-color: @mantle;
+}
+
+/* Inline reply */
 .inline-reply-entry {
   background: @mantle;
   color: @text;
@@ -78,70 +175,12 @@
   color: @text;
 }
 
-.inline-reply-button:disabled {
-  background: transparent;
-  color: @subtext0;
-  border: 1px solid transparent;
-}
-
 .inline-reply-button:hover {
   background: @mauve;
 }
 
-.summary {
-  font-size: 16px;
-  font-weight: 700;
+.inline-reply-button:disabled {
   background: transparent;
-  color: @sapphire;
-  text-shadow: none;
-}
-
-.time {
-  font-size: 16px;
-  font-weight: 700;
-  background: transparent;
-  color: @text;
-  text-shadow: none;
-  margin-right: 18px;
-}
-
-.body {
-  font-size: 15px;
-  font-weight: 400;
-  background: transparent;
-  color: @text;
-  text-shadow: none;
-}
-
-.control-center {
-  background: @base;
-}
-
-.widget-title {
-  color: @mauve;
-  background: @mantle;
-  padding: 5px 10px;
-  margin: 10px;
-  font-size: 1.5rem;
-}
-
-.widget-title>button {
-  font-size: 1rem;
-  color: @text;
-  background: @crust;
-  box-shadow: none;
-}
-
-.widget-title>button:hover {
-  background: @red;
-  color: @base;
-}
-
-.notification-action>button {
-  color: @text;
-}
-
-.notification-action>button:hover {
-  background-color: @base;
-  color: @base;
+  color: @subtext0;
+  border: 1px solid transparent;
 }
