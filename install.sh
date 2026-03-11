@@ -34,7 +34,7 @@ RST='\033[0m'
 CORE_PKGS=("hyprland" "waybar" "rofi" "iwd" "swaync" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland" "libpulse" "sound-theme-freedesktop")
 
 # User Applications, CLI Utilities, and Theming Tools
-TOOL_PKGS=("kitty" "thunar" "mpd-mpris" "fish" "swww" "fastfetch" "rofimoji" "fd" "cliphist" "wl-clipboard" "wtype" "kvantum" "qt5ct" "qt6ct" "jq" "curl" "unzip" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "impala" "grim" "slurp")
+TOOL_PKGS=("kitty" "thunar" "mpd-mpris" "fish" "swww" "fastfetch" "rofimoji" "fd" "cliphist" "wl-clipboard" "wtype" "kvantum" "qt5ct" "qt6ct" "jq" "curl" "unzip" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "impala" "grim" "slurp" "tumbler" "ffmpegthumbnailer" "poppler-glib" "libgsf" "libopenraw" "freetype2")
 
 # AUR Packages
 YAY_PKGS=("grimblast-git" "hyprpicker" "kvantum-theme-catppuccin-git")
