@@ -9,7 +9,6 @@ printf \
 "󰏖  INSTALL PACKAGES\n\
 󰆴  REMOVE PACKAGES\n\
 󰚰  UPDATE PACKAGES\n\
-󰄬  CLEAN ORPHAN PACKAGES\n\
 󰃢  CLEAN CACHE\n" | $rofi_cmd
 }
 
@@ -112,15 +111,6 @@ case "$choice" in
         ;;
 
     esac
-;;
-
-*"CLEAN ORPHAN PACKAGES")
-    orphans=$(pacman -Qtdq)
-    if [ -n "$orphans" ]; then
-        $terminal -e bash -c "sudo pacman -Rns $orphans; echo; read -p 'Press Enter to close...'"
-    else
-        notify-send "Package Manager" "No orphan packages found"
-    fi
 ;;
 
 *"CLEAN CACHE")
