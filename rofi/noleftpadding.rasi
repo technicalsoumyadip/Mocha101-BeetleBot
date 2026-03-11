@@ -106,14 +106,6 @@ element-text {
     vertical-align: 0.5;
 }
 
-inputbar {
-    enabled: false;
-}
-
-entry {
-    enabled: false;
-}
-
 element-icon {
     enabled: false;
 }
