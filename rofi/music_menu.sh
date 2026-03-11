@@ -2,7 +2,7 @@
 
 NOTIFY_TITLE="Music Menu"
 
-## THEME SETUP (List layout, no GTK icons)
+## THEME SETUP 
 THEME_OVERRIDE="
     configuration { show-icons: false; }
     window { 
@@ -99,15 +99,15 @@ EXIT_CODE=$?
 # --- ACTION LOGIC ---
 
 case "$EXIT_CODE" in
-    10) # Alt+p pressed: Toggle Play/Pause
+    10) 
         mpc toggle > /dev/null
         exec "$0"
         ;;
-    11) # Alt+. pressed: Next Song
+    11) 
         mpc next > /dev/null
         exec "$0"
         ;;
-    12) # Alt+, pressed: Previous Song
+    12) 
         mpc prev > /dev/null
         exec "$0"
         ;;
@@ -156,7 +156,7 @@ case "$EXIT_CODE" in
             exit 0
         fi
         ;;
-    *)  # Esc or cancelled
+    *)  
         exit 0
         ;;
 esac
