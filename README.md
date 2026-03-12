@@ -74,10 +74,9 @@ The **Super** (Windows) key is your primary modifier.
 | `Super + Return` | Open Terminal |
 | `Super + Q` | Kill Active Window |
 | `Super + X` | Exit Hyprland |
-| `Super + Shift + X` | Poweroff |
-| `Super + Shift + R` | Reboot |
-| `Super + Shift + L` | Lock Screen (Hyprlock) |
+| `Super + Shift + L` | Lock Screen (`Hyprlock`) |
 | `Super + R` | Reload Waybar (`waybar-relaunch.sh`) |
+| `Super + P` | Toggle Power Mode (`toggle_power.sh`) |
 | `Super + Shift + Z` | Toggle Theme (`theme_switcher.sh`) |
 
 ### Applications
@@ -89,6 +88,8 @@ The **Super** (Windows) key is your primary modifier.
 | `Super + C` | Editor (Codium) |
 | `Super + O` | Notes (Obsidian) |
 | `Super + F` | Fadein |
+| `Super + Alt + N` | Network (impala) |
+| `Super + Alt + B` | Bluetooth (bluetui) |
 
 ### Rofi Menus & Utilities
 
@@ -97,13 +98,17 @@ The **Super** (Windows) key is your primary modifier.
 | `Super + Space` | Open App Launcher |
 | `Super + /` | Clipboard History |
 | `Super + .` | Emoji Picker |
-| `Super + Alt + Space` | Search Files |
+| `Super + Shift + Space` | Search Files |
 | `Super + Shift + W` | Wallpaper Menu |
 | `Super + Shift + M` | Music Menu (You have to look through the directory setup in the rofi file and mpd,mpc,rmpc files) |
-| `Super + Alt + N` | Network Manager (`impala`) |
-| `Super + Alt + B` | Bluetooth Manager (`bluetui`) |
-| `Super + Shift + D` | Drive Script (Personal, you can do use this to open ur own rclone drive - name it 'work') |
-| `Super + Shift + B` | Backup Drive Script (Personal, you can do use this to open ur own rclone drive - name it 'backup') |
+| `Super + Shift + X` | Power Menu |
+| `Super + Shift + P` | Package Menu |
+| `Super + Shift + A` | Audio Switcher |
+| `Super + Shift + F` | File Browser |
+
+### Rclone scripts
+| `Super + Shift + D` | Drive Script (Personal, you can do use this to open ur own rclone drive. just name it 'work') |
+| `Super + Shift + B` | Backup Drive Script (Personal, you can do use this to open ur own rclone drive. just name it 'backup') |
 
 ### Window Management & Layout
 
