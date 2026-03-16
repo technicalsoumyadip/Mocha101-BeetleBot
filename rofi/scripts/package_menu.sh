@@ -16,7 +16,6 @@ install_menu() {
 printf \
 "󰏖  PACMAN\n\
 󰏖  AUR\n\
-  FLATPAK\n\
 󰜺  EXIT\n" | $rofi_cmd
 }
 
@@ -24,7 +23,6 @@ remove_menu() {
 printf \
 "󰆴  PACMAN\n\
 󰆴  AUR\n\
-  FLATPAK\n\
 󰜺  EXIT\n" | $rofi_cmd
 }
 
@@ -32,7 +30,6 @@ update_menu() {
 printf \
 "󰚰  PACMAN\n\
 󰚰  AUR\n\
-  FLATPAK\n\
 󰜺  EXIT\n" | $rofi_cmd
 }
 
@@ -62,11 +59,6 @@ case "$choice" in
         [ -n "$pkg" ] && $terminal -e bash -c "yay -S $pkg; echo; read -p 'Press Enter to close...'"
         ;;
 
-    *"FLATPAK")
-        app=$(flatpak search --columns=application | rofi -dmenu -i -p "Install (FLATPAK)")
-        [ -n "$app" ] && $terminal -e bash -c "flatpak install flathub $app; echo; read -p 'Press Enter to close...'"
-        ;;
-
     esac
 ;;
 
@@ -85,11 +77,6 @@ case "$choice" in
         [ -n "$pkg" ] && $terminal -e bash -c "yay -R $pkg; echo; read -p 'Press Enter to close...'"
         ;;
 
-    *"FLATPAK")
-        app=$(flatpak list --app --columns=application | rofi -dmenu -i -p "Remove (FLATPAK)")
-        [ -n "$app" ] && $terminal -e bash -c "flatpak uninstall $app; echo; read -p 'Press Enter to close...'"
-        ;;
-
     esac
 ;;
 
@@ -105,11 +92,7 @@ case "$choice" in
     *"AUR")
         $terminal -e bash -c "yay -Sua; echo; read -p 'Press Enter to close...'"
         ;;
-
-    *"FLATPAK")
-        $terminal -e bash -c "flatpak update; echo; read -p 'Press Enter to close...'"
-        ;;
-
+    
     esac
 ;;
 
