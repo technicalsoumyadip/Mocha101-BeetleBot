@@ -11,6 +11,7 @@ BRIDGE_FILE="$HOME/.config/hypr/HLconfigs/theme-colors.conf"
 KITTY_CONF="$HOME/.config/kitty/kitty.conf"
 WAYBAR_STYLE="$HOME/.config/waybar/style.css"
 CODIUM_SETTINGS="$HOME/.config/VSCodium/User/settings.json"
+ANTIGRAVITY_SETTINGS="$HOME/.config/Antigravity/User/settings.json"
 FASTFETCH_CONFIG="$HOME/.config/fastfetch/config.jsonc"
 FASTFETCH_THEMES="$HOME/.config/fastfetch/themes"
 CAVA_DIR="$HOME/.config/cava"
@@ -91,6 +92,10 @@ fi
 
 # --- 5. VSCodium ---
 safe_sed "s/\"workbench.colorTheme\": \".*\"/\"workbench.colorTheme\": \"$VSCODE_THEME\"/" "$CODIUM_SETTINGS"
+
+# --- 5.5. Antigravity ---
+safe_sed "s/\"workbench.colorTheme\": \".*\"/\"workbench.colorTheme\": \"$VSCODE_THEME\"/" "$ANTIGRAVITY_SETTINGS"
+safe_sed "s/\"workbench.iconTheme\": \".*\"/\"workbench.iconTheme\": \"catppuccin-$NEW_FLAVOR\"/" "$ANTIGRAVITY_SETTINGS"
 
 # --- 6. SwayNC ---
 safe_ln "$HOME/.config/swaync/colors/$NEW_FLAVOR.css" "$HOME/.config/swaync/colors/current_colors.css"
