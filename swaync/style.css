@@ -3,6 +3,7 @@
 * {
   font-family: "iMWritingMono Nerd Font Propo", monospace;
   border-radius: 10px;
+  color: @text;
 }
 
 /* Floating notification window */
@@ -28,11 +29,12 @@
 /* Notification card */
 .notification {
   background: @base;
-  margin: 8px 10px 8px 0;
-  padding: 10px 10px 10px 10px;
-  border-radius: 12px;
-  border: 2px solid alpha(@mauve, 0.85);
-  box-shadow: none;
+  color: @text;
+  margin: 10px 10px 10px 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* App icon */
@@ -94,16 +96,20 @@
 /* Grouped notifications */
 .notification-group {
   background-color: @base;
-  border: 2px solid @mauve;
-  border-radius: 10px;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   padding: 8px;
-  margin: 6px 10px 10px 0;
+  margin: 10px 10px 10px 0;
 }
 
 /* Control center */
 .control-center {
   background: @base;
-  padding: 12px 6px 6px 6px;
+  color: @text;
+  border-radius: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.35);
+  padding: 16px 10px 10px 10px;
 }
 
 .control-center .notification-row:hover,
@@ -116,30 +122,34 @@
 .widget-title {
   color: @mauve;
   background: @mantle;
-  padding: 8px 12px;
-  margin: 10px;
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin: 6px 10px 16px 10px;
   font-size: 1.4rem;
-  border-bottom: 1px solid @surface0;
+  border-bottom: none;
 }
 
-.widget-title > button {
+.widget-title>button {
   font-size: 1rem;
   color: @text;
-  background: @crust;
+  background: transparent;
   box-shadow: none;
   border: none;
 }
 
-.widget-title > button:hover {
+.widget-title>button:hover {
   background: @red;
   color: @base;
+  border-radius: 10px;
 }
 
 /* DND widget */
 .widget-dnd {
-  margin: 0 10px 10px 10px;
-  padding: 8px 12px;
+  margin: 0 10px 16px 10px;
+  padding: 12px 16px;
   background: @mantle;
+  color: @text;
+  border-radius: 16px;
   font-weight: 600;
 }
 
@@ -148,14 +158,14 @@
 }
 
 /* Action buttons */
-.notification-action > button {
+.notification-action>button {
   color: @text;
   background: @crust;
   border: 1px solid @surface0;
   box-shadow: none;
 }
 
-.notification-action > button:hover {
+.notification-action>button:hover {
   background-color: @mantle;
 }
 

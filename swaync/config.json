@@ -6,13 +6,13 @@
   "positionX": "right",
   "positionY": "bottom",
 
-  "control-center-width": 500,
+  "control-center-width": 460,
 
-  "control-center-margin-top": 10,
-  "control-center-margin-bottom": 10,
-  "control-center-margin-right": 10,
+  "control-center-margin-top": 15,
+  "control-center-margin-bottom": 15,
+  "control-center-margin-right": 15,
 
-  "notification-window-width": 450,
+  "notification-window-width": 460,
 
   "notification-body-image-height": 100,
   "notification-body-image-width": 200,
