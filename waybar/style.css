@@ -32,12 +32,14 @@ button {
     font-weight: normal;
     font-style: normal;
 }
+
 #workspaces button {
     border-radius: 10px;
     min-width: 20px;
     color: @mauve;
     transition: all 0.1s ease-in-out;
 }
+
 #workspaces button.active {
     background: @mauve;
     color: @base;
@@ -84,18 +86,18 @@ button {
 /* ========================================= */
 #idle_inhibitor {
     background-color: @background;
-    color: @peach;                
+    color: @peach;
     min-width: 20px;
     border-radius: 10px;
 }
 
 #idle_inhibitor.activated {
-    background-color: @peach;     
-    color: @base;                 
+    background-color: @peach;
+    color: @base;
 }
 
 #idle_inhibitor:hover {
-    background-color: @peach;     
+    background-color: @peach;
     color: @base;
 }
 
@@ -112,7 +114,7 @@ button {
     border-radius: 10px;
     color: @green;
     /* Adding a little padding often helps with text alignment in Waybar */
-    padding: 0 10px; 
+    padding: 0 10px;
 }
 
 #mpris:hover {
@@ -122,8 +124,9 @@ button {
 
 /*-- MPD --*/
 #mpd {
-    background-color: @background;    border-radius: 10px;
-    color:@green;  
+    background-color: @background;
+    border-radius: 10px;
+    color: @green;
 }
 
 #mpd:hover {
@@ -148,7 +151,7 @@ button {
     margin-left: 10px;
     border-radius: 10px;
     min-width: 40px;
-    color:@teal;  
+    color: @teal;
 }
 
 #custom-start:hover {
@@ -164,7 +167,7 @@ button {
     background-color: @background;
     border-radius: 10px;
     min-width: 40px;
-    color:@sky;  
+    color: @sky;
 }
 
 #custom-logo:hover {
@@ -180,11 +183,11 @@ button {
     margin: 0 0px;
 }
 
-.modules-left > widget:first-child > #workspaces {
+.modules-left>widget:first-child>#workspaces {
     margin-left: 0px;
 }
 
-.modules-right > widget:last-child > #workspaces {
+.modules-right>widget:last-child>#workspaces {
     margin-right: 0;
 }
 
@@ -215,15 +218,14 @@ button {
 }
 
 /* Ensure items inside don't have conflicting margins */
-#hardware.drawer-child {
-}
+#hardware.drawer-child {}
 
 /*-- NETWORK --*/
 #network {
     margin-right: 4px;
     background-color: @background;
     border-radius: 10px;
-    color:@lavender;
+    color: @lavender;
     transition: background-color 0.5s ease;
 }
 
@@ -239,13 +241,13 @@ button {
 }
 
 /*-- BLUETOOTH --*/
-#bluetooth{
+#bluetooth {
     margin-right: 4px;
     margin-left: 4px;
     background-color: @background;
     border-radius: 10px;
     min-width: 20px;
-    color:@flamingo;
+    color: @flamingo;
 }
 
 #bluetooth:hover {
@@ -264,7 +266,8 @@ button {
     color: @base;
 }
 
-#battery.charging, #battery.plugged {
+#battery.charging,
+#battery.plugged {
     color: @green;
 }
 
@@ -347,15 +350,37 @@ button {
 }
 
 @keyframes blink-red {
-    0% { background-color: @red; color: @base; }
-    50% { background-color: @base; color: @red; }
-    100% { background-color: @red; color: @base; }
+    0% {
+        background-color: @red;
+        color: @base;
+    }
+
+    50% {
+        background-color: @base;
+        color: @red;
+    }
+
+    100% {
+        background-color: @red;
+        color: @base;
+    }
 }
 
 @keyframes blink-green {
-    0% { background-color: @green; color: @base; }
-    50% { background-color: @base; color: @green; }
-    100% { background-color: @green; color: @base; }
+    0% {
+        background-color: @green;
+        color: @base;
+    }
+
+    50% {
+        background-color: @base;
+        color: @green;
+    }
+
+    100% {
+        background-color: @green;
+        color: @base;
+    }
 }
 
 #backlight:hover {
@@ -381,11 +406,11 @@ button {
     min-width: 16px;
 }
 
-#keyboard-state > label {
+#keyboard-state>label {
     padding: 0 5px;
 }
 
-#keyboard-state > label.locked {
+#keyboard-state>label.locked {
     background: rgba(0, 0, 0, 0.2);
 }
 
@@ -395,7 +420,7 @@ button {
 }
 
 #scratchpad.empty {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 /*-- PRIVACY --*/
@@ -494,4 +519,3 @@ label:focus {
 #disk {
     background-color: #964B00;
 }
-
