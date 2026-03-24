@@ -102,6 +102,9 @@ safe_ln "$HOME/.config/swaync/colors/$NEW_FLAVOR.css" "$HOME/.config/swaync/colo
 swaync-client -rs
 echo "$NEW_FLAVOR" > ~/.config/swaync/current_flavor
 
+# --- 6.5. Hyprlock ---
+safe_ln "$HOME/.config/hypr/hyprlock/themes/$NEW_FLAVOR.conf" "$HOME/.config/hypr/hyprlock/themes/current.conf"
+
 # --- 7. rmpc ---
 safe_ln "$HOME/.config/rmpc/themes/$NEW_FLAVOR.ron" "$HOME/.config/rmpc/themes/current_theme.ron"
 
