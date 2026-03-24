@@ -10,7 +10,8 @@
 @import "../waybar/colors/mocha.css";
 
 window#waybar {
-    background-color: @transparent;
+    background-color: @backgroundt;
+    border-radius: 0;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -27,7 +28,7 @@ button {
 
 /*-- WORKSPACES --*/
 #workspaces {
-    background-color: @background;
+    /* background-color: @backgroundt; */
     color: @mauve;
     font-weight: normal;
     font-style: normal;
@@ -41,7 +42,7 @@ button {
 }
 
 #workspaces button.active {
-    background: @mauve;
+    background: @mauvet;
     color: @base;
     border-radius: 10px;
     min-width: 30px;
@@ -85,14 +86,14 @@ button {
 /*              IDLE_INHIBITOR               */
 /* ========================================= */
 #idle_inhibitor {
-    background-color: @background;
+    /*    background-color: @backgroundt; */
     color: @peach;
     min-width: 20px;
     border-radius: 10px;
 }
 
 #idle_inhibitor.activated {
-    background-color: @peach;
+    background-color: @peacht;
     color: @base;
 }
 
@@ -104,13 +105,13 @@ button {
 /*-- TRAY --*/
 #tray {
     border-radius: 10px;
-    background-color: @base;
+    /* background-color: @baset; */
     color: @lavender;
 }
 
 /*-- MPRIS --*/
 #mpris {
-    background-color: @background;
+    /* background-color: @backgroundt; */
     border-radius: 10px;
     color: @green;
     /* Adding a little padding often helps with text alignment in Waybar */
@@ -124,7 +125,7 @@ button {
 
 /*-- MPD --*/
 #mpd {
-    background-color: @background;
+    /* background-color: @backgroundt; */
     border-radius: 10px;
     color: @green;
 }
@@ -147,7 +148,7 @@ button {
 
 /*-- CUSTOM START --*/
 #custom-start {
-    background-color: @background;
+    /* background-color: @backgroundt; */
     margin-left: 10px;
     border-radius: 10px;
     min-width: 40px;
@@ -164,7 +165,7 @@ button {
 /*-- CUSTOM LOGO --*/
 #custom-logo {
     margin-right: 10px;
-    background-color: @background;
+    /* background-color: @backgroundt; */
     border-radius: 10px;
     min-width: 40px;
     color: @sky;
@@ -193,7 +194,7 @@ button {
 
 /*-- CLOCK --*/
 #clock {
-    background-color: @background;
+    /* background-color: @backgroundt; */
     border-radius: 10px;
     color: @yellow;
 }
@@ -210,11 +211,11 @@ button {
 
 #hardware {
     border-radius: 10px;
-    background-color: @transparent;
+    background-color: @transparentt;
 }
 
 #hardware:hover {
-    background-color: @transparent;
+    background-color: @transparentt;
 }
 
 /* Ensure items inside don't have conflicting margins */
@@ -223,7 +224,7 @@ button {
 /*-- NETWORK --*/
 #network {
     margin-right: 4px;
-    background-color: @background;
+    /* background-color: @backgroundt; */
     border-radius: 10px;
     color: @lavender;
     transition: background-color 0.5s ease;
@@ -244,7 +245,7 @@ button {
 #bluetooth {
     margin-right: 4px;
     margin-left: 4px;
-    background-color: @background;
+    /* background-color: @backgroundt; */
     border-radius: 10px;
     min-width: 20px;
     color: @flamingo;
@@ -257,7 +258,7 @@ button {
 
 /*-- BATTERY --*/
 #battery {
-    background-color: @background;
+    /* background-color: @backgroundt; */
     color: @rosewater;
 }
 
@@ -291,13 +292,13 @@ button {
 #backlight {
     margin-right: 4px;
     margin-left: 4px;
-    background-color: @background;
+    /* background-color: @backgroundt; */
     color: @teal;
 }
 
 /*-- PULSEAUDIO --*/
 #pulseaudio {
-    background-color: @background;
+    /* background-color: @backgroundt; */
     border-radius: 10px;
     color: @sapphire;
 }
@@ -317,7 +318,7 @@ button {
 
 /*-- POMODORO --*/
 #custom-pomodoro {
-    background-color: @background;
+    /* background-color: @backgroundt; */
     padding: 0 10px;
     color: @maroon;
 }

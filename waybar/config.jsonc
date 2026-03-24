@@ -1,12 +1,11 @@
 {
     // GLOBAL CONFIGURATION //
     "layer": "top",
-    "position": "bottom",
+    "position": "top",
     "spacing": 4,
     //"width": 1900,
-    "margin-bottom": 10,
+    //"margin-bottom": 10,
     "height": 30,
-
     // MODULE LAYOUT //
     "modules-left": [
         "custom/start",
@@ -21,15 +20,12 @@
         "custom/pomodoro",
         "group/hardware"
     ],
-
-// CAVA //
-//    "custom/cava": {
-//        "exec": "cava -p ~/.config/cava/waybar.conf | sed -u 's/;//g;s/0/ /g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'",
-//        "format": "{}",
-//        "tooltip": false
-//    },
-
-
+    // CAVA //
+    //    "custom/cava": {
+    //        "exec": "cava -p ~/.config/cava/waybar.conf | sed -u 's/;//g;s/0/ /g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'",
+    //        "format": "{}",
+    //        "tooltip": false
+    //    },
     // HARDWARE DRAWER GROUP //
     "group/hardware": {
         "format": "  ",
@@ -40,16 +36,14 @@
             "backlight",
             "battery",
             "bluetooth",
-            "network"            
+            "network"
         ],
         "drawer": {
             "transition-duration": 500,
             "children-class": "drawer-child",
             "transition-left-to-right": false
         }
-
     },
-
     // WORKSPACES //
     "hyprland/workspaces": {
         "on-click": "activate",
@@ -72,9 +66,7 @@
             "3": []
         }
     },
-
     // MEDIA PLAYER //
-
     "mpris": {
         "format": "{status_icon} {title} - {artist}",
         "format-paused": "{status_icon} <i>{title} - {artist}</i>",
@@ -95,7 +87,6 @@
         "on-scroll-down": "playerctl previous",
         "tooltip-format": "Player: {player}\nTitle: {title}\nArtist: {artist}\nAlbum: {album}"
     },
-
     "mpd": {
         "server": "127.0.0.1",
         "port": 6600,
@@ -114,27 +105,23 @@
         "on-scroll-down": "mpc prev",
         "tooltip-format": "MPD: {artist} - {album} - {title}"
     },
-
     //IDLE_INHIBITOR//
-
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "",
-            "deactivated": "" 
+            "deactivated": ""
         },
         "tooltip": true,
         "tooltip-format-activated": "Caffeine Mode: Active (Stay Awake)",
         "tooltip-format-deactivated": "Caffeine Mode: Inactive (Sleep Enabled)"
     },
-
     // SYSTEM & HARDWARE //
     "clock": {
         "tooltip-format": "{calendar}",
         "format-alt": "{:%a, %d %b %Y}",
         "format": "{:%I:%M %p}"
     },
-
     "pulseaudio": {
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}  {format_source}",
@@ -149,17 +136,29 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["󰕿", "󰖀", "󰕾"]
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
         },
         "on-click-middle": "pavucontrol",
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
-
     "backlight": {
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
-
     "battery": {
         "states": {
             "warning": 30,
@@ -170,9 +169,14 @@
         "format-charging": "󰂄",
         "format-plugged": "",
         "format-alt": "{capacity}% ",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
-
     // CONNECTIVITY //
     "network": {
         "format-wifi": "󰤨 {essid}",
@@ -183,19 +187,17 @@
         "format-disconnected": "Disconnected 󰤮",
         "on-click": "kitty --class impala -e impala"
     },
-
     "bluetooth": {
         "format-on": "",
         "format-off": "󰂲",
-        "format-disabled": "", 
+        "format-disabled": "",
         "format-connected": "󰂱 {num_connections}",
         "tooltip-format-connected": "{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "on-click": "kitty --class bluetui -e bluetui"
     },
-
     // CUSTOM MODULES //
-        "custom/start": {
+    "custom/start": {
         "format": "  ",
         "tooltip": false,
         "return-type": "json",
@@ -204,7 +206,6 @@
         "on-click": "rofi -show drun",
         "escape": true
     },
-
     "custom/logo": {
         "format": "  ",
         "tooltip": false,
@@ -216,7 +217,6 @@
         "on-click-middle": "$HOME/.config/rofi/wallpaper_menu.sh",
         "escape": true
     },
-
     "custom/pomodoro": {
         "format": "{}",
         "return-type": "json",
