@@ -305,7 +305,7 @@ button {
 }
 
 @keyframes blink-red {
-    0%, 100% {
+    0% {
         background-color: @red;
         color: @base;
     }
@@ -313,16 +313,24 @@ button {
         background-color: @base;
         color: @red;
     }
+    100% {
+        background-color: @red;
+        color: @base;
+    }
 }
 
 @keyframes blink-green {
-    0%, 100% {
+    0% {
         background-color: @green;
         color: @base;
     }
     50% {
         background-color: @base;
         color: @green;
+    }
+    100% {
+        background-color: @green;
+        color: @base;
     }
 }
 

@@ -1,4 +1,4 @@
-/*****----- Configuration -----*****/
+/* Configuration */
 configuration {
     modes:                       "window,run,ssh,drun";
     sorting-method:              "normal";
@@ -11,10 +11,10 @@ configuration {
     display-ssh:                 "";
 }
 
-/*****----- Theme -----*****/
+/* Theme */
 @theme "themes/colors"
 
-/*****----- Global -----*****/
+/* Global */
 * {
     background-color:            transparent;
     text-color:                  @foreground;
@@ -23,7 +23,7 @@ configuration {
     spacing:                     0px;
 }
 
-/*****----- Main Window -----*****/
+/* Main Window */
 window {
     location:                    center;
     anchor:                      center;
@@ -42,7 +42,7 @@ window {
     cursor:                      "default";
 }
 
-/*****----- Main Box -----*****/
+/* Main Box */
 mainbox {
     enabled:                     true;
     spacing:                     20px;
@@ -55,7 +55,7 @@ mainbox {
     children:                    [ "inputbar", "listview" ];
 }
 
-/*****----- Inputbar -----*****/
+/* Inputbar */
 inputbar {
     enabled:                     true;
     spacing:                     10px;
@@ -84,7 +84,7 @@ entry {
     placeholder-color:           @grey;
 }
 
-/*****----- Listview -----*****/
+/* Listview */
 listview {
     enabled:                     true;
     columns:                     5;
@@ -115,7 +115,7 @@ scrollbar {
     background-color:            @background-alt;
 }
 
-/*****----- Elements -----*****/
+/* Elements */
 element {
     enabled:                     true;
     spacing:                     8px;
@@ -160,7 +160,7 @@ element-text {
     horizontal-align:            0.5;
 }
 
-/*****----- Message -----*****/
+/* Message */
 message {
     margin:                      10px 0 0;
     border-radius:               10px;

@@ -1,5 +1,5 @@
 * {
-    /* Base Palette (Catppuccin Latte) */
+    /* Catppuccin Latte */
     bg-col:         #eff1f5E6;
     bg-col-light:   #e6e9ef;
     border-col:     #ccd0da;
@@ -12,7 +12,7 @@
     wallpaper:      #04a5e5;
     music:          #40a02b;
 
-    /* Aliases for adi1090x-style templates */
+    /* Aliases */
     background:     @bg-col;
     background-alt: @bg-col-light;
     foreground:     @fg-col;
