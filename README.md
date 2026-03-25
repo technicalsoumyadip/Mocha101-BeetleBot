@@ -53,12 +53,17 @@ Before installing, ensure you are running **Arch Linux**. The installer relies o
 
 Fire it up in just a few simple steps. The installer will automatically verify your OS, set up `yay`, install dependencies, back up your current configs to `~/ConfigBackup/`, and deploy BrewLand.
 
+**One-Line Remote Install (Recommended):**
 ```bash
-git clone [https://github.com/BeetleBot/BrewLand.git](https://github.com/BeetleBot/BrewLand.git)
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/BeetleBot/BrewLand/main/setup.sh)"
+```
+
+**Alternative (Manual Clone):**
+```bash
+git clone https://github.com/BeetleBot/BrewLand.git
 cd BrewLand
 chmod +x install.sh
 ./install.sh
-
 ```
 
 *Note: A system reboot is recommended after the installation is complete.*
