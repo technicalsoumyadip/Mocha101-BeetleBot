@@ -1,4 +1,4 @@
-/*-- GLOBAL SETTINGS --*/
+/* Global */
 * {
     font-family: 'iMWritingMono Nerd Font Propo', sans-serif;
     font-size: 15px;
@@ -26,9 +26,8 @@ button {
     border-radius: 10px;
 }
 
-/*-- WORKSPACES --*/
+/* Workspaces */
 #workspaces {
-    /* background-color: @backgroundt; */
     color: @mauve;
     font-weight: normal;
     font-style: normal;
@@ -57,7 +56,7 @@ button {
     min-width: 30px;
 }
 
-/*-- GENERAL MODULE PADDING --*/
+/* Common Padding */
 #clock,
 #bluetooth,
 #battery,
@@ -82,11 +81,8 @@ button {
     margin: 0 0px;
 }
 
-/* ========================================= */
-/*              IDLE_INHIBITOR               */
-/* ========================================= */
+/* Inhibitor */
 #idle_inhibitor {
-    /*    background-color: @backgroundt; */
     color: @peach;
     min-width: 20px;
     border-radius: 10px;
@@ -102,53 +98,26 @@ button {
     color: @base;
 }
 
-/*-- TRAY --*/
+/* Tray */
 #tray {
     border-radius: 10px;
-    /* background-color: @baset; */
     color: @lavender;
 }
 
-/*-- MPRIS --*/
-#mpris {
-    /* background-color: @backgroundt; */
+/* Media */
+#mpris, #mpd {
     border-radius: 10px;
     color: @green;
-    /* Adding a little padding often helps with text alignment in Waybar */
     padding: 0 10px;
 }
 
-#mpris:hover {
+#mpris:hover, #mpd:hover {
     background-color: @green;
     color: @base;
 }
 
-/*-- MPD --*/
-#mpd {
-    /* background-color: @backgroundt; */
-    border-radius: 10px;
-    color: @green;
-}
-
-#mpd:hover {
-    background-color: @green;
-    color: @base;
-}
-
-/* In ~/.config/waybar/style.css */
-
-/* #custom-cava {
-    color: @green;
-    font-family: "JetBrainsMono Nerd Font";
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: @background;
-    border-radius: 12px;
-} */
-
-/*-- CUSTOM START --*/
+/* Custom Modules */
 #custom-start {
-    /* background-color: @backgroundt; */
     margin-left: 10px;
     border-radius: 10px;
     min-width: 40px;
@@ -161,11 +130,8 @@ button {
     color: @base;
 }
 
-
-/*-- CUSTOM LOGO --*/
 #custom-logo {
     margin-right: 10px;
-    /* background-color: @backgroundt; */
     border-radius: 10px;
     min-width: 40px;
     color: @sky;
@@ -177,8 +143,7 @@ button {
     color: @base;
 }
 
-
-/*-- WINDOW & WORKSPACE MARGINS --*/
+/* Margins */
 #window,
 #workspaces {
     margin: 0 0px;
@@ -192,9 +157,8 @@ button {
     margin-right: 0;
 }
 
-/*-- CLOCK --*/
+/* Clock */
 #clock {
-    /* background-color: @backgroundt; */
     border-radius: 10px;
     color: @yellow;
 }
@@ -204,11 +168,7 @@ button {
     color: @base;
 }
 
-
-/* ========================================= */
-/* NEW HARDWARE DRAWER STYLING         */
-/* ========================================= */
-
+/* Hardware Drawer */
 #hardware {
     border-radius: 10px;
     background-color: @transparentt;
@@ -218,13 +178,9 @@ button {
     background-color: @transparentt;
 }
 
-/* Ensure items inside don't have conflicting margins */
-#hardware.drawer-child {}
-
-/*-- NETWORK --*/
+/* Network */
 #network {
     margin-right: 4px;
-    /* background-color: @backgroundt; */
     border-radius: 10px;
     color: @lavender;
     transition: background-color 0.5s ease;
@@ -241,11 +197,10 @@ button {
     color: @crust;
 }
 
-/*-- BLUETOOTH --*/
+/* Bluetooth */
 #bluetooth {
     margin-right: 4px;
     margin-left: 4px;
-    /* background-color: @backgroundt; */
     border-radius: 10px;
     min-width: 20px;
     color: @flamingo;
@@ -256,9 +211,8 @@ button {
     color: @base;
 }
 
-/*-- BATTERY --*/
+/* Battery */
 #battery {
-    /* background-color: @backgroundt; */
     color: @rosewater;
 }
 
@@ -288,17 +242,20 @@ button {
     animation-direction: alternate;
 }
 
-/*-- BACKLIGHT --*/
+/* Backlight */
 #backlight {
     margin-right: 4px;
     margin-left: 4px;
-    /* background-color: @backgroundt; */
     color: @teal;
 }
 
-/*-- PULSEAUDIO --*/
+#backlight:hover {
+    background-color: @teal;
+    color: @base;
+}
+
+/* Audio */
 #pulseaudio {
-    /* background-color: @backgroundt; */
     border-radius: 10px;
     color: @sapphire;
 }
@@ -314,11 +271,8 @@ button {
     color: @base;
 }
 
-
-
-/*-- POMODORO --*/
+/* Pomodoro */
 #custom-pomodoro {
-    /* background-color: @backgroundt; */
     padding: 0 10px;
     color: @maroon;
 }
@@ -351,45 +305,28 @@ button {
 }
 
 @keyframes blink-red {
-    0% {
+    0%, 100% {
         background-color: @red;
         color: @base;
     }
-
     50% {
         background-color: @base;
         color: @red;
     }
-
-    100% {
-        background-color: @red;
-        color: @base;
-    }
 }
 
 @keyframes blink-green {
-    0% {
+    0%, 100% {
         background-color: @green;
         color: @base;
     }
-
     50% {
         background-color: @base;
         color: @green;
     }
-
-    100% {
-        background-color: @green;
-        color: @base;
-    }
 }
 
-#backlight:hover {
-    background-color: @teal;
-    color: @base;
-}
-
-/*-- LANGUAGE --*/
+/* System Modules */
 #language {
     background: #00b093;
     color: #740864;
@@ -398,7 +335,6 @@ button {
     min-width: 16px;
 }
 
-/*-- KEYBOARD --*/
 #keyboard-state {
     background: #97e1ad;
     color: #000000;
@@ -415,7 +351,6 @@ button {
     background: rgba(0, 0, 0, 0.2);
 }
 
-/*-- SCRATCHPAD --*/
 #scratchpad {
     background: rgba(0, 0, 0, 0.2);
 }
@@ -424,7 +359,6 @@ button {
     background-color: transparent;
 }
 
-/*-- PRIVACY --*/
 #privacy {
     padding: 0;
 }
@@ -446,7 +380,6 @@ button {
     background-color: #0069d4;
 }
 
-/*-- WIREPLUMBER --*/
 #wireplumber {
     background-color: #fff0f5;
     color: #000000;
@@ -456,8 +389,6 @@ button {
     background-color: #f53c3c;
 }
 
-
-/*-- CUSTOM MEDIA --*/
 #custom-media {
     background-color: #66cc99;
     color: #2a5c45;
@@ -472,7 +403,6 @@ button {
     background-color: #ffa000;
 }
 
-/*-- TEMPERATURE --*/
 #temperature {
     background-color: #f0932b;
 }
@@ -481,7 +411,6 @@ button {
     background-color: #eb4d4b;
 }
 
-/*-- POWER PROFILES --*/
 #power-profiles-daemon {
     padding-right: 15px;
 }
@@ -505,18 +434,15 @@ label:focus {
     background-color: #000000;
 }
 
-/*-- CPU --*/
 #cpu {
     background-color: #2ecc71;
     color: #000000;
 }
 
-/*-- MEMORY --*/
 #memory {
     background-color: #9b59b6;
 }
 
-/*-- DISK --*/
 #disk {
     background-color: #964B00;
 }
