@@ -75,7 +75,7 @@ The **Super** (Windows) key is your primary modifier.
 | `Super + Q` | Kill Active Window |
 | `Super + X` | Exit Hyprland |
 | `Super + Shift + L` | Lock Screen (`Hyprlock`) |
-| `Super + R` | Reload Waybar (`waybar-relaunch.sh`) |
+| `Super + R` | Reload Waybar & Swaync (`relaunchwaybarswaync.sh`) |
 | `Super + P` | Toggle Power Mode (`toggle_power.sh`) |
 | `Super + Shift + Z` | Toggle Theme (`theme_switcher.sh`) |
 
