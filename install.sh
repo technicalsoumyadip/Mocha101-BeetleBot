@@ -45,7 +45,7 @@ warn() { echo -e "${YLW}[ WARN ]${RST} $1"; }
 # 3. PACKAGE LISTS
 # ------------------------------------------------------------------------------
 CORE_PKGS=("hyprland" "waybar" "rofi" "iwd" "swaync" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland" "libpulse" "sound-theme-freedesktop")
-TOOL_PKGS=("kitty" "thunar" "mpd-mpris" "fish" "swww" "fastfetch" "rofimoji" "fd" "cliphist" "wl-clipboard" "wtype" "kvantum" "qt5ct" "qt6ct" "jq" "curl" "unzip" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "impala" "grim" "slurp" "tumbler" "ffmpegthumbnailer" "poppler-glib" "libgsf" "libopenraw" "freetype2")
+TOOL_PKGS=("kitty" "thunar" "mpd-mpris" "fish" "awww" "fastfetch" "rofimoji" "fd" "cliphist" "wl-clipboard" "wtype" "kvantum" "qt5ct" "qt6ct" "jq" "curl" "unzip" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "impala" "grim" "slurp" "tumbler" "ffmpegthumbnailer" "poppler-glib" "libgsf" "libopenraw" "freetype2")
 YAY_PKGS=("grimblast-git" "hyprpicker" "kvantum-theme-catppuccin-git")
 DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "cava" "brewland" "fastfetch")
 
