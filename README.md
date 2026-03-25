@@ -1,186 +1,32 @@
-# ☕ BrewLand v2.0
+# BrewLand v2.0
 
-<div align="center">
+A refined Hyprland configuration centered on the Catppuccin Mocha and Latte palettes. This setup focuses on a minimalist workflow, smooth animations, and consistent system-wide aesthetics.
 
-![Arch Linux](https://img.shields.io/badge/OS-Arch%20Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)
-![Hyprland](https://img.shields.io/badge/WM-Hyprland-00A896?style=for-the-badge&logo=hyprland&logoColor=white)
-![Catppuccin](https://img.shields.io/badge/Theme-Catppuccin-F5C2E7?style=for-the-badge)
-![License](https://img.shields.io/badge/License-GPL%203.0-blue?style=for-the-badge)
+![BrewLand Preview](https://github.com/user-attachments/assets/548e7985-0143-4f40-b35c-d10ef3d750e1)
 
-**An elegant, zero-nonsense Hyprland setup brewed with Catppuccin Mocha & Latte.**
+## Quick Start
 
-</div>
-
-## 📖 About This Setup
-
-**BrewLand** is a dotfiles configuration that blends style, performance, and minimalism into one cohesive Hyprland experience. Built heavily around the [Catppuccin Mocha and Latte](https://github.com/catppuccin/catppuccin) palettes, it delivers rich colors, smooth animations, and zero fluff.
-
-Think of it as the perfect espresso shot for your Linux desktop: **smooth, bold, and just the right amount of aesthetic kick.**
-
-<img width="1920" height="1080" alt="20260225_195335" src="https://github.com/user-attachments/assets/548e7985-0143-4f40-b35c-d10ef3d750e1" />
-
-
-## ✨ Features
-
-- **🎨 Dual Theme:** Seamlessly switch between Catppuccin Mocha (Dark) and Latte (Light) everywhere—from your terminal to the notification center. Includes a `theme_switcher.sh` script to configure GTK and QT apps manually.
-- **🖼️ Dynamic Wallpapers:** Uses `swww` for dynamic wallpaper switching, powered by a custom wallpaper picker built with Rofi.
-- **🔍 Deep Rofi Integration:** A fully integrated Rofi ecosystem for application launching, emoji picking, file searching, wallpaper selection, and music picking.
-- **🔔 Notification Center:** Beautifully styled `SwayNC` with custom Catppuccin CSS, perfectly integrated with the Waybar module.
-- **🖥️ Scrolling Layout:** Configured for a productive scrolling-stack workflow, featuring a special workspace for minimized/background apps.
-- **🔒 Integrated Lock Screen:** A cohesive `hyprlock` + `hypridle` setup for seamless security and power management.
-- **🌐 Network & Bluetooth:** Features well-built `impala` (WiFi) and `bluetui` (Bluetooth) setups, mapped to custom keybinds and Waybar modules.
-
-## 🧰 Core Components
-
-| Component | Tool | Description |
-| :--- | :--- | :--- |
-| **Compositor** | [Hyprland](https://hyprland.org/) | Dynamic tiling Wayland compositor |
-| **Bar** | [Waybar](https://github.com/Alexays/Waybar) | Highly customized status bar with blur |
-| **Wallpapers**| [swww](https://github.com/LGFae/swww) | Handles dynamic background management |
-| **Notifications**| [SwayNC](https://github.com/ErikReider/SwayNotificationCenter) | Notification center with Catppuccin CSS |
-| **Terminal** | [Kitty](https://sw.kovidgoyal.net/kitty/) | GPU-accelerated terminal emulator |
-| **Launcher** | [Rofi](https://github.com/davatorium/rofi) | Search-driven application and system launcher |
-| **Screenshots** | [Grimblast](https://github.com/hyprwm/contrib/tree/main/grimblast) | Essential screenshot utility |
-| **Lock Screen** | [Hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/) | Integrated, customized screen lock |
-| **Font** | [iMWritingMono Nerd](https://www.nerdfonts.com/) | Primary font for Waybar and system UI |
-
-## ⚙️ Installation
-
-### Prerequisites
-Before installing, ensure you are running **Arch Linux**. The installer relies on Arch package managers (`pacman` and `yay`).
-
-### Quick Install
-
-Fire it up in just a few simple steps. The installer will automatically verify your OS, set up `yay`, install dependencies, back up your current configs to `~/ConfigBackup/`, and deploy BrewLand.
-
-**One-Line Remote Install (Recommended):**
+### Remote Install (Recommended)
+Deploy BrewLand instantly with a single command:
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/BeetleBot/BrewLand/main/setup.sh)"
 ```
 
-**Alternative (Manual Clone):**
+### Manual Install
 ```bash
 git clone https://github.com/BeetleBot/BrewLand.git
-cd BrewLand
-chmod +x install.sh
-./install.sh
+cd BrewLand && ./install.sh
 ```
 
-*Note: A system reboot is recommended after the installation is complete.*
+## Documentation
 
-## ⌨️ Keybindings
+All guides, keybindings, and customization tips have been moved to the **[BrewLand Wiki](docs/index.md)**.
 
-The **Super** (Windows) key is your primary modifier.
+- **[Installation Guide](docs/setup.md)**
+- **[Keybindings Reference](docs/keybindings.md)**
+- **[Theming & Colors](docs/theming.md)**
+- **[Configuration Guide](docs/configuration.md)**
+- **[Troubleshooting & FAQ](docs/faq.md)**
 
-### General & System
-
-| Keybind | Action |
-| --- | --- |
-| `Super + Return` | Open Terminal |
-| `Super + Q` | Kill Active Window |
-| `Super + X` | Exit Hyprland |
-| `Super + Shift + L` | Lock Screen (`Hyprlock`) |
-| `Super + R` | Reload Waybar & Swaync (`relaunchwaybarswaync.sh`) |
-| `Super + P` | Toggle Power Mode (`toggle_power.sh`) |
-| `Super + Shift + Z` | Toggle Theme (`theme_switcher.sh`) |
-
-### Applications
-
-| Keybind | Action |
-| --- | --- |
-| `Super + E` | File Manager |
-| `Super + W` | Browser (Zen Browser) |
-| `Super + C` | Editor (Codium) |
-| `Super + O` | Notes (Obsidian) |
-| `Super + F` | Fadein |
-| `Super + Alt + N` | Network (impala) |
-| `Super + Alt + B` | Bluetooth (bluetui) |
-
-### Rofi Menus & Utilities
-
-| Keybind | Action |
-| --- | --- |
-| `Super + Space` | Open App Launcher |
-| `Super + /` | Clipboard History |
-| `Super + .` | Emoji Picker |
-| `Super + Shift + Space` | Search Files |
-| `Super + Shift + W` | Wallpaper Menu |
-| `Super + Shift + M` | Music Menu (You have to look through the directory setup in the rofi file and mpd,mpc,rmpc files) |
-| `Super + Shift + X` | Power Menu |
-| `Super + Shift + P` | Package Menu |
-| `Super + Shift + A` | Audio Switcher |
-| `Super + Shift + F` | File Browser |
-
-### Rclone scripts
-| `Super + Shift + D` | Drive Script (Personal, you can do use this to open ur own rclone drive. just name it 'work') |
-| `Super + Shift + B` | Backup Drive Script (Personal, you can do use this to open ur own rclone drive. just name it 'backup') |
-
-### Window Management & Layout
-
-| Keybind | Action |
-| --- | --- |
-| `Super + V` | Toggle Floating Mode |
-| `Super + Left Click` | Move Floating Window (Drag) |
-| `Super + Right Click` | Resize Floating Window (Drag) |
-| `Super + (Up/Down/Left/Right)Arrows` | Move Focus (Up/Down/Left/Right) |
-
-#### Scroll layout specific
-
-| Keybind | Action |
-| --- | --- |
-| `Super + Shift + (Left/Right) Arrows` | Swap Focused Window with (Left/Right) Window |
-| `Super + Shift + Return` | Make the focused window fit the whole screen |
-| `Super + Shift + (Up/Down) Arrows` | Adjust the column size of the window |
-| `Super + Scroll` | Cycle Through the Windows |
-
-### Workspaces
-
-| Keybind | Action |
-| --- | --- |
-| `Super + 1-0` | Switch to Workspace 1-10 |
-| `Super + Shift + 1-0` | Move Active Window to Workspace 1-10 |
-| `Super + Shift + Scroll` | Cycle Through Workspaces |
-| `Super + S` | Toggle "Magic" Shelf (Special Workspace) |
-| `Super + Shift + S` | Move Active Window to "Magic" Shelf |
-| `Super + Alt + S` | Bring Window to Current Workspace |
-
-### Screenshots (Grimblast)
-
-| Keybind | Action |
-| --- | --- |
-| `Super + Alt + 1` | Screenshot Monitor (Copy/Save) |
-| `Super + Alt + 2` | Screenshot Active Window (Copy/Save) |
-| `Super + Alt + 3` | Screenshot Region (Freeze/Copy/Save) |
-
-### Multimedia & Hardware
-
-*Standard multimedia keys (XF86) are fully mapped for ease of use.*
-| Keybind | Action |
-| :--- | :--- |
-| `Volume Up / Down` | Adjust Volume (via `wpctl`) |
-| `Mute` | Toggle Audio Mute |
-| `Mic Mute` | Toggle Microphone Mute |
-| `Brightness Up/Down` | Adjust Screen Brightness (`brightnessctl`) |
-| `Media Keys` | Play, Pause, Next, Previous (`playerctl`) |
-
-
-## 🛠️ Troubleshooting
-
-If something isn't looking right, run the health check script:
-```bash
-./brewland/brewland-doctor.sh
-```
-This will verify:
-- Core package installation
-- Configuration symlinks
-- Active background services (`swww`, `waybar`, etc.)
-- Portal functionality
-
-## 🎨 Style Guide
-
-BrewLand uses a centralized color system. If you want to modify colors:
-1. Edit `brewland/themes/colors.json`.
-2. Update the corresponding `.css` files in `waybar/colors/` and `swaync/colors/`.
-3. Use `theme_switcher.sh` to apply changes system-wide.
-
-*Created with ❤️ by BeetleBot.*
+---
+*Maintained by BeetleBot.*
