@@ -13,7 +13,7 @@ fi
 ## FILE SEARCH SELECTION
 # Search files in $HOME while ignoring git noise
 chosen=$(fd --type f --hidden --exclude .git --base-directory "$HOME" | \
-    rofi -dmenu -i -p "Find" -theme-str "$THEME_OVERRIDE")
+    rofi -dmenu -i -p "Find" -theme ~/.config/rofi/NoSearchConfig.rasi -theme-str "$THEME_OVERRIDE")
 
 ## OPENING LOGIC
 if [ -n "$chosen" ]; then

@@ -19,7 +19,7 @@ if [ -z "$CLIP_LIST" ]; then
     exit
 fi
 
-CHOSEN=$(echo -e "$DEL_OPT\n$CLIP_LIST" | rofi -dmenu -i -p "Clipboard" -theme-str "$THEME_OVERRIDE")
+CHOSEN=$(echo -e "$DEL_OPT\n$CLIP_LIST" | rofi -dmenu -i -p "Clipboard" -theme ~/.config/rofi/NoSearchConfig.rasi -theme-str "$THEME_OVERRIDE")
 
 ## ACTION LOGIC
 if [ -z "$CHOSEN" ]; then

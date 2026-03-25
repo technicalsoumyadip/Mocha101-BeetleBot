@@ -1,20 +1,23 @@
 * {
-    bg-col:  #1e1e2ee6;
-    bg-col-light: #1e1e2e;
-    border-col: #1e1e2e;
-    
-    /* Workspace Active Color (Mauve) */
-    accent: #cba6f7; 
-    
-    /* Text Colors */
-    fg-col: #cdd6f4;
-    fg-col2: #f38ba8;
-    grey: #6c7086;
-    network: #b4befe;
-    bluetooth: #f2cdcd;
-    wallpaper: #89dceb;
-    music: #a6e3a1;
+    /* Base Palette (Catppuccin Mocha) */
+    bg-col:         #1e1e2ee6;
+    bg-col-light:   #313244;
+    border-col:     #45475a;
+    accent:         #cba6f7;
+    fg-col:         #cdd6f4;
+    fg-col2:        #f38ba8;
+    grey:           #6c7086;
+    network:        #b4befe;
+    bluetooth:      #f2cdcd;
+    wallpaper:      #89dceb;
+    music:          #a6e3a1;
 
-    width: 600;
-    font: "JetBrainsMono Nerd Font 13";
+    /* Aliases for adi1090x-style templates */
+    background:     @bg-col;
+    background-alt: @bg-col-light;
+    foreground:     @fg-col;
+    selected:       @accent;
+
+    width:          600;
+    font:           "JetBrainsMono Nerd Font 13";
 }
