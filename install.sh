@@ -13,6 +13,9 @@ TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 BACKUP_DIR="$HOME/ConfigBackups/$TIMESTAMP"
 FAILED_ACTIONS=()
 
+# Set exit on error (optional, but good for critical parts)
+# set -e 
+
 # Initial log cleanup
 echo "--- BrewLand Install Log: $TIMESTAMP ---" > "$LOG_FILE"
 
@@ -95,8 +98,16 @@ pre_flight() {
     echo -e " ${B_CYN}PHASE 1 : SYSTEM PRE-FLIGHT${RST}"
     separator
 
+    act "Checking internet connectivity..."
+    if ping -q -c 1 -W 1 google.com &>/dev/null; then
+        ok "Internet connection active."
+    else
+        fail "No internet connection detected. Please connect and try again."
+        exit 1
+    fi
+
     act "Checking OS compatibility..."
-    if [ -f /etc/os-release ]; then
+    if [[ -f /etc/os-release ]]; then
         . /etc/os-release
         if [[ "$ID" == "arch" || "$ID_LIKE" == *"arch"* ]]; then
             ok "Compatible OS detected: ${B_WHT}${PRETTY_NAME}${RST}"
@@ -109,7 +120,7 @@ pre_flight() {
         exit 1
     fi
 
-    if [ "$EUID" -eq 0 ]; then
+    if [[ "$EUID" -eq 0 ]]; then
         fail "Do not run this script as root! Run it as your normal user."
         exit 1
     fi

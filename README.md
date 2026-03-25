@@ -159,4 +159,23 @@ The **Super** (Windows) key is your primary modifier.
 | `Media Keys` | Play, Pause, Next, Previous (`playerctl`) |
 
 
+## 🛠️ Troubleshooting
+
+If something isn't looking right, run the health check script:
+```bash
+./brewland/brewland-doctor.sh
+```
+This will verify:
+- Core package installation
+- Configuration symlinks
+- Active background services (`swww`, `waybar`, etc.)
+- Portal functionality
+
+## 🎨 Style Guide
+
+BrewLand uses a centralized color system. If you want to modify colors:
+1. Edit `brewland/themes/colors.json`.
+2. Update the corresponding `.css` files in `waybar/colors/` and `swaync/colors/`.
+3. Use `theme_switcher.sh` to apply changes system-wide.
+
 *Created with ❤️ by BeetleBot.*

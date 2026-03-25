@@ -77,7 +77,7 @@ button {
 #custom-pomodoro,
 #mpd {
     padding: 0 10px;
-    color: #ffffff;
+    color: @text;
     margin: 0 0px;
 }
 
@@ -171,11 +171,11 @@ button {
 /* Hardware Drawer */
 #hardware {
     border-radius: 0px;
-    background-color: @transparentt;
+    background-color: transparent;
 }
 
 #hardware:hover {
-    background-color: @transparentt;
+    background-color: transparent;
 }
 
 /* Network */
@@ -305,47 +305,29 @@ button {
 }
 
 @keyframes blink-red {
-    0% {
-        background-color: @red;
-        color: @base;
-    }
-    50% {
-        background-color: @base;
-        color: @red;
-    }
-    100% {
-        background-color: @red;
-        color: @base;
-    }
+    0% { background-color: @red; color: @base; }
+    50% { background-color: @base; color: @red; }
+    100% { background-color: @red; color: @base; }
 }
 
 @keyframes blink-green {
-    0% {
-        background-color: @green;
-        color: @base;
-    }
-    50% {
-        background-color: @base;
-        color: @green;
-    }
-    100% {
-        background-color: @green;
-        color: @base;
-    }
+    0% { background-color: @green; color: @base; }
+    50% { background-color: @base; color: @green; }
+    100% { background-color: @green; color: @base; }
 }
 
 /* System Modules */
 #language {
-    background: #00b093;
-    color: #740864;
+    background: @teal;
+    color: @base;
     padding: 0 5px;
     margin: 0 5px;
     min-width: 16px;
 }
 
 #keyboard-state {
-    background: #97e1ad;
-    color: #000000;
+    background: @green;
+    color: @base;
     padding: 0 0px;
     margin: 0 5px;
     min-width: 16px;
@@ -373,50 +355,52 @@ button {
 
 #privacy-item {
     padding: 0 5px;
-    color: white;
+    color: @text;
 }
 
 #privacy-item.screenshare {
-    background-color: #cf5700;
+    background-color: @peach;
 }
 
 #privacy-item.audio-in {
-    background-color: #1ca000;
+    background-color: @green;
 }
 
 #privacy-item.audio-out {
-    background-color: #0069d4;
+    background-color: @blue;
 }
 
 #wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
+    background-color: @surface0;
+    color: @text;
 }
 
 #wireplumber.muted {
-    background-color: #f53c3c;
+    background-color: @red;
 }
 
 #custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
+    background-color: @green;
+    color: @base;
     min-width: 100px;
 }
 
 #custom-media.custom-spotify {
-    background-color: #66cc99;
+    background-color: @green;
 }
 
 #custom-media.custom-vlc {
-    background-color: #ffa000;
+    background-color: @peach;
 }
 
 #temperature {
-    background-color: #f0932b;
+    background-color: @peach;
+    color: @base;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: @red;
+    color: @base;
 }
 
 #power-profiles-daemon {
@@ -424,33 +408,35 @@ button {
 }
 
 #power-profiles-daemon.performance {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @red;
+    color: @base;
 }
 
 #power-profiles-daemon.balanced {
-    background-color: #2980b9;
-    color: #ffffff;
+    background-color: @blue;
+    color: @base;
 }
 
 #power-profiles-daemon.power-saver {
-    background-color: #2ecc71;
-    color: #000000;
+    background-color: @green;
+    color: @base;
 }
 
 label:focus {
-    background-color: #000000;
+    background-color: @base;
 }
 
 #cpu {
-    background-color: #2ecc71;
-    color: #000000;
+    background-color: @green;
+    color: @base;
 }
 
 #memory {
-    background-color: #9b59b6;
+    background-color: @mauve;
+    color: @base;
 }
 
 #disk {
-    background-color: #964B00;
+    background-color: @maroon;
+    color: @base;
 }
