@@ -30,6 +30,7 @@ update_menu() {
 printf \
 "󰚰  PACMAN\n\
 󰚰  AUR\n\
+󰚰  BREWLAND\n\
 󰜺  EXIT\n" | $rofi_cmd
 }
 
@@ -91,6 +92,24 @@ case "$choice" in
 
     *"AUR")
         $terminal -e bash -c "yay -Sua; echo; read -p 'Press Enter to close...'"
+        ;;
+
+    *"BREWLAND")
+        # Dynamic discovery
+        REPO_PATH=""
+        if [ -f "$HOME/.config/brewland/repo.path" ]; then
+            REPO_PATH=$(cat "$HOME/.config/brewland/repo.path")
+        elif [ -d "$HOME/BrewLand/.git" ]; then
+            REPO_PATH="$HOME/BrewLand"
+        elif [ -d "$HOME/Projects/Brewland/.git" ]; then
+            REPO_PATH="$HOME/Projects/Brewland"
+        fi
+
+        if [ -n "$REPO_PATH" ] && [ -d "$REPO_PATH" ]; then
+            $terminal -e bash -c "cd $REPO_PATH; echo 'Updating BrewLand in $REPO_PATH...'; git pull; ./install.sh; echo; read -p 'Update complete. Press Enter to close...'"
+        else
+            notify-send -a "BrewLand Update" "Failed" "Repository path not found. Please run install.sh manually."
+        fi
         ;;
     
     esac

@@ -290,6 +290,11 @@ EOF'
     ok "Network stack updated. Use 'sudo impala' to connect."
 fi
 
+# --- PHASE 7: RECORD REPO PATH ---
+mkdir -p "$HOME/.config/brewland"
+echo "$SCRIPT_DIR" > "$HOME/.config/brewland/repo.path"
+ok "Repository path recorded for updates."
+
 # --- FINISH ---
 echo ""
 separator
