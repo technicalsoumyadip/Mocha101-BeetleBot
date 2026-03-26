@@ -3,6 +3,7 @@
 terminal="kitty"
 
 rofi_cmd="rofi -dmenu -theme ~/.config/rofi/NoSearchConfig.rasi"
+rofi_search_cmd="rofi -dmenu -i -theme ~/.config/rofi/ListSearchConfig.rasi"
 
 main_menu() {
 printf \
@@ -51,12 +52,12 @@ case "$choice" in
     case "$sub" in
 
     *"PACMAN")
-        pkg=$(pacman -Slq | rofi -dmenu -i -p "Install (PACMAN)")
+        pkg=$(pacman -Slq | $rofi_search_cmd -p "Install (PACMAN)")
         [ -n "$pkg" ] && $terminal -e bash -c "sudo pacman -S $pkg; echo; read -p 'Press Enter to close...'"
         ;;
 
     *"AUR")
-        pkg=$(yay -Slq | rofi -dmenu -i -p "Install (AUR)")
+        pkg=$(yay -Slq | $rofi_search_cmd -p "Install (AUR)")
         [ -n "$pkg" ] && $terminal -e bash -c "yay -S $pkg; echo; read -p 'Press Enter to close...'"
         ;;
 
@@ -69,12 +70,12 @@ case "$choice" in
     case "$sub" in
 
     *"PACMAN")
-        pkg=$(pacman -Qq | rofi -dmenu -i -p "Remove (PACMAN)")
+        pkg=$(pacman -Qq | $rofi_search_cmd -p "Remove (PACMAN)")
         [ -n "$pkg" ] && $terminal -e bash -c "sudo pacman -R $pkg; echo; read -p 'Press Enter to close...'"
         ;;
 
     *"AUR")
-        pkg=$(yay -Qqm | rofi -dmenu -i -p "Remove (AUR)")
+        pkg=$(yay -Qqm | $rofi_search_cmd -p "Remove (AUR)")
         [ -n "$pkg" ] && $terminal -e bash -c "yay -R $pkg; echo; read -p 'Press Enter to close...'"
         ;;
 

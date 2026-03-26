@@ -77,7 +77,7 @@ pick_dir() {
         
         # Prevent empty trailing newline ghost-boxes in the picker too
         options=$(echo "$options" | sed '/^$/d')
-        chosen=$(echo -e -n "$options" | rofi -dmenu -i -p "$current_dir" -theme-str "$THEME_PICKER")
+        chosen=$(echo -e -n "$options" | rofi -dmenu -i -p "$current_dir" -theme ~/.config/rofi/ListSearchConfig.rasi)
         
         if [ -z "$chosen" ]; then exit 1
         elif [ "$chosen" == "  Use This Folder" ]; then echo "$current_dir"; return 0

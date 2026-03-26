@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-rofi_cmd="rofi -dmenu -theme ~/.config/rofi/NoSearchConfig.rasi"
+rofi_cmd="rofi -dmenu -theme ~/.config/rofi/ListSearchConfig.rasi"
 
 current_dir="$HOME"
 
