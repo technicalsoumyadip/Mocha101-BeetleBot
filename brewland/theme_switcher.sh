@@ -63,7 +63,12 @@ fi
 
 # --- Hyprland ---
 safe_ln "$THEME_DIR/$NEW_FLAVOR.conf" "$BRIDGE_FILE"
-hyprctl reload &>/dev/null &
+# Surgical source instead of full reload for speed
+hyprctl source "$BRIDGE_FILE" &>/dev/null
+
+# --- Hyprlock ---
+# Sync hyprlock theme
+safe_ln "$CONF_DIR/hypr/hyprlock/themes/$NEW_FLAVOR.conf" "$CONF_DIR/hypr/hyprlock/themes/current.conf"
 
 # --- GTK & UI ---
 gsettings set org.gnome.desktop.interface color-scheme "$COLOR_SCHEME"
@@ -83,14 +88,17 @@ if [[ -d "$GTK_THEME_SOURCE/$GTK_THEME" ]]; then
 fi
 
 # --- Bar & Notifications ---
+# Waybar USR2 is a live reload signal, not a restart
 safe_sed "s|@import .*|@import \"../waybar/colors/$NEW_FLAVOR.css\";|" "$CONF_DIR/waybar/style.css"
 pkill -USR2 waybar
 
+# SwayNC live reload
 safe_ln "$CONF_DIR/swaync/colors/$NEW_FLAVOR.css" "$CONF_DIR/swaync/colors/current_colors.css"
 swaync-client -rs &>/dev/null
 echo "$NEW_FLAVOR" > "$CONF_DIR/swaync/current_flavor"
 
 # --- Terminal & Editors ---
+# Kitty USR1 reloads config without closing windows
 safe_sed "s|^include .*|include $NEW_FLAVOR.conf|" "$CONF_DIR/kitty/kitty.conf"
 pgrep -x kitty > /dev/null && pkill -USR1 -x kitty
 
@@ -106,17 +114,21 @@ done
 safe_ln "$CONF_DIR/fish/themes/Catppuccin ${NEW_FLAVOR^}.theme" "$CONF_DIR/fish/themes/current_theme.theme"
 [[ "$RELOAD_FISH_SHELL" == "true" ]] && pkill -USR1 fish
 
-# Rofi
+# Rofi - Only kill if actually running to avoid unnecessary process lookups
+pgrep -x rofi >/dev/null && pkill -x rofi
 [[ -f "$CONF_DIR/rofi/themes/$NEW_FLAVOR.rasi" ]] && \
     cp "$CONF_DIR/rofi/themes/$NEW_FLAVOR.rasi" "$CONF_DIR/rofi/themes/colors.rasi"
-pkill -x rofi
 
 # Fastfetch & Cava
 safe_ln "$CONF_DIR/fastfetch/themes/$NEW_FLAVOR.jsonc" "$CONF_DIR/fastfetch/config.jsonc"
+# Cava usually needs a restart to pick up colors, but we'll only restart it if it's active
+if pgrep -x cava >/dev/null; then
+    pkill -x cava
+    # We don't auto-restart it here as the user might be using it in a terminal
+fi
 safe_ln "$CONF_DIR/cava/themes/$NEW_FLAVOR-transparent.cava" "$CONF_DIR/cava/config"
-pkill -x cava
 
-# Neovim
+# Neovim - USR1 is a standard "soft" reload signal for custom nvim setups
 echo "$NEW_FLAVOR" > "$CONF_DIR/nvim/current_flavor"
 pgrep -x nvim > /dev/null && pkill -USR1 -x nvim
 
