@@ -19,19 +19,14 @@ THEME_GALLERY="
         background-color: transparent;
         children: [ inputbar, listview ];
     }
-    inputbar {
-        background-color: transparent;
-        border: 0px;
-        margin: 0px 0px 20px 0px;
-        padding: 10px 0px;
-    }
-    entry {
-        background-color: transparent;
-        text-color: @fg-col;
+    entry { 
+        placeholder: \"Wallpapers...\";
     }
     listview { 
+        margin: 10px 0px 0px 0px;
         columns: 6; lines: 1; 
-        fixed-height: false; 
+        flow: horizontal;
+        fixed-height: true; 
         fixed-columns: true; 
         cycle: false; 
         layout: vertical;
