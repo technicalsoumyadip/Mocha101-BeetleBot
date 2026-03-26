@@ -2,8 +2,14 @@
 
 terminal="kitty"
 
-rofi_cmd="rofi -dmenu -theme ~/.config/rofi/NoSearchConfig.rasi"
-rofi_search_cmd="rofi -dmenu -i -theme ~/.config/rofi/ListSearchConfig.rasi"
+# Theme detection
+config_dir="$HOME/.config/rofi"
+if [ ! -d "$config_dir" ]; then
+    config_dir="$(dirname "$(readlink -f "$0")")/.."
+fi
+
+rofi_cmd="rofi -dmenu -theme $config_dir/NoSearchConfig.rasi"
+rofi_search_cmd="rofi -dmenu -i -theme $config_dir/ListSearchConfig.rasi"
 
 main_menu() {
 printf \

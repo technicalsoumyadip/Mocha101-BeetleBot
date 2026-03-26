@@ -60,30 +60,18 @@ THEME_GALLERY="
     textbox { text-color: @wallpaper; } 
 "
 
-THEME_PICKER="
-    window { width: 40%; height: 50%; border-color: @wallpaper; }
-    prompt { background-color: @wallpaper; text-color: @bg-col; }
-    element selected { background-color: @wallpaper; }
-    element-text { vertical-align: 0.5; }
-    element-icon { size: 24px; }
-"
-
 ## DIRECTORY BROWSER
 pick_dir() {
-    local current_dir="$HOME"
-    while true; do
-        dirs=$(find "$current_dir" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -printf "%f\n" | sort)
-        options="  Use This Folder\n..\n$dirs"
-        
-        # Prevent empty trailing newline ghost-boxes in the picker too
-        options=$(echo "$options" | sed '/^$/d')
-        chosen=$(echo -e -n "$options" | rofi -dmenu -i -p "$current_dir" -theme ~/.config/rofi/ListSearchConfig.rasi)
-        
-        if [ -z "$chosen" ]; then exit 1
-        elif [ "$chosen" == "  Use This Folder" ]; then echo "$current_dir"; return 0
-        elif [ "$chosen" == ".." ]; then current_dir=$(dirname "$current_dir")
-        else current_dir="$current_dir/$chosen"; fi
-    done
+    # Call the external directory picker script
+    local script_dir
+    script_dir=$(dirname "$(readlink -f "$0")")
+    local result
+    result=$("$script_dir/dir_picker.sh" "$HOME")
+    if [ $? -eq 0 ]; then
+        echo "$result"
+    else
+        exit 1
+    fi
 }
 
 ## MAIN LOGIC
@@ -93,6 +81,12 @@ if [ ! -f "$CONFIG_FILE" ]; then
 fi
 
 WALL_DIR=$(cat "$CONFIG_FILE")
+
+# Theme detection for the gallery
+config_dir="$HOME/.config/rofi"
+if [ ! -d "$config_dir" ]; then
+    config_dir="$(dirname "$(readlink -f "$0")")/.."
+fi
 
 # Populate gallery list with images
 ROFI_LIST="Change the Directory\0icon\x1ffolder\n"
@@ -104,7 +98,7 @@ done
 
 # Strip the trailing newline from the loop to prevent the empty blank box 
 ROFI_LIST=$(echo "$ROFI_LIST" | sed 's/\\n$//')
-CHOSEN=$(echo -e -n "$ROFI_LIST" | rofi -dmenu -i -p "Wallpapers" -theme-str "$THEME_GALLERY")
+CHOSEN=$(echo -e -n "$ROFI_LIST" | rofi -dmenu -i -p "Wallpapers" -theme "$config_dir/base.rasi" -theme-str "$THEME_GALLERY")
 
 ## ACTION HANDLER
 if [ -z "$CHOSEN" ]; then
