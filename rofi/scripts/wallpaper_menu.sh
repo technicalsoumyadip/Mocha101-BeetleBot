@@ -34,7 +34,7 @@ THEME_GALLERY="
         fixed-height: false; 
         fixed-columns: true; 
         cycle: false; 
-        layout: vertical; flow: horizontal;
+        layout: vertical;
         spacing: 20px;
         background-color: transparent;
     } 
@@ -45,6 +45,7 @@ THEME_GALLERY="
         border-radius: 12px;
     } 
     element-icon { 
+        enabled: true;
         size: 200px; 
         horizontal-align: 0.5; 
         background-color: transparent;
