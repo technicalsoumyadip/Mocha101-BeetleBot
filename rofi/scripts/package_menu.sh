@@ -1,8 +1,11 @@
 #!/bin/bash
 
+# package menu for brewland
+# handles install/remove/update and rofi integration
+
 terminal="kitty"
 
-# Theme detection
+# theme stuff
 config_dir="$HOME/.config/rofi"
 if [ ! -d "$config_dir" ]; then
     config_dir="$(dirname "$(readlink -f "$0")")/.."
@@ -16,7 +19,15 @@ printf \
 "󰏖  INSTALL PACKAGES\n\
 󰆴  REMOVE PACKAGES\n\
 󰚰  UPDATE PACKAGES\n\
+󰏖  BREWLAND\n\
 󰃢  CLEAN CACHE\n" | $rofi_cmd
+}
+
+brewland_menu() {
+printf \
+"󰏖  BREWLAND DOCTOR\n\
+󰚰  BREWLAND UPDATE\n\
+󰜺  EXIT\n" | $rofi_cmd
 }
 
 install_menu() {
@@ -37,7 +48,6 @@ update_menu() {
 printf \
 "󰚰  PACMAN\n\
 󰚰  AUR\n\
-󰚰  BREWLAND\n\
 󰜺  EXIT\n" | $rofi_cmd
 }
 
@@ -101,24 +111,45 @@ case "$choice" in
         $terminal -e bash -c "yay -Sua; echo; read -p 'Press Enter to close...'"
         ;;
 
-    *"BREWLAND")
-        # Dynamic discovery
-        REPO_PATH=""
-        if [ -f "$HOME/.config/brewland/repo.path" ]; then
-            REPO_PATH=$(cat "$HOME/.config/brewland/repo.path")
-        elif [ -d "$HOME/BrewLand/.git" ]; then
-            REPO_PATH="$HOME/BrewLand"
-        elif [ -d "$HOME/Projects/Brewland/.git" ]; then
-            REPO_PATH="$HOME/Projects/Brewland"
-        fi
+    esac
+;;
 
-        if [ -n "$REPO_PATH" ] && [ -d "$REPO_PATH" ]; then
-            $terminal -e bash -c "cd $REPO_PATH; echo 'Updating BrewLand in $REPO_PATH...'; git pull; ./install.sh; echo; read -p 'Update complete. Press Enter to close...'"
+*"BREWLAND"*)
+    sub=$(brewland_menu)
+
+    # find repo path - check config, common dirs, or use script location as fallback
+    REPO_PATH=""
+    SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+    REPO_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+
+    if [ -f "$HOME/.config/brewland/repo.path" ]; then
+        REPO_PATH=$(cat "$HOME/.config/brewland/repo.path")
+    elif [ -d "$REPO_ROOT/.git" ]; then
+        REPO_PATH="$REPO_ROOT"
+    elif [ -d "$HOME/BrewLand/.git" ]; then
+        REPO_PATH="$HOME/BrewLand"
+    elif [ -d "$HOME/Projects/BrewLand/.git" ]; then
+        REPO_PATH="$HOME/Projects/BrewLand"
+    fi
+
+    case "$sub" in
+
+    *BREWLAND*DOCTOR*)
+        if [ -n "$REPO_PATH" ] && [ -f "$REPO_PATH/brewland/brewland-doctor.sh" ]; then
+            $terminal --title "BrewLand Doctor" -e bash -c "cd $REPO_PATH/brewland; ./brewland-doctor.sh; echo; read -p 'Press Enter to close...'"
         else
-            notify-send -a "BrewLand Update" "Failed" "Repository path not found. Please run install.sh manually."
+            notify-send -a "BrewLand Doctor" "Failed" "Repo root: $REPO_PATH \nScript not found at $REPO_PATH/brewland/brewland-doctor.sh"
         fi
         ;;
-    
+
+    *BREWLAND*UPDATE*)
+        if [ -n "$REPO_PATH" ] && [ -d "$REPO_PATH" ]; then
+            $terminal --title "BrewLand Update" -e bash -c "cd $REPO_PATH; echo 'Updating BrewLand in $REPO_PATH...'; git pull; ./install.sh; echo; read -p 'Update complete. Press Enter to close...'"
+        else
+            notify-send -a "BrewLand Update" "Failed" "Repo root: $REPO_PATH \nRepository path not found."
+        fi
+        ;;
+
     esac
 ;;
 

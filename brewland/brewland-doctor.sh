@@ -1,20 +1,50 @@
 #!/bin/bash
 
-# ==============================================================================
-#  BREWLAND DOCTOR
-# ==============================================================================
+# brewland health check
+# checks dependencies, configs, and services
 
-# Colors
+# colors for output
 RED='\033[0;31m'
 GRN='\033[0;32m'
 YLW='\033[0;33m'
 BLU='\033[0;34m'
 RST='\033[0m'
 
-echo -e "${BLU}:: Checking BrewLand Health...${RST}"
+# fix issues found during check
+try_fix() {
+    echo -e "\n${BLU}:: Attempting to fix issues...${RST}"
+    
+    for pkg in "${CHECK_PKGS[@]}"; do
+        if ! pacman -Qi "$pkg" &> /dev/null; then
+            echo -e "${YLW}Installing $pkg...${RST}"
+            yay -S --noconfirm "$pkg"
+        fi
+    done
+    
+    for svc in "${SERVICES[@]}"; do
+        if ! pgrep -x "$svc" &> /dev/null; then
+            echo -e "${YLW}Starting $svc...${RST}"
+            if [[ "$svc" == "awww-daemon" ]]; then
+                awww-daemon & disown
+            else
+                $svc & disown
+            fi
+            sleep 1
+        fi
+    done
+    
+    if ! pgrep -f "xdg-desktop-portal-hyprland" &> /dev/null; then
+        echo -e "${YLW}Restarting portal...${RST}"
+        /usr/lib/xdg-desktop-portal-hyprland & disown
+    fi
+    
+    echo -e "${GRN}Fixes applied. Please run doctor again to verify.${RST}"
+}
 
-# 1. Check Packages
-CHECK_PKGS=("hyprland" "waybar" "rofi" "swaync" "kitty" "swww" "fastfetch")
+echo -e "${BLU}:: Running BrewLand diagnostics...${RST}"
+
+# check core pkgs
+CHECK_PKGS=("hyprland" "waybar" "rofi" "swaync" "kitty" "awww" "fastfetch")
 MISSING=0
 
 echo -e "\n${YLW}[ 1/4 ] Verifying Core Dependencies...${RST}"
@@ -27,7 +57,7 @@ for pkg in "${CHECK_PKGS[@]}"; do
     fi
 done
 
-# 2. Check AUR
+# check aur helper
 echo -e "\n${YLW}[ 2/4 ] Verifying AUR Helpers...${RST}"
 if command -v yay &> /dev/null; then
     echo -e "  [ ${GRN}OK${RST} ] yay is installed."
@@ -36,7 +66,7 @@ else
     MISSING=$((MISSING + 1))
 fi
 
-# 3. Check Config Links
+# verify dotfiles are linked in ~/.config
 echo -e "\n${YLW}[ 3/4 ] Verifying Configuration Links...${RST}"
 DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar")
 for folder in "${DOTFILES[@]}"; do
@@ -53,14 +83,15 @@ for folder in "${DOTFILES[@]}"; do
     fi
 done
 
-# 4. Check Services
+# check if services are actually running
 echo -e "\n${YLW}[ 4/4 ] Verifying Active Services...${RST}"
-SERVICES=("waybar" "swww" "hypridle" "swaync")
+SERVICES=("waybar" "awww-daemon" "hypridle" "swaync")
 for svc in "${SERVICES[@]}"; do
     if pgrep -x "$svc" &> /dev/null; then
         echo -e "  [ ${GRN}OK${RST} ] $svc is running."
     else
         echo -e "  [ ${YLW}!!${RST} ] $svc is NOT running."
+        MISSING=$((MISSING + 1))
     fi
 done
 
@@ -75,6 +106,12 @@ echo -e "\n--------------------------------------------------"
 if [[ $MISSING -eq 0 ]]; then
     echo -e "${GRN}BrewLand is healthy and ready to brew!${RST}"
 else
-    echo -e "${RED}BrewLand has $MISSING issues. Please run install.sh again.${RST}"
+    echo -e "${RED}BrewLand has $MISSING issues.${RST}"
+    read -p "Would you like to attempt an auto-fix? (y/n): " choice
+    if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+        try_fix
+    else
+        echo -e "${YLW}Please run install.sh manually to fix issues.${RST}"
+    fi
 fi
 echo "--------------------------------------------------"
