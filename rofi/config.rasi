@@ -26,28 +26,29 @@ entry {
 
 listview {
     enabled:                     true;
-    columns:                     5;
-    lines:                       3;
+    columns:                     1;
+    lines:                       8;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
     reverse:                     false;
-    fixed-height:                true;
+    fixed-height:                false;
     fixed-columns:               true;
 }
 
 element {
-    padding:                     15px 8px;
-    orientation:                 vertical;
+    padding:                     8px 15px;
+    spacing:                     15px;
+    orientation:                 horizontal;
 }
 
 element-icon {
     enabled:                     true;
-    size:                        52px;
+    size:                        32px;
 }
 
 element-text {
     vertical-align:              0.5;
-    horizontal-align:            0.5;
+    horizontal-align:            0.0;
 }
