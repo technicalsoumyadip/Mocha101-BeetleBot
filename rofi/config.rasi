@@ -2,22 +2,7 @@
 @import "base.rasi"
 
 configuration {
-    show-icons:                  true;
-}
-
-window {
-    width:                       750px;
-    y-offset:                    0px;
-}
-
-mainbox {
-    spacing:                     20px;
-    padding:                     20px;
-}
-
-inputbar {
-    spacing:                     10px;
-    padding:                     12px 15px;
+    show-icons:                  false;
 }
 
 entry {
@@ -44,8 +29,7 @@ element {
 }
 
 element-icon {
-    enabled:                     true;
-    size:                        32px;
+    enabled:                     false;
 }
 
 element-text {
