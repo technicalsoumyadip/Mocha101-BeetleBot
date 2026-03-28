@@ -11,10 +11,19 @@ fi
 
 mkdir -p "$MOUNTPOINT"
 echo "Mounting $REMOTE to $MOUNTPOINT..."
+
 rclone mount "$REMOTE" "$MOUNTPOINT" \
-    --vfs-cache-mode writes \
-    --daemon \
-    --vfs-cache-max-age 1h \
-    --vfs-cache-max-size 1G &
-echo $! > "$PIDFILE"
-echo "Mounted successfully (PID $!)"
+    --dir-cache-time 8760h \
+    --rc &
+
+PID=$!
+echo $PID > "$PIDFILE"
+echo "Mounted successfully (PID $PID)"
+
+echo "Waiting for rclone to initialize..."
+sleep 3
+
+echo "Warming the directory cache (this will run in the background)..."
+rclone rc vfs/refresh recursive=true &
+
+echo "Done! Your drive should be lightning fast in a minute or two."
