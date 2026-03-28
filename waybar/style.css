@@ -286,6 +286,17 @@ button {
     color: @base;
 }
 
+/* brew-task */
+#custom-brew-task {
+    padding: 0 10px;
+    color: @mauve;
+}
+
+#custom-brew-task:hover {
+    background-color: @mauve;
+    color: @base;
+}
+
 #custom-pomodoro.critical {
     background-color: @red;
     color: @base;
