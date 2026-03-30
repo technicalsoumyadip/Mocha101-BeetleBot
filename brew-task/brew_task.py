@@ -349,7 +349,7 @@ class BrewTaskWindow(Gtk.ApplicationWindow):
         self._entry.set_max_length(200)
         self._entry.connect("activate", self._on_add_task)
 
-        add_btn = Gtk.Button(label="＋  Add")
+        add_btn = Gtk.Button(label="Add")
         add_btn.get_style_context().add_class("suggested-action")
         add_btn.connect("clicked", self._on_add_task)
 
