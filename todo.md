@@ -2,4 +2,4 @@
 2. ~~A rofi based brew-cheat for all in all cheats of this dot files. Right from keybinds to all the tips.~~
 3. ~~Add brewland-doctor.sh to our package menu.~~
 4. Restructure the whole brewland repo.
-5. Add hyprsession stuff - Rofi script to choose the saved session. And Add it in installation script as well.
+5. ~~Add hyprsession stuff - Rofi script to choose the saved session. And Add it in installation script as well.~~
