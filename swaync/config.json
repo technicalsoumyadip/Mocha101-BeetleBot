@@ -2,7 +2,7 @@
   "$schema": "/etc/xdg/swaync/configSchema.json",
   "ignore-gtk-theme": true,
   "positionX": "right",
-  "positionY": "top",
+  "positionY": "bottom",
   "control-center-width": 460,
   "control-center-margin-top": 15,
   "control-center-margin-bottom": 15,
