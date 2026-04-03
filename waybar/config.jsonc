@@ -1,10 +1,9 @@
 {
     // Global
     "layer": "top",
-    "position": "top",
+    "position": "bottom",
     "spacing": 4,
     "height": 30,
-
     "modules-left": [
         "custom/start",
         "clock",
@@ -19,7 +18,6 @@
         "custom/pomodoro",
         "group/hardware"
     ],
-
     // Hardware group
     "group/hardware": {
         "format": "  ",
@@ -38,7 +36,6 @@
             "transition-left-to-right": false
         }
     },
-
     // Workspaces
     "hyprland/workspaces": {
         "on-click": "activate",
@@ -61,7 +58,6 @@
             "3": []
         }
     },
-
     // Media
     "mpris": {
         "format": "{status_icon} {title} - {artist}",
@@ -83,7 +79,6 @@
         "on-scroll-down": "playerctl previous",
         "tooltip-format": "Player: {player}\nTitle: {title}\nArtist: {artist}\nAlbum: {album}"
     },
-
     "mpd": {
         "server": "127.0.0.1",
         "port": 6600,
@@ -102,7 +97,6 @@
         "on-scroll-down": "mpc prev",
         "tooltip-format": "MPD: {artist} - {album} - {title}"
     },
-
     // Inhibitor
     "idle_inhibitor": {
         "format": "{icon}",
@@ -114,14 +108,12 @@
         "tooltip-format-activated": "Caffeine Mode: Active (Stay Awake)",
         "tooltip-format-deactivated": "Caffeine Mode: Inactive (Sleep Enabled)"
     },
-
     // Clock
     "clock": {
         "tooltip-format": "{calendar}",
         "format-alt": "{:%a, %d %b %Y}",
         "format": "{:%I:%M %p}"
     },
-
     // Audio
     "pulseaudio": {
         "format": "{volume}% {icon}",
@@ -146,7 +138,6 @@
         "on-click-middle": "pavucontrol",
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
-
     // Hardware
     "backlight": {
         "format": "{percent}% {icon}",
@@ -162,7 +153,6 @@
             ""
         ]
     },
-
     "battery": {
         "states": {
             "warning": 30,
@@ -181,7 +171,6 @@
             ""
         ]
     },
-
     // Connectivity
     "network": {
         "format-wifi": "󰤨 {essid}",
@@ -192,7 +181,6 @@
         "format-disconnected": "Disconnected 󰤮",
         "on-click": "kitty --class impala -e impala"
     },
-
     "bluetooth": {
         "format-on": "",
         "format-off": "󰂲",
@@ -202,7 +190,6 @@
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "on-click": "kitty --class bluetui -e bluetui"
     },
-
     // Custom
     "custom/start": {
         "format": "  ",
@@ -213,7 +200,6 @@
         "on-click": "rofi -show drun",
         "escape": true
     },
-
     "custom/logo": {
         "format": "  ",
         "tooltip": false,
@@ -225,14 +211,12 @@
         "on-click-middle": "$HOME/.config/rofi/wallpaper_menu.sh",
         "escape": true
     },
-
     "custom/brew-task": {
         "format": "󰄳",
         "tooltip": true,
         "tooltip-format": "brew-task",
         "on-click": "~/.config/waybar/scripts/toggle-brew-task.sh"
     },
-
     "custom/pomodoro": {
         "format": "{}",
         "return-type": "json",

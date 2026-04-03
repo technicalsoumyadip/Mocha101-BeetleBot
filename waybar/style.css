@@ -10,7 +10,7 @@
 @import "../waybar/colors/mocha.css";
 
 window#waybar {
-    background-color: @backgroundt;
+    background-color: @base;
     border-radius: 0;
     transition-property: background-color;
     transition-duration: .5s;
@@ -41,7 +41,7 @@ button {
 }
 
 #workspaces button.active {
-    background: @mauvet;
+    background: @mauve;
     color: @base;
     border-radius: 0px;
     min-width: 30px;
@@ -105,13 +105,15 @@ button {
 }
 
 /* Media */
-#mpris, #mpd {
+#mpris,
+#mpd {
     border-radius: 0px;
     color: @green;
     padding: 0 10px;
 }
 
-#mpris:hover, #mpd:hover {
+#mpris:hover,
+#mpd:hover {
     background-color: @green;
     color: @base;
 }
@@ -316,15 +318,37 @@ button {
 }
 
 @keyframes blink-red {
-    0% { background-color: @red; color: @base; }
-    50% { background-color: @base; color: @red; }
-    100% { background-color: @red; color: @base; }
+    0% {
+        background-color: @red;
+        color: @base;
+    }
+
+    50% {
+        background-color: @base;
+        color: @red;
+    }
+
+    100% {
+        background-color: @red;
+        color: @base;
+    }
 }
 
 @keyframes blink-green {
-    0% { background-color: @green; color: @base; }
-    50% { background-color: @base; color: @green; }
-    100% { background-color: @green; color: @base; }
+    0% {
+        background-color: @green;
+        color: @base;
+    }
+
+    50% {
+        background-color: @base;
+        color: @green;
+    }
+
+    100% {
+        background-color: @green;
+        color: @base;
+    }
 }
 
 /* System Modules */
