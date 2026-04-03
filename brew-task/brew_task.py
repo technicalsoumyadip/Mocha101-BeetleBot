@@ -22,7 +22,7 @@ APP_ID       = "com.brewtask.Popup"
 WIN_TITLE    = "brew-task"
 POPUP_WIDTH  = 480
 POPUP_HEIGHT = 560
-ANCHOR       = "top-right"
+ANCHOR       = "bottom-right"
 BAR_HEIGHT   = 30
 POPUP_GAP    = 8
 EDGE_MARGIN  = 12
@@ -74,11 +74,14 @@ def calculate_popup_position(monitor: dict) -> tuple[int, int]:
     mon_x  = monitor.get("x", 0)
     mon_y  = monitor.get("y", 0)
     mon_w  = int(monitor.get("width", 1920) / scale)
-    popup_y = mon_y + BAR_HEIGHT + POPUP_GAP
-    if ANCHOR == "top-right":
+    mon_h  = int(monitor.get("height", 1080) / scale)
+    
+    if ANCHOR == "bottom-right":
         popup_x = mon_x + mon_w - POPUP_WIDTH - EDGE_MARGIN
+        popup_y = mon_y + mon_h - POPUP_HEIGHT - BAR_HEIGHT - POPUP_GAP
     else:
-        popup_x = mon_x + EDGE_MARGIN
+        popup_x = mon_x + mon_w - POPUP_WIDTH - EDGE_MARGIN
+        popup_y = mon_y + BAR_HEIGHT + POPUP_GAP
     return popup_x, popup_y
 
 # IPC Server
