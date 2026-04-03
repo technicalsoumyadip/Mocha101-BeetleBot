@@ -115,27 +115,27 @@ button {
 }
 
 #custom-start {
-    margin-left: 10px;
+    /*margin-left: 10px;*/
+    min-width: 20px;
     border-radius: 0px;
-    min-width: 40px;
     color: @teal;
 }
 
 #custom-start:hover {
-    min-width: 40px;
     background-color: @teal;
+    min-width: 20px;
     color: @base;
 }
 
 #custom-logo {
-    margin-right: 10px;
+    /*margin-right: 10px;*/
     border-radius: 0px;
     min-width: 40px;
     color: @sky;
 }
 
 #custom-logo:hover {
-    min-width: 40px;
+
     background-color: @sky;
     color: @base;
 }
@@ -173,7 +173,7 @@ button {
 }
 
 #network {
-    margin-right: 4px;
+    margin-right: 0px;
     border-radius: 0px;
     color: @lavender;
     transition: background-color 0.5s ease;
@@ -275,6 +275,7 @@ button {
 }
 
 #custom-brew-task {
+    min-width: 20px;
     padding: 0 10px;
     color: @mauve;
 }
