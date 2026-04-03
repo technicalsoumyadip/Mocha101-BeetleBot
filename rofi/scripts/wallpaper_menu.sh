@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# wallpaper gallery for rofi
+# uses awww-daemon to set wallpapers with transitions
+
 CONFIG_FILE="$HOME/.config/rofi/wallpaper_dir"
 NOTIFY_TITLE="Wallpaper"
 
@@ -7,62 +10,31 @@ if ! pgrep -x "awww-daemon" > /dev/null; then
     awww-daemon &
 fi
 
-## THEME DEFINITIONS
+# wide gallery view for wallpapers
 THEME_GALLERY="
     configuration { show-icons: true; } 
-    window { 
-        width: 90%; 
-        anchor: center; location: center;
-        padding: 20px; 
-    } 
-    mainbox {
-        background-color: transparent;
-        children: [ inputbar, listview ];
-    }
-    entry { 
-        placeholder: \"Wallpapers...\";
-    }
+    window { width: 90%; anchor: center; location: center; padding: 20px; } 
+    mainbox { background-color: transparent; children: [ inputbar, listview ]; }
+    entry { placeholder: \"Wallpapers...\"; }
     listview { 
         margin: 10px 0px 0px 0px;
         columns: 6; lines: 1; 
         flow: horizontal;
-        fixed-height: true; 
-        fixed-columns: true; 
-        cycle: false; 
-        layout: vertical;
+        fixed-height: true; fixed-columns: true; 
+        cycle: false; layout: vertical;
         spacing: 20px;
         background-color: transparent;
     } 
-    element { 
-        orientation: vertical; 
-        padding: 20px; 
-        spacing: 15px; 
-        border-radius: 12px;
-    } 
-    element-icon { 
-        enabled: true;
-        size: 200px; 
-        horizontal-align: 0.5; 
-        background-color: transparent;
-    } 
-    element-text { 
-        horizontal-align: 0.5; 
-        vertical-align: 0.5; 
-        expand: true;
-        background-color: transparent;
-    } 
-    
+    element { orientation: vertical; padding: 20px; spacing: 15px; border-radius: 12px; } 
+    element-icon { enabled: true; size: 200px; horizontal-align: 0.5; background-color: transparent; } 
+    element-text { horizontal-align: 0.5; vertical-align: 0.5; expand: true; background-color: transparent; } 
     element selected { background-color: @wallpaper; } 
     textbox { text-color: @wallpaper; } 
 "
 
-## DIRECTORY BROWSER
 pick_dir() {
-    # Call the external directory picker script
-    local script_dir
-    script_dir=$(dirname "$(readlink -f "$0")")
-    local result
-    result=$("$script_dir/dir_picker.sh" "$HOME")
+    local script_dir=$(dirname "$(readlink -f "$0")")
+    local result=$("$script_dir/dir_picker.sh" "$HOME")
     if [ $? -eq 0 ]; then
         echo "$result"
     else
@@ -70,7 +42,7 @@ pick_dir() {
     fi
 }
 
-## MAIN LOGIC
+# check for directory config
 if [ ! -f "$CONFIG_FILE" ]; then
     INIT_DIR=$(pick_dir)
     if [ -n "$INIT_DIR" ]; then echo "$INIT_DIR" > "$CONFIG_FILE"; else exit; fi
@@ -78,13 +50,10 @@ fi
 
 WALL_DIR=$(cat "$CONFIG_FILE")
 
-# Theme detection for the gallery
 config_dir="$HOME/.config/rofi"
-if [ ! -d "$config_dir" ]; then
-    config_dir="$(dirname "$(readlink -f "$0")")/.."
-fi
+[ ! -d "$config_dir" ] && config_dir="$(dirname "$(readlink -f "$0")")/.."
 
-# Populate gallery list with images
+# build the list for rofi
 ROFI_LIST="Change the Directory\0icon\x1ffolder\n"
 shopt -s nullglob
 for img in "$WALL_DIR"/*.{jpg,jpeg,png,gif,webp,bmp}; do
@@ -92,11 +61,9 @@ for img in "$WALL_DIR"/*.{jpg,jpeg,png,gif,webp,bmp}; do
     ROFI_LIST+="$filename\0icon\x1f$img\n"
 done
 
-# Strip the trailing newline from the loop to prevent the empty blank box 
 ROFI_LIST=$(echo "$ROFI_LIST" | sed 's/\\n$//')
 CHOSEN=$(echo -e -n "$ROFI_LIST" | rofi -dmenu -i -p "Wallpapers" -theme "$config_dir/base.rasi" -theme-str "$THEME_GALLERY")
 
-## ACTION HANDLER
 if [ -z "$CHOSEN" ]; then
     exit
 elif [ "$CHOSEN" == "Change the Directory" ]; then
@@ -108,6 +75,5 @@ elif [ "$CHOSEN" == "Change the Directory" ]; then
 else
     FULL_PATH="$WALL_DIR/$CHOSEN"
     notify-send "$NOTIFY_TITLE" "Setting wallpaper..."
-    # Apply wallpaper with a grow transition
     awww img "$FULL_PATH" --transition-type grow --transition-step 90 --transition-fps 60
 fi

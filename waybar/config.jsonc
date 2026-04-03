@@ -1,5 +1,5 @@
 {
-    // Global
+    /* --- Layout --- */
     "layer": "top",
     "position": "bottom",
     "spacing": 4,
@@ -18,7 +18,8 @@
         "custom/pomodoro",
         "group/hardware"
     ],
-    // Hardware group
+
+    /* --- Grouping --- */
     "group/hardware": {
         "format": "  ",
         "orientation": "horizontal",
@@ -36,7 +37,8 @@
             "transition-left-to-right": false
         }
     },
-    // Workspaces
+
+    /* --- System --- */
     "hyprland/workspaces": {
         "on-click": "activate",
         "format": "{icon}",
@@ -58,7 +60,7 @@
             "3": []
         }
     },
-    // Media
+
     "mpris": {
         "format": "{status_icon} {title} - {artist}",
         "format-paused": "{status_icon} <i>{title} - {artist}</i>",
@@ -79,6 +81,7 @@
         "on-scroll-down": "playerctl previous",
         "tooltip-format": "Player: {player}\nTitle: {title}\nArtist: {artist}\nAlbum: {album}"
     },
+
     "mpd": {
         "server": "127.0.0.1",
         "port": 6600,
@@ -97,7 +100,7 @@
         "on-scroll-down": "mpc prev",
         "tooltip-format": "MPD: {artist} - {album} - {title}"
     },
-    // Inhibitor
+
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -108,13 +111,13 @@
         "tooltip-format-activated": "Caffeine Mode: Active (Stay Awake)",
         "tooltip-format-deactivated": "Caffeine Mode: Inactive (Sleep Enabled)"
     },
-    // Clock
+
     "clock": {
         "tooltip-format": "{calendar}",
         "format-alt": "{:%a, %d %b %Y}",
         "format": "{:%I:%M %p}"
     },
-    // Audio
+
     "pulseaudio": {
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}  {format_source}",
@@ -138,7 +141,7 @@
         "on-click-middle": "pavucontrol",
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
-    // Hardware
+
     "backlight": {
         "format": "{percent}% {icon}",
         "format-icons": [
@@ -153,6 +156,7 @@
             ""
         ]
     },
+
     "battery": {
         "states": {
             "warning": 30,
@@ -171,7 +175,7 @@
             ""
         ]
     },
-    // Connectivity
+
     "network": {
         "format-wifi": "󰤨 {essid}",
         "format-off": "󰤭",
@@ -181,6 +185,7 @@
         "format-disconnected": "Disconnected 󰤮",
         "on-click": "kitty --class impala -e impala"
     },
+
     "bluetooth": {
         "format-on": "",
         "format-off": "󰂲",
@@ -190,7 +195,8 @@
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "on-click": "kitty --class bluetui -e bluetui"
     },
-    // Custom
+
+    /* --- Custom Scripts --- */
     "custom/start": {
         "format": "  ",
         "tooltip": false,

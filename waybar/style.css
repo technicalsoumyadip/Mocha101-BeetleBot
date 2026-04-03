@@ -1,4 +1,4 @@
-/* Global */
+/* --- Base Setup --- */
 * {
     font-family: 'iMWritingMono Nerd Font Propo', sans-serif;
     font-size: 15px;
@@ -26,7 +26,7 @@ button {
     border-radius: 0px;
 }
 
-/* Workspaces */
+/* --- Modules --- */
 #workspaces {
     color: @mauve;
     font-weight: normal;
@@ -56,7 +56,6 @@ button {
     min-width: 30px;
 }
 
-/* Common Padding */
 #clock,
 #bluetooth,
 #battery,
@@ -81,7 +80,6 @@ button {
     margin: 0 0px;
 }
 
-/* Inhibitor */
 #idle_inhibitor {
     color: @peach;
     min-width: 20px;
@@ -98,13 +96,11 @@ button {
     color: @base;
 }
 
-/* Tray */
 #tray {
     border-radius: 0px;
     color: @lavender;
 }
 
-/* Media */
 #mpris,
 #mpd {
     border-radius: 0px;
@@ -118,7 +114,6 @@ button {
     color: @base;
 }
 
-/* Custom Modules */
 #custom-start {
     margin-left: 10px;
     border-radius: 0px;
@@ -145,7 +140,6 @@ button {
     color: @base;
 }
 
-/* Margins */
 #window,
 #workspaces {
     margin: 0 0px;
@@ -159,7 +153,6 @@ button {
     margin-right: 0;
 }
 
-/* Clock */
 #clock {
     border-radius: 0px;
     color: @yellow;
@@ -170,7 +163,6 @@ button {
     color: @base;
 }
 
-/* Hardware Drawer */
 #hardware {
     border-radius: 0px;
     background-color: transparent;
@@ -180,7 +172,6 @@ button {
     background-color: transparent;
 }
 
-/* Network */
 #network {
     margin-right: 4px;
     border-radius: 0px;
@@ -199,7 +190,6 @@ button {
     color: @crust;
 }
 
-/* Bluetooth */
 #bluetooth {
     margin-right: 4px;
     margin-left: 4px;
@@ -213,7 +203,6 @@ button {
     color: @base;
 }
 
-/* Battery */
 #battery {
     color: @rosewater;
 }
@@ -244,7 +233,6 @@ button {
     animation-direction: alternate;
 }
 
-/* Backlight */
 #backlight {
     margin-right: 4px;
     margin-left: 4px;
@@ -256,7 +244,6 @@ button {
     color: @base;
 }
 
-/* Audio */
 #pulseaudio {
     border-radius: 0px;
     color: @sapphire;
@@ -273,7 +260,6 @@ button {
     color: @base;
 }
 
-/* Pomodoro */
 #custom-pomodoro {
     padding: 0 10px;
     color: @maroon;
@@ -288,7 +274,6 @@ button {
     color: @base;
 }
 
-/* brew-task */
 #custom-brew-task {
     padding: 0 10px;
     color: @mauve;
@@ -351,7 +336,6 @@ button {
     }
 }
 
-/* System Modules */
 #language {
     background: @teal;
     color: @base;

@@ -1,38 +1,31 @@
 #!/bin/bash
 
-# ==============================================================================
-#  BREWLAND THEME SWITCHER
-# ==============================================================================
+# brewland theme switcher
+# toggles between catppuccin latte and mocha across the system
 
-# 1. SETUP & CONFIG
 RELOAD_FISH_SHELL="${RELOAD_FISH_SHELL:-false}"
 CONF_DIR="$HOME/.config"
 THEME_DIR="$CONF_DIR/hypr/themes"
 GTK_THEME_SOURCE="$CONF_DIR/brewland/themes/gtkthemes"
 BRIDGE_FILE="$CONF_DIR/hypr/HLconfigs/theme-colors.conf"
 
-# 2. HELPERS
 info() { echo -e "\033[0;34m[ INFO ]\033[0m $1"; }
 ok() { echo -e "\033[0;32m[ OKAY ]\033[0m $1"; }
 warn() { echo -e "\033[0;33m[ WARN ]\033[0m $1"; }
 
 safe_sed() {
-    local pattern=$1
-    local file=$2
-    [[ -f "$file" ]] && sed -i "$pattern" "$file"
+    [[ -f "$2" ] ] && sed -i "$1" "$2"
 }
 
 safe_ln() {
-    local source=$1
-    local target=$2
-    if [[ -e "$source" ]]; then
-        ln -sf "$source" "$target"
+    if [[ -e "$1" ]]; then
+        ln -sf "$1" "$2"
     else
-        warn "Source $source not found, skipping link to $target"
+        warn "$1 not found, skipping link to $2"
     fi
 }
 
-# 3. DETERMINE FLAVOR
+# figure out which flavor to switch to
 CURRENT_THEME=$(readlink "$BRIDGE_FILE" 2>/dev/null)
 if [[ "$1" == "latte" || "$1" == "mocha" ]]; then
     NEW_FLAVOR="$1"
@@ -44,9 +37,8 @@ else
     fi
 fi
 
-info "Switching to Catppuccin $NEW_FLAVOR..."
+info "switching to catppuccin $NEW_FLAVOR..."
 
-# 4. VARIABLES
 if [[ "$NEW_FLAVOR" == "latte" ]]; then
     GTK_THEME="catppuccin-latte-mauve-standard+default"
     KVANTUM_THEME="catppuccin-latte-mauve"
@@ -59,18 +51,12 @@ else
     VSCODE_THEME="Catppuccin Mocha"
 fi
 
-# 5. EXECUTION PHASE
-
-# --- Hyprland ---
+# --- hyprland & desktop ---
 safe_ln "$THEME_DIR/$NEW_FLAVOR.conf" "$BRIDGE_FILE"
-# Surgical source instead of full reload for speed
 hyprctl source "$BRIDGE_FILE" &>/dev/null
-
-# --- Hyprlock ---
-# Sync hyprlock theme
 safe_ln "$CONF_DIR/hypr/hyprlock/themes/$NEW_FLAVOR.conf" "$CONF_DIR/hypr/hyprlock/themes/current.conf"
 
-# --- GTK & UI ---
+# --- gtk ---
 gsettings set org.gnome.desktop.interface color-scheme "$COLOR_SCHEME"
 gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"
 
@@ -87,18 +73,15 @@ if [[ -d "$GTK_THEME_SOURCE/$GTK_THEME" ]]; then
     safe_ln "$GTK_THEME_SOURCE/$GTK_THEME/gtk-4.0/assets" "$CONF_DIR/gtk-4.0/assets"
 fi
 
-# --- Bar & Notifications ---
-# Waybar USR2 is a live reload signal, not a restart
+# --- status bar & notifications ---
 safe_sed "s|@import .*|@import \"../waybar/colors/$NEW_FLAVOR.css\";|" "$CONF_DIR/waybar/style.css"
 pkill -USR2 waybar
 
-# SwayNC live reload
 safe_ln "$CONF_DIR/swaync/colors/$NEW_FLAVOR.css" "$CONF_DIR/swaync/colors/current_colors.css"
 swaync-client -rs &>/dev/null
 echo "$NEW_FLAVOR" > "$CONF_DIR/swaync/current_flavor"
 
-# --- Terminal & Editors ---
-# Kitty USR1 reloads config without closing windows
+# --- terminal & apps ---
 safe_sed "s|^include .*|include $NEW_FLAVOR.conf|" "$CONF_DIR/kitty/kitty.conf"
 pgrep -x kitty > /dev/null && pkill -USR1 -x kitty
 
@@ -109,34 +92,27 @@ for settings in "$CONF_DIR/VSCodium/User/settings.json" "$CONF_DIR/Antigravity/U
     fi
 done
 
-# --- System Utilities ---
-# Fish
+# --- system utils ---
 safe_ln "$CONF_DIR/fish/themes/Catppuccin ${NEW_FLAVOR^}.theme" "$CONF_DIR/fish/themes/current_theme.theme"
 [[ "$RELOAD_FISH_SHELL" == "true" ]] && pkill -USR1 fish
 
-# Rofi - Only kill if actually running to avoid unnecessary process lookups
 pgrep -x rofi >/dev/null && pkill -x rofi
 [[ -f "$CONF_DIR/rofi/themes/$NEW_FLAVOR.rasi" ]] && \
     cp "$CONF_DIR/rofi/themes/$NEW_FLAVOR.rasi" "$CONF_DIR/rofi/themes/colors.rasi"
 
-# Fastfetch & Cava
 safe_ln "$CONF_DIR/fastfetch/themes/$NEW_FLAVOR.jsonc" "$CONF_DIR/fastfetch/config.jsonc"
-# Cava usually needs a restart to pick up colors, but we'll only restart it if it's active
+
 if pgrep -x cava >/dev/null; then
     pkill -x cava
-    # We don't auto-restart it here as the user might be using it in a terminal
 fi
 safe_ln "$CONF_DIR/cava/themes/$NEW_FLAVOR-transparent.cava" "$CONF_DIR/cava/config"
 
-# Neovim - USR1 is a standard "soft" reload signal for custom nvim setups
 echo "$NEW_FLAVOR" > "$CONF_DIR/nvim/current_flavor"
 pgrep -x nvim > /dev/null && pkill -USR1 -x nvim
 
-# Kvantum
 if command -v kvantummanager &> /dev/null; then
     kvantummanager --set "$KVANTUM_THEME" &>/dev/null
 fi
 
-# 6. FINISH
-notify-send -a "System Switcher" "Theme Toggled" "System set to Catppuccin $NEW_FLAVOR"
-ok "Theme successfully set to $NEW_FLAVOR."
+notify-send -a "System Switcher" "Theme Toggled" "Switching to $NEW_FLAVOR"
+ok "theme set to $NEW_FLAVOR."

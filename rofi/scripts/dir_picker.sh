@@ -1,24 +1,18 @@
 #!/usr/bin/env bash
 
-# Reusable Directory Picker for Rofi
-# Usage: ./dir_picker.sh [starting_dir]
+# rofi directory picker
+# returns the absolute path of the chosen directory
 
-starting_dir="${1:-$HOME}"
-current_dir="$starting_dir"
+current_dir="${1:-$HOME}"
 
 while true; do
     dirs=$(find "$current_dir" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -printf "%f\n" | sort)
     options="  Use This Folder\n..\n$dirs"
-    
-    # Prevent empty trailing newline ghost-boxes in the picker too
     options=$(echo "$options" | sed '/^$/d')
 
-    # Try to find the correct theme path
+    # try standard or fallback theme
     theme_file="$HOME/.config/rofi/ListSearchConfig.rasi"
-    if [ ! -f "$theme_file" ]; then
-        # Fallback to current project path during development
-        theme_file="$(dirname "$(readlink -f "$0")")/../ListSearchConfig.rasi"
-    fi
+    [ ! -f "$theme_file" ] && theme_file="$(dirname "$(readlink -f "$0")")/../ListSearchConfig.rasi"
 
     chosen=$(echo -e -n "$options" | rofi -dmenu -i -p "$current_dir" -theme "$theme_file")
     

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Kill running instances
+# nuclear relaunch for bar and notifications
+
 killall -9 waybar
 swaync-client -R
 swaync-client -rs
 killall -9 swaync
 
-# Restart services
 waybar &
 swaync &

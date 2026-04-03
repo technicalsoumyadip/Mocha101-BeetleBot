@@ -1,18 +1,14 @@
 #!/bin/bash
 
-# find rofi configs - check standard location or fallback to script's parent
-dir="$HOME/.config/rofi"
-if [ ! -d "$dir" ]; then
-    dir="$(dirname "$(readlink -f "$0")")/.."
-fi
+# simple rofi power menu
+# handles basic system control and a poweroff timer
 
-# base command for rofi
+dir="$HOME/.config/rofi"
+[ ! -d "$dir" ] && dir="$(dirname "$(readlink -f "$0")")/.."
 rofi_cmd="rofi -dmenu -i -p Power -theme $dir/NoSearchConfig.rasi"
 
-# menu options
 actions="󰐥 Poweroff\n󰜉 Reboot\n󰤄 Suspend\n󰈆 Logout\n󱎫 Poweroff Timer"
 
-# helper to show timer durations
 show_timer_menu() {
     printf "󱎫  5 mins\n󱎫  10 mins\n󱎫  15 mins\n󱎫  30 mins\n󱎫  45 mins\n󱎫  1 hr" | $rofi_cmd
 }
@@ -35,10 +31,9 @@ case "$selection" in
             *"1 hr") m=60 ;;
         esac
         
-        # schedule shutdown if a time was picked
         if [ -n "$m" ]; then
             shutdown +"$m"
-            notify-send "Poweroff Timer" "System will power off in $m minutes"
+            notify-send "Poweroff Timer" "System will power off in $m mins"
         fi
         ;;
 esac
