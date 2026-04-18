@@ -13,6 +13,7 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
+        "tray",
         "idle_inhibitor",
         "custom/brew-task",
         "custom/pomodoro",
@@ -58,6 +59,12 @@
             "3": []
         }
     },
+
+    "tray": {
+        "show-passive-items": true,
+        "spacing": 10
+    },
+
     "mpris": {
         "format": "{status_icon} {title} - {artist}",
         "format-paused": "{status_icon} <i>{title} - {artist}</i>",
