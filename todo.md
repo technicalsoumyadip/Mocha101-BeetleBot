@@ -1,4 +1,6 @@
-1. ~~Sort of a kanban, notes app with waybar integration.~~
-2. ~~A rofi based brew-cheat for all in all cheats of this dot files. Right from keybinds to all the tips.~~
-3. ~~Add brewland-doctor.sh to our package menu.~~
-4. Restructure the whole brewland repo.
+# BrewLand TODO
+
+- [ ] Replace `nmtui` with `tuinm` for network management.
+- [ ] Update Waybar click action for network module.
+- [ ] Add Hyprland window rules for `tuinm`.
+- [ ] Update installer to mention `tuinm`.
