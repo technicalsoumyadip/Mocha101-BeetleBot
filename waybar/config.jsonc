@@ -180,7 +180,7 @@
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected 󰤮",
-        "on-click": "kitty --class impala -e impala"
+        "on-click": "kitty --class nmtui -e nmtui"
     },
     "bluetooth": {
         "format-on": "",

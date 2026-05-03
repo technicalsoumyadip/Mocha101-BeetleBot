@@ -35,8 +35,8 @@ act() { echo -e "${CYN}[ ACTN ]${RST} $1"; }
 warn() { echo -e "${YLW}[ WARN ]${RST} $1"; }
 
 # setup lists
-CORE_PKGS=("hyprland" "waybar" "rofi" "iwd" "swaync" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland" "libpulse" "sound-theme-freedesktop")
-TOOL_PKGS=("kitty" "thunar" "mpd-mpris" "fish" "awww" "fastfetch" "rofimoji" "fd" "cliphist" "wl-clipboard" "wtype" "kvantum" "qt5ct" "qt6ct" "jq" "curl" "unzip" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "impala" "grim" "slurp" "tumbler" "ffmpegthumbnailer" "poppler-glib" "libgsf" "libopenraw" "freetype2")
+CORE_PKGS=("hyprland" "waybar" "rofi" "networkmanager" "swaync" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland" "libpulse" "sound-theme-freedesktop")
+TOOL_PKGS=("kitty" "thunar" "mpd-mpris" "fish" "awww" "fastfetch" "rofimoji" "fd" "cliphist" "wl-clipboard" "wtype" "kvantum" "qt5ct" "qt6ct" "jq" "curl" "unzip" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "grim" "slurp" "tumbler" "ffmpegthumbnailer" "poppler-glib" "libgsf" "libopenraw" "freetype2")
 YAY_PKGS=("grimblast-git" "hyprpicker" "kvantum-theme-catppuccin-git")
 DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "cava" "brewland" "fastfetch" "brew-task")
 
@@ -224,25 +224,16 @@ echo ""
 separator
 echo -e " ${B_CYN}PHASE 6 : NETWORK CONFIG${RST}"
 separator
-warn "switches network to iwd/impala stack."
+warn "configures NetworkManager as the primary stack."
 read -p "  configure now? (y/n) " net_choice
 if [[ $net_choice =~ ^[Yy]$ ]]; then
-    act "cleaning conflicts..."
-    sudo systemctl disable --now NetworkManager wpa_supplicant 2>/dev/null || true
+    act "stopping conflicting services..."
+    sudo systemctl disable --now iwd 2>/dev/null || true
     
-    act "setting up iwd..."
-    sudo mkdir -p /etc/iwd
-    sudo bash -c 'cat > /etc/iwd/main.conf <<EOF
-[General]
-EnableNetworkConfiguration=true
-
-[Network]
-NameResolvingService=systemd
-EOF'
+    act "enabling NetworkManager..."
+    sudo systemctl enable --now NetworkManager 2>/dev/null
     
-    sudo systemctl enable --now systemd-resolved iwd 2>/dev/null
-    sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-    ok "use 'sudo impala' to connect."
+    ok "NetworkManager active. Use 'nmtui' to manage Wi-Fi."
 fi
 
 # --- phase 7: bookkeeping ---
