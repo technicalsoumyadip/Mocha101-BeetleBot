@@ -53,16 +53,11 @@ WALL_DIR=$(cat "$CONFIG_FILE")
 config_dir="$HOME/.config/rofi"
 [ ! -d "$config_dir" ] && config_dir="$(dirname "$(readlink -f "$0")")/.."
 
-# build the list for rofi
-ROFI_LIST="Change the Directory\0icon\x1ffolder\n"
-shopt -s nullglob
-for img in "$WALL_DIR"/*.{jpg,jpeg,png,gif,webp,bmp}; do
-    filename=$(basename "$img")
-    ROFI_LIST+="$filename\0icon\x1f$img\n"
-done
-
-ROFI_LIST=$(echo "$ROFI_LIST" | sed 's/\\n$//')
-CHOSEN=$(echo -e -n "$ROFI_LIST" | rofi -dmenu -i -p "Wallpapers" -theme "$config_dir/base.rasi" -theme-str "$THEME_GALLERY")
+# build the list and show rofi
+CHOSEN=$( (
+    echo -en "Change the Directory\0icon\x1ffolder\n"
+    find "$WALL_DIR" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.webp" -o -iname "*.bmp" \) -printf "%f|%p\n" | sort | awk -F'|' '{printf "%s\0icon\x1f%s\n", $1, $2}'
+) | rofi -dmenu -i -p "Wallpapers" -theme "$config_dir/base.rasi" -theme-str "$THEME_GALLERY")
 
 if [ -z "$CHOSEN" ]; then
     exit

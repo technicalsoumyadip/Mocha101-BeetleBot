@@ -2,7 +2,7 @@
 @import "base.rasi"
 
 configuration {
-    show-icons:                  false;
+    show-icons:                  true;
 }
 
 entry {
@@ -29,7 +29,8 @@ element {
 }
 
 element-icon {
-    enabled:                     false;
+    enabled:                     true;
+    size:                        24px;
 }
 
 element-text {
