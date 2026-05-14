@@ -1,6 +1,10 @@
 # BrewLand v2.0
 
-A refined Hyprland configuration centered on the Catppuccin Mocha and Latte palettes. BrewLand prioritizes a minimalist workflow, smooth animations, and consistent system-wide aesthetics.
+A refined Hyprland configuration centered around the Catppuccin Mocha and Latte palettes. BrewLand prioritizes a minimalist workflow, smooth animations, and consistent system-wide aesthetics.
+
+> [!IMPORTANT]
+> We have migrated our configuration to **Hyprland Lua**, providing compatibility with Hyprland 0.55 and later versions.
+
 
 ![BrewLand Preview](https://github.com/user-attachments/assets/548e7985-0143-4f40-b35c-d10ef3d750e1)
 
@@ -36,7 +40,8 @@ cd BrewLand && ./install.sh
 | `Super + R` | Reload UI (Waybar/SwayNC) |
 | `Super + Q` | Close Active Window |
 
-*Full keybinds are defined in `hypr/HLconfigs/keybindings.conf`.*
+*Full keybinds are defined in `hypr/hyprland.lua`.*
+
 
 ## System Management
 
@@ -54,8 +59,7 @@ If you experience issues, run the verification tool:
 It verifies package dependencies, configuration symlinks, and the status of background services.
 
 ## Customization
-- **Monitor Settings**: `hypr/HLconfigs/monitors.conf`
-- **Window Rules**: `hypr/HLconfigs/windowsandworkspaces.conf`
+- **Main Configuration**: `hypr/hyprland.lua`
 - **Bar Layout**: `waybar/config.jsonc`
 - **Global Colors**: `brewland/themes/colors.json`
 
