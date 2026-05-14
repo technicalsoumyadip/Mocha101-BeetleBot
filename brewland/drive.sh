@@ -3,7 +3,7 @@
 # mount work drive using rclone
 # uses vfs caching for speed
 
-MOUNTPOINT="/home/nkr/drive"
+MOUNTPOINT="$HOME/drive"
 REMOTE="work:"
 PIDFILE="/tmp/rclone-work.pid"
 

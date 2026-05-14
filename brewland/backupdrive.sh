@@ -3,7 +3,7 @@
 # mounts remote backup drive using rclone
 # uses vfs caching for speed
 
-MOUNTPOINT="/home/nkr/backup"
+MOUNTPOINT="$HOME/backup"
 REMOTE="backup:"
 PIDFILE="/tmp/rclone-work.pid"
 
