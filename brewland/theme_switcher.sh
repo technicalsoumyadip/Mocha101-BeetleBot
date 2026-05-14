@@ -7,7 +7,7 @@ RELOAD_FISH_SHELL="${RELOAD_FISH_SHELL:-false}"
 CONF_DIR="$HOME/.config"
 THEME_DIR="$CONF_DIR/hypr/themes"
 GTK_THEME_SOURCE="$CONF_DIR/brewland/themes/gtkthemes"
-BRIDGE_FILE="$CONF_DIR/hypr/HLconfigs/theme-colors.conf"
+BRIDGE_FILE="$CONF_DIR/hypr/themes/colors.lua"
 
 info() { echo -e "\033[0;34m[ INFO ]\033[0m $1"; }
 ok() { echo -e "\033[0;32m[ OKAY ]\033[0m $1"; }
@@ -30,7 +30,7 @@ CURRENT_THEME=$(readlink "$BRIDGE_FILE" 2>/dev/null)
 if [[ "$1" == "latte" || "$1" == "mocha" ]]; then
     NEW_FLAVOR="$1"
 else
-    if [[ "$CURRENT_THEME" == *"/mocha.conf" ]]; then
+    if [[ "$CURRENT_THEME" == *"mocha.lua" ]]; then
         NEW_FLAVOR="latte"
     else
         NEW_FLAVOR="mocha"
@@ -52,8 +52,8 @@ else
 fi
 
 # --- hyprland & desktop ---
-safe_ln "$THEME_DIR/$NEW_FLAVOR.conf" "$BRIDGE_FILE"
-hyprctl source "$BRIDGE_FILE" &>/dev/null
+cd "$THEME_DIR" && ln -sf "$NEW_FLAVOR.lua" "colors.lua"
+cd - > /dev/null
 safe_ln "$CONF_DIR/hypr/hyprlock/themes/$NEW_FLAVOR.conf" "$CONF_DIR/hypr/hyprlock/themes/current.conf"
 
 # --- gtk ---

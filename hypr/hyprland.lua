@@ -68,11 +68,12 @@ hl.env("QT_STYLE_OVERRIDE", "kvantum")
 ---- LOOK AND FEEL ----
 -----------------------
 
-local active_border = "rgba(cba6f7ff)"
-local inactive_border = "rgba(1e1e2e99)"
-local group_active = "rgba(cba6f799)"
-local group_inactive = "rgba(1e1e2e99)"
-local accent_color = "rgba(cba6f7ff)"
+local colors = dofile(os.getenv("HOME") .. "/.config/hypr/themes/colors.lua")
+local active_border = colors.active_border
+local inactive_border = colors.inactive_border
+local group_active = colors.group_active
+local group_inactive = colors.group_inactive
+local accent_color = colors.accent_color
 
 hl.config({
     general = {
