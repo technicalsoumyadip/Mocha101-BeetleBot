@@ -2,7 +2,7 @@
 
 * {
   font-family: "iMWritingMono Nerd Font Propo", monospace;
-  border-radius: 10px;
+  font-size: 13px;
   color: @text;
 }
 
@@ -17,7 +17,6 @@
   background: transparent;
   margin: 0;
   padding: 0;
-  transition: background 0.15s ease-in-out;
 }
 
 .notification-row:hover,
@@ -29,8 +28,8 @@
 .notification {
   background: alpha(@base, 0.75);
   color: @text;
-  margin: 10px 10px 10px 0;
-  padding: 12px 14px;
+  margin: 8px 10px 8px 0;
+  padding: 14px 16px;
   border-radius: 16px;
   border: none;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
@@ -50,6 +49,8 @@
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   border: none;
+  min-width: 24px;
+  min-height: 24px;
 }
 
 .notification:hover .close-button {
@@ -62,10 +63,8 @@
 }
 
 .summary {
-  font-family: "iMWritingMono Nerd Font Propo";
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 1;
   padding-top: 2px;
   padding-bottom: 1px;
   margin-bottom: 4px;
@@ -74,26 +73,29 @@
 }
 
 .time {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: @text;
+  color: @subtext0;
   margin-right: 18px;
 }
 
 .body {
   font-size: 13px;
-  line-height: 1.35;
-  font-weight: 800;
-  color: @text;
+  line-height: 1.4;
+  color: @subtext1;
 }
 
 .notification-group {
-  background-color: alpha(@base, 0.75);
+  background: alpha(@base, 0.75);
   border: none;
   border-radius: 16px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   padding: 8px;
-  margin: 10px 10px 10px 0;
+  margin: 8px 10px 8px 0;
+}
+
+.notification-group .notification-row {
+  margin: 0;
 }
 
 /* --- Control Center --- */
@@ -104,6 +106,7 @@
   border-radius: 20px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.35);
   padding: 16px 10px 10px 10px;
+  min-height: 400px;
 }
 
 .control-center .notification-row:hover,
@@ -112,17 +115,19 @@
   opacity: 1;
 }
 
+/* --- Title Widget --- */
+
 .widget-title {
   color: @mauve;
   background: alpha(@mantle, 0.75);
   border-radius: 16px;
   padding: 12px 16px;
-  margin: 6px 10px 16px 10px;
-  font-size: 1.4rem;
+  margin: 6px 10px 12px 10px;
+  font-size: 1.3rem;
   border-bottom: none;
 }
 
-.widget-title>button {
+.widget-title > button {
   font-size: 1rem;
   color: @text;
   background: transparent;
@@ -130,14 +135,16 @@
   border: none;
 }
 
-.widget-title>button:hover {
+.widget-title > button:hover {
   background: @red;
   color: @base;
   border-radius: 10px;
 }
 
+/* --- DND Widget --- */
+
 .widget-dnd {
-  margin: 0 10px 16px 10px;
+  margin: 0 10px 12px 10px;
   padding: 12px 16px;
   background: alpha(@mantle, 0.75);
   color: @text;
@@ -145,19 +152,27 @@
   font-weight: 600;
 }
 
-.widget-dnd:hover {
-  background: alpha(@surface0, 0.75);
+.widget-dnd > switch {
+  background: @surface0;
+  border-radius: 999px;
 }
 
-.notification-action>button {
+.widget-dnd > switch:checked {
+  background: @mauve;
+}
+
+/* --- Notification Action Buttons --- */
+
+.notification-action > button {
   color: @text;
   background: alpha(@crust, 0.75);
   border: 1px solid @surface0;
   box-shadow: none;
+  border-radius: 10px;
 }
 
-.notification-action>button:hover {
-  background-color: alpha(@mantle, 0.75);
+.notification-action > button:hover {
+  background: alpha(@mauve, 0.5);
 }
 
 .inline-reply-entry {
@@ -165,6 +180,7 @@
   color: @text;
   caret-color: @text;
   border: 1px solid @surface0;
+  border-radius: 10px;
 }
 
 .inline-reply-button {
@@ -173,6 +189,7 @@
   background: alpha(@crust, 0.75);
   border: 1px solid @surface0;
   color: @text;
+  border-radius: 10px;
 }
 
 .inline-reply-button:hover {
@@ -183,4 +200,29 @@
   background: transparent;
   color: @subtext0;
   border: 1px solid transparent;
+}
+
+/* --- Scrollbar --- */
+
+scrollbar {
+  background: transparent;
+  border: none;
+}
+
+scrollbar slider {
+  background: alpha(@surface1, 0.75);
+  border-radius: 999px;
+  min-width: 4px;
+}
+
+scrollbar slider:hover {
+  background: @mauve;
+}
+
+/* --- Empty State --- */
+
+.notification-center-widget-empty {
+  font-size: 1rem;
+  color: @subtext0;
+  padding: 24px;
 }

@@ -35,10 +35,10 @@ act() { echo -e "${CYN}[ ACTN ]${RST} $1"; }
 warn() { echo -e "${YLW}[ WARN ]${RST} $1"; }
 
 # setup lists
-CORE_PKGS=("hyprland" "waybar" "rofi" "networkmanager" "swaync" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland" "libpulse" "sound-theme-freedesktop")
+CORE_PKGS=("hyprland" "waybar" "rofi" "networkmanager" "swaync" "swayosd" "hypridle" "hyprlock" "hyprpolkitagent" "xdg-desktop-portal-hyprland" "libpulse" "sound-theme-freedesktop")
 TOOL_PKGS=("kitty" "thunar" "mpd-mpris" "fish" "awww" "fastfetch" "rofimoji" "fd" "cliphist" "wl-clipboard" "wtype" "kvantum" "qt5ct" "qt6ct" "jq" "curl" "unzip" "pavucontrol" "brightnessctl" "playerctl" "bluetui" "grim" "slurp" "tumbler" "ffmpegthumbnailer" "poppler-glib" "libgsf" "libopenraw" "freetype2")
 YAY_PKGS=("grimblast-git" "hyprpicker" "kvantum-theme-catppuccin-git")
-DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "cava" "brewland" "fastfetch" "brew-task")
+DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "swayosd" "cava" "brewland" "fastfetch")
 
 install_pacman() {
     local pkg=$1
@@ -218,6 +218,10 @@ for folder in "${DOTFILES[@]}"; do
         cp -r "$source_folder" "$HOME/.config/"
     fi
 done
+
+act "initializing swayosd theme..."
+ln -sf "$HOME/.config/swayosd/colors/mocha.css" "$HOME/.config/swayosd/colors.css"
+
 
 # --- phase 6: network ---
 echo ""

@@ -16,7 +16,9 @@ if [[ ! $choice =~ ^[Yy]$ ]]; then
     exit 0
 fi
 
-DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "cava" "brewland" "fastfetch")
+DOTFILES=("hypr" "kitty" "rofi" "swaync" "waybar" "swayosd" "cava" "brewland" "fastfetch" "brew-task")
+
+rm -f "$HOME/.config/swayosd/colors.css"
 
 for folder in "${DOTFILES[@]}"; do
     target="$HOME/.config/$folder"

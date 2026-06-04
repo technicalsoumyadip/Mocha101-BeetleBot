@@ -7,7 +7,7 @@
     border-radius: 0px;
 }
 
-@import "../waybar/colors/mocha.css";
+@import "../waybar/colors/latte.css";
 
 window#waybar {
     background-color: @base;
@@ -271,17 +271,6 @@ button {
 
 #custom-pomodoro:hover {
     background-color: @maroon;
-    color: @base;
-}
-
-#custom-brew-task {
-    min-width: 20px;
-    padding: 0 10px;
-    color: @mauve;
-}
-
-#custom-brew-task:hover {
-    background-color: @mauve;
     color: @base;
 }
 

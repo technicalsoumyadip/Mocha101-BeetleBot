@@ -110,9 +110,20 @@ safe_ln "$CONF_DIR/cava/themes/$NEW_FLAVOR-transparent.cava" "$CONF_DIR/cava/con
 echo "$NEW_FLAVOR" > "$CONF_DIR/nvim/current_flavor"
 pgrep -x nvim > /dev/null && pkill -USR1 -x nvim
 
-if command -v kvantummanager &> /dev/null; then
-    kvantummanager --set "$KVANTUM_THEME" &>/dev/null
+# --- swayosd ---
+safe_ln "$CONF_DIR/swayosd/colors/$NEW_FLAVOR.css" "$CONF_DIR/swayosd/colors.css"
+if pgrep -x swayosd-server >/dev/null; then
+    pkill -x swayosd-server
+    sleep 0.1
+    swayosd-server & disown
 fi
+
+KVANTUM_CONFIG="$HOME/.config/Kvantum/kvantum.kvconfig"
+mkdir -p "$HOME/.config/Kvantum"
+cat > "$KVANTUM_CONFIG" <<EOF
+[General]
+theme=$KVANTUM_THEME
+EOF
 
 notify-send -a "System Switcher" "Theme Toggled" "Switching to $NEW_FLAVOR"
 ok "theme set to $NEW_FLAVOR."

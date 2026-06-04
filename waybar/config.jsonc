@@ -15,7 +15,6 @@
     "modules-right": [
         "tray",
         "idle_inhibitor",
-        "custom/brew-task",
         "custom/pomodoro",
         "group/hardware"
     ],
@@ -211,12 +210,6 @@
         "on-click-right": "swaync-client -d -sw",
         "on-click-middle": "$HOME/.config/rofi/wallpaper_menu.sh",
         "escape": true
-    },
-    "custom/brew-task": {
-        "format": "",
-        "tooltip": true,
-        "tooltip-format": "brew-task",
-        "on-click": "~/.config/waybar/scripts/toggle-brew-task.sh"
     },
     "custom/pomodoro": {
         "format": "{}",

@@ -40,6 +40,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
     hl.exec_cmd("systemctl --user start mpd-mpris")
+    hl.exec_cmd("swayosd-server & disown")
 
     -- Desktop environment
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
@@ -205,6 +206,7 @@ hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal)) -- [desc: Open Termin
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock")) -- [desc: Lock Screen]
 hl.bind(mainMod .. " + Q", hl.dsp.window.close()) -- [desc: Close Window]
 hl.bind(mainMod .. " + X", hl.dsp.exit()) -- [desc: Exit Hyprland]
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t")) -- [desc: Toggle Notification Center]
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager)) -- [desc: File Manager]
 hl.bind(mainMod .. " + ALT + N", hl.dsp.exec_cmd("~/.config/rofi/scripts/wifi_menu.sh")) -- [desc: Network Manager]
 hl.bind(mainMod .. " + ALT + B", hl.dsp.exec_cmd("kitty --class bluetui -e bluetui")) -- [desc: Bluetooth Manager]
@@ -276,18 +278,18 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Multimedia
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"),       { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"),       { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"), { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("swayosd-client --input-volume mute-toggle"),  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("swayosd-client --brightness raise"),          { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("swayosd-client --brightness lower"),          { locked = true, repeating = true })
 
-hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
-hl.bind("XF86AudioStop",  hl.dsp.exec_cmd("playerctl stop"),       { locked = true })
+hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("swayosd-client --playerctl next"),       { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("swayosd-client --playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("swayosd-client --playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("swayosd-client --playerctl previous"),   { locked = true })
+hl.bind("XF86AudioStop",  hl.dsp.exec_cmd("swayosd-client --playerctl stop"),       { locked = true })
 
 
 --------------------------------
@@ -354,7 +356,7 @@ local layers_to_blur = {
     { name = "hyprlock-blur", match = "hyprlock", alpha = 0.2 },
     { name = "swaync-notify-blur", match = "swaync-notification-window", alpha = 0.2 },
     { name = "swaync-cc-blur", match = "swaync-control-center", alpha = 0.2 },
-    { name = "brew-task-blur", match = "brew-task", alpha = 0.5 },
+
 }
 
 for _, layer in ipairs(layers_to_blur) do
@@ -426,14 +428,3 @@ hl.window_rule({
     size = "800 600",
 })
 
--- brew-task rules
-hl.window_rule({
-    name = "brew-task-rules",
-    match = { title = "^(brew-task)$" },
-    float = true,
-    size = "480 560",
-    move = "(monitor_w-492) (monitor_h-598)",
-    pin = true,
-    suppress_event = "maximize",
-    animation = "slide bottom",
-})
