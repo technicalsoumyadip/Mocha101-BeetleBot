@@ -36,6 +36,22 @@ DISPLAY_LIST=""
 > "$MAP_FILE" 
 
 PLAYLIST=$(mpc ls "$CURRENT_DIR" 2>/dev/null)
+if [ $? -ne 0 ] || [ -z "$PLAYLIST" ]; then
+    PLAYLIST=$(mpc listall 2>/dev/null | awk -v dir="$CURRENT_DIR" '
+      BEGIN { len = length(dir); if (len > 0) prefix = dir "/" }
+      {
+        if (dir == "" || substr($0, 1, length(prefix)) == prefix) {
+          subpath = (dir == "") ? $0 : substr($0, length(prefix) + 1);
+          idx = index(subpath, "/");
+          if (idx > 0) {
+            print prefix substr(subpath, 1, idx - 1);
+          } else {
+            print prefix subpath;
+          }
+        }
+      }
+    ' | sort -u)
+fi
 
 # navigation tools
 if [ -n "$CURRENT_DIR" ]; then
