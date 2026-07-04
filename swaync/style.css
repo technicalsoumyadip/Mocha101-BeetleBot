@@ -1,7 +1,7 @@
 @import "colors/current_colors.css";
 
 * {
-  font-family: "iMWritingMono Nerd Font Propo", monospace;
+  font-family: "GeistMono Nerd Font Propo", monospace;
   font-size: 13px;
   color: @text;
 }

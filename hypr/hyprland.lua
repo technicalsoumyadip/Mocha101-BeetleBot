@@ -19,7 +19,7 @@ hl.monitor({
 
 local terminal    = "kitty"
 local fileManager = "thunar"
-local browser     = "floorp"
+local browser     = "zen-browser"
 local menu        = "rofi -show drun"
 local mainMod     = "SUPER"
 
@@ -115,7 +115,7 @@ hl.config({
         blur = {
             enabled = true,
             size = 5,
-            passes = 2,
+            passes =3,
             vibrancy = 1,
         },
 
@@ -134,7 +134,7 @@ hl.config({
         },
 
         groupbar = {
-            font_family = "iMWritingMono Nerd Font Propo",
+            font_family = "GeistMono Nerd Font Propo",
             font_size = 13,
             height = 24,
             render_titles = true,

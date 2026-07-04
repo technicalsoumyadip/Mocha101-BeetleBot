@@ -19,5 +19,5 @@
     selected:       @accent;
 
     width:          600;
-    font:           "JetBrainsMono Nerd Font 13";
+    font:           "GeistMono Nerd Font Propo 13";
 }
