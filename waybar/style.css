@@ -7,7 +7,7 @@
     border-radius: 0px;
 }
 
-@import "../waybar/colors/mocha.css";
+@import "../waybar/colors/latte.css";
 
 window#waybar {
     background-color: @base;
