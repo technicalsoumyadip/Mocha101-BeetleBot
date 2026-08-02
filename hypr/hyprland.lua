@@ -80,7 +80,7 @@ hl.config({
     general = {
         gaps_in = 2,
         gaps_out = 5,
-        border_size = 0,
+        border_size = 1,
         col = {
             active_border = active_border,
             inactive_border = inactive_border,
@@ -109,8 +109,8 @@ hl.config({
     decoration = {
         rounding = 0,
         rounding_power = 2.0,
-        active_opacity = 0.95,
-        inactive_opacity = 0.95,
+        active_opacity = 1,
+        inactive_opacity = 1,
 
         blur = {
             enabled = true,
